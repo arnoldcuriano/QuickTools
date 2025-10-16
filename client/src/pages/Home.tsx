@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   PhotoIcon, 
   DocumentTextIcon, 
@@ -16,10 +16,15 @@ import { Link } from 'react-router-dom';
 
 const QuickToolsLanding = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const toolsSectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  const scrollToTools = () => {
+    toolsSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const tools = [
     {
@@ -35,7 +40,7 @@ const QuickToolsLanding = () => {
     {
       category: "Code Tools",
       icon: <CodeBracketIcon className="w-6 h-6" />,
-      items: ["Base64 Encoder/Decoder", "Text Formatter", "JSON Formatter", "HTML Beautifier", "CSS Minifier"]
+      items: ["Base64 Encoder/Decoder", "JSON Converter", "Text Formatter", "HTML Beautifier", "CSS Minifier"]
     },
     {
       category: "SEO & Social",
@@ -146,15 +151,17 @@ const QuickToolsLanding = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/25">
-                <SparklesIcon className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                QuickTools
-              </span>
+              <Link to="/" className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/25">
+                  <SparklesIcon className="w-6 h-6 text-white" />
+                </div>
+                <span className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                  QuickTools
+                </span>
+              </Link>
             </div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button as={Link} to="/tools/base64" className="relative overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-6 py-2.5 rounded-xl font-medium shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40">
+              <Button onClick={scrollToTools} className="relative overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-6 py-2.5 rounded-xl font-medium shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40">
                 Get Started
               </Button>
             </motion.div>
@@ -187,7 +194,7 @@ const QuickToolsLanding = () => {
               Boost productivity with powerful, fast, and easy-to-use tools for all your content and coding needs.
             </p>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button as={Link} to="/tools/base64" className="relative overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-8 py-4 rounded-xl text-lg font-medium inline-flex items-center group">
+              <Button onClick={scrollToTools} className="relative overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-8 py-4 rounded-xl text-lg font-medium inline-flex items-center group">
                 <span className="relative">Start Using QuickTools</span>
                 <ArrowRightIcon className="w-5 h-5 ml-2 relative group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -307,6 +314,60 @@ const QuickToolsLanding = () => {
         whileInView="visible"
         viewport={{ once: true }}
         className="relative py-20"
+        ref={toolsSectionRef}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-4">
+              Browse the Full List of Tools
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {tools.map((category, index) => (
+              <motion.div
+                key={index}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                whileHover="hover"
+                viewport={{ once: true }}
+                className="group relative overflow-hidden backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6"
+              >
+                <div className="relative flex items-center mb-4">
+                  <div className="text-cyan-400 mr-3 group-hover:text-cyan-300">
+                    {category.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold text-white">{category.category}</h3>
+                </div>
+                <ul className="relative space-y-2">
+                  {category.items.map((item, itemIndex) => (
+                    <li key={itemIndex} className="text-gray-400 hover:text-cyan-400 cursor-pointer transition-colors">
+                      {item === "Base64 Encoder/Decoder" ? (
+                        <Link to="/tools/base64">{item}</Link>
+                      ) : item === "Text Formatter" ? (
+                        <Link to="/tools/text-formatter">{item}</Link>
+                      ) : item === "WebP Converter" ? (
+                        <Link to="/tools/webp-converter">{item}</Link>
+                      ) : item === "JSON Converter" ? (
+                        <Link to="/tools/json-converter">{item}</Link>
+                      ) : (
+                        item
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="relative py-20"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -348,55 +409,6 @@ const QuickToolsLanding = () => {
         viewport={{ once: true }}
         className="relative py-20"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-4">
-              Browse the Full List of Tools
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {tools.map((category, index) => (
-              <motion.div
-                key={index}
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                whileHover="hover"
-                viewport={{ once: true }}
-                className="group relative overflow-hidden backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6"
-              >
-                <div className="relative flex items-center mb-4">
-                  <div className="text-cyan-400 mr-3 group-hover:text-cyan-300">
-                    {category.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold text-white">{category.category}</h3>
-                </div>
-                <ul className="relative space-y-2">
-                  {category.items.map((item, itemIndex) => (
-                    <li key={itemIndex} className="text-gray-400 hover:text-cyan-400 cursor-pointer transition-colors">
-                      {item === "Base64 Encoder/Decoder" ? (
-                        <Link to="/tools/base64">{item}</Link>
-                      ) : item === "Text Formatter" ? (
-                        <Link to="/tools/text-formatter">{item}</Link>
-                      ) : (
-                        item
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      <motion.section
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="relative py-20"
-      >
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-12">
             <div className="relative">
@@ -407,7 +419,7 @@ const QuickToolsLanding = () => {
                 Join thousands of developers and writers already using QuickTools. Start saving time today.
               </p>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button as={Link} to="/tools/base64" className="relative overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-8 py-4 rounded-xl text-lg font-medium inline-flex items-center group">
+                <Button onClick={scrollToTools} className="relative overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-8 py-4 rounded-xl text-lg font-medium inline-flex items-center group">
                   <span className="relative">Try QuickTools Now</span>
                   <ArrowRightIcon className="w-5 h-5 ml-2 relative group-hover:translate-x-1 transition-transform" />
                 </Button>
@@ -421,14 +433,14 @@ const QuickToolsLanding = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="md:col-span-2">
-              <div className="flex items-center space-x-3 mb-4">
+              <Link to="/" className="flex items-center space-x-3 mb-4">
                 <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/25">
                   <SparklesIcon className="w-6 h-6 text-white" />
                 </div>
                 <span className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                   QuickTools
                 </span>
-              </div>
+              </Link>
               <p className="text-gray-400 mb-4">
                 QuickTools is the ultimate productivity platform for developers and writers.
               </p>
@@ -436,7 +448,7 @@ const QuickToolsLanding = () => {
             <div>
               <h4 className="text-white font-semibold mb-4">Quick Links</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><Link to="/tools/base64" className="hover:text-cyan-400 transition-colors">All Tools</Link></li>
+                <li><Button onClick={scrollToTools} className="text-gray-400 hover:text-cyan-400 transition-colors">All Tools</Button></li>
                 <li><Button className="text-gray-400 hover:text-cyan-400 transition-colors">About Us</Button></li>
                 <li><Button className="text-gray-400 hover:text-cyan-400 transition-colors">Contact</Button></li>
               </ul>

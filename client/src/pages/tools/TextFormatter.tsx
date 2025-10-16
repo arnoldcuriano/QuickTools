@@ -180,7 +180,7 @@ const TextFormatter = () => {
             
             for (const word of words) {
               if (currentLine.length + word.length + 1 <= 80) {
-                currentLine += (currentLine ? ' ' : '') + word;
+                currentLine += (currentLine ? ' ' : '') + word;  
               } else {
                 if (currentLine) wrappedLines.push(currentLine);
                 currentLine = word;
