@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" width="280" height="64">
+  <rect x="10" y="10" width="40" height="40" rx="14" fill="none" stroke="#F2A93B" stroke-width="4"/>
+  <line x1="42" y1="42" x2="54" y2="54" stroke="#F2A93B" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="30" cy="30" r="6" fill="#F2A93B"/>
+  <text x="68" y="40" font-family="'Space Grotesk', sans-serif" font-weight="600" font-size="26" fill="#ECEDEE">quicktools</text>
+</svg>

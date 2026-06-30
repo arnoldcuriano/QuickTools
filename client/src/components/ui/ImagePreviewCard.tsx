@@ -1,18 +1,9 @@
 import React from 'react';
 import { Button } from '@headlessui/react';
 import { motion, Variants } from 'framer-motion';
-import { DocumentArrowDownIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 import { formatFileSize } from '../../utils/formatFileSize';
-
-interface ImageData {
-  filename: string;
-  originalUrl: string;
-  originalSize: number;
-  webpUrl: string;
-  webpSize: number;
-  reduction: number;
-  error?: string;
-}
+import { ImageData } from '../../types/imageTools';
 
 interface ImagePreviewCardProps {
   img: ImageData;

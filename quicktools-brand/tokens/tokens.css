@@ -1,0 +1,108 @@
+/* ==========================================================================
+   Quicktools — "Socket" Design Tokens
+   Usage: <html data-theme="dark"> or <html data-theme="light">
+   Defaults to dark theme if no data-theme attribute is set.
+   ========================================================================== */
+
+:root,
+[data-theme="dark"] {
+  /* Surfaces */
+  --color-bg:            #15171C;
+  --color-surface:       #1E2128;
+  --color-surface-raised:#262A33;
+  --color-border:        #2A2D34;
+  --color-border-strong: #383C46;
+
+  /* Text */
+  --color-text:          #ECEDEE;
+  --color-text-muted:    #9A9DA3;
+  --color-text-faint:    #6B6E75;
+
+  /* Brand accent (amber) */
+  --color-accent:        #F2A93B;
+  --color-accent-hover:  #F7BD60;
+  --color-accent-active: #D8922A;
+  --color-accent-text:   #15171C; /* text placed ON the accent color */
+
+  /* Semantic */
+  --color-success:       #4ADE80;
+  --color-danger:        #F87171;
+  --color-warning:       #FBBF24;
+  --color-info:          #60A5FA;
+
+  /* Shadow */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.32);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.40);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.48);
+}
+
+[data-theme="light"] {
+  /* Surfaces */
+  --color-bg:            #F5F6F8;
+  --color-surface:       #FFFFFF;
+  --color-surface-raised:#FFFFFF;
+  --color-border:        #DCDFE3;
+  --color-border-strong: #C7CBD1;
+
+  /* Text */
+  --color-text:          #16181C;
+  --color-text-muted:    #5B5E66;
+  --color-text-faint:    #8A8D94;
+
+  /* Brand accent (amber, darkened for AA contrast on white) */
+  --color-accent:        #C97E1E;
+  --color-accent-hover:  #B36F19;
+  --color-accent-active: #985F15;
+  --color-accent-text:   #FFFFFF;
+
+  /* Semantic */
+  --color-success:       #16A34A;
+  --color-danger:        #DC2626;
+  --color-warning:       #D97706;
+  --color-info:          #2563EB;
+
+  /* Shadow */
+  --shadow-sm: 0 1px 2px rgba(20,20,20,0.06);
+  --shadow-md: 0 4px 16px rgba(20,20,20,0.08);
+  --shadow-lg: 0 12px 32px rgba(20,20,20,0.10);
+}
+
+:root {
+  /* Typography */
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-body:    'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+
+  --text-xs:   12px;
+  --text-sm:   13px;
+  --text-base: 15px;
+  --text-md:   17px;
+  --text-lg:   20px;
+  --text-xl:   26px;
+  --text-2xl:  34px;
+
+  --leading-tight: 1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  /* Radius — soft, lightweight feel. Mark uses rx 14/40 ratio (0.35); UI mirrors that proportion. */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  /* Spacing scale (4px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* Motion — keep light, never decorative-only */
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+}

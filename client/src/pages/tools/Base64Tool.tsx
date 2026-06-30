@@ -6,8 +6,7 @@ import {
   ArrowsRightLeftIcon, 
   ExclamationTriangleIcon, 
   InformationCircleIcon, 
-  TrashIcon,
-  SparklesIcon
+  TrashIcon
 } from '@heroicons/react/24/outline';
 import { Button, Textarea } from '@headlessui/react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
@@ -107,12 +106,10 @@ const Base64Tool = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/25">
-                <SparklesIcon className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                QuickTools
-              </span>
+              <button onClick={() => navigate('/')} className="flex items-center space-x-3" aria-label="quicktools home">
+                <span aria-hidden="true" className="brand-mark-icon" />
+                <span className="brand-wordmark">quicktools</span>
+              </button>
             </div>
             <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
               <Button

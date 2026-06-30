@@ -2,7 +2,6 @@ import React, { useState, useCallback, useRef } from 'react';
 import { 
   ArrowLeftIcon, 
   TrashIcon,
-  SparklesIcon,
   InformationCircleIcon,
   ExclamationTriangleIcon,
   DocumentArrowDownIcon
@@ -10,22 +9,18 @@ import {
 import { Button } from '@headlessui/react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { formatFileSize } from '../../utils/formatFileSize';
 import ImagePreviewCard from '../../components/ui/ImagePreviewCard';
-
-interface ImageData {
-  filename: string;
-  originalUrl: string;
-  originalSize: number;
-  webpUrl: string;
-  webpSize: number;
-  reduction: number;
-  error?: string;
-}
-
-const MAX_FILES = 20;
+import { ImageData } from '../../types/imageTools';
+import {
+  convertToWebP,
+  createSourceFileFromImage,
+  createWebPZip,
+  getImageSavingsSummary,
+  getSupportedImageFiles,
+  MAX_WEBP_FILES,
+} from '../../utils/webpConverter';
 
 const WebPConverter = () => {
   const [images, setImages] = useState<ImageData[]>([]);
@@ -37,54 +32,16 @@ const WebPConverter = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
-  const convertToWebP = useCallback(async (file: File, qual: number): Promise<ImageData> => {
-    return new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.onload = async (e) => {
-        const img = new Image();
-        img.onload = async () => {
-          const canvas = document.createElement('canvas');
-          canvas.width = img.width;
-          canvas.height = img.height;
-          const ctx = canvas.getContext('2d');
-          if (!ctx) {
-            return resolve({ filename: file.name, originalUrl: '', originalSize: 0, webpUrl: '', webpSize: 0, reduction: 0, error: 'Canvas not supported.' });
-          }
-          ctx.drawImage(img, 0, 0);
-          try {
-            const webpDataUrl = canvas.toDataURL('image/webp', qual / 100);
-            const webpBlob = await (await fetch(webpDataUrl)).blob();
-            const reduction = file.size > 0 ? ((file.size - webpBlob.size) / file.size * 100) : 0;
-            resolve({
-              filename: file.name.replace(/\.[^/.]+$/, '.webp'),
-              originalUrl: e.target?.result as string,
-              originalSize: file.size,
-              webpUrl: webpDataUrl,
-              webpSize: webpBlob.size,
-              reduction,
-            });
-          } catch (err) {
-            resolve({ filename: file.name, originalUrl: '', originalSize: 0, webpUrl: '', webpSize: 0, reduction: 0, error: 'Conversion failed.' });
-          }
-        };
-        img.onerror = () => resolve({ filename: file.name, originalUrl: '', originalSize: 0, webpUrl: '', webpSize: 0, reduction: 0, error: 'Invalid image.' });
-        img.src = e.target?.result as string;
-      };
-      reader.onerror = () => resolve({ filename: file.name, originalUrl: '', originalSize: 0, webpUrl: '', webpSize: 0, reduction: 0, error: 'Read failed.' });
-      reader.readAsDataURL(file);
-    });
-  }, []);
-
   const processFiles = useCallback(async (files: FileList, qual: number) => {
     setGlobalError('');
-    const fileArray = Array.from(files).filter(f => ['image/jpeg', 'image/png'].includes(f.type));
+    const fileArray = getSupportedImageFiles(files);
     if (fileArray.length === 0) {
       setGlobalError('No valid JPG/PNG images selected.');
       return;
     }
-    if (fileArray.length > MAX_FILES) {
-      setGlobalError(`Exceeded limit: Only the first ${MAX_FILES} images will be processed.`);
-      fileArray.splice(MAX_FILES);
+    if (fileArray.length > MAX_WEBP_FILES) {
+      setGlobalError(`Exceeded limit: Only the first ${MAX_WEBP_FILES} images will be processed.`);
+      fileArray.splice(MAX_WEBP_FILES);
     }
     setIsProcessing(true);
     setProgress(0);
@@ -96,7 +53,7 @@ const WebPConverter = () => {
     }
     setImages(prev => [...prev, ...results]);
     setIsProcessing(false);
-  }, [convertToWebP]);
+  }, []);
 
   const reconvertAll = useCallback(async () => {
     if (images.length === 0) return;
@@ -105,15 +62,14 @@ const WebPConverter = () => {
     const newImages: ImageData[] = [];
     for (let i = 0; i < images.length; i++) {
       if (images[i].error || !images[i].originalUrl) continue;
-      const blob = await (await fetch(images[i].originalUrl)).blob();
-      const file = new File([blob], images[i].filename.replace('.webp', ''), { type: blob.type });
+      const file = await createSourceFileFromImage(images[i]);
       const result = await convertToWebP(file, quality);
       newImages.push(result);
       setProgress(((i + 1) / images.length) * 100);
     }
     setImages(newImages);
     setIsProcessing(false);
-  }, [images, quality, convertToWebP]);
+  }, [images, quality]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) processFiles(e.target.files, quality);
@@ -140,14 +96,7 @@ const WebPConverter = () => {
   };
 
   const downloadAllAsZip = async () => {
-    const zip = new JSZip();
-    images.forEach((img) => {
-      if (img.webpUrl) {
-        const base64 = img.webpUrl.split(',')[1];
-        zip.file(img.filename, base64, { base64: true });
-      }
-    });
-    const content = await zip.generateAsync({ type: 'blob' });
+    const content = await createWebPZip(images);
     saveAs(content, 'webp-images.zip');
   };
 
@@ -162,8 +111,7 @@ const WebPConverter = () => {
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
-  const totalSavings = images.reduce((acc, img) => acc + (img.originalSize - img.webpSize), 0);
-  const avgReduction = images.length > 0 ? (images.reduce((acc, img) => acc + img.reduction, 0) / images.length) : 0;
+  const { totalSavings, avgReduction } = getImageSavingsSummary(images);
 
   const sectionVariants: Variants = {
     hidden: { opacity: 0, y: 50 },
@@ -194,12 +142,10 @@ const WebPConverter = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/25">
-                <SparklesIcon className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                QuickTools
-              </span>
+              <button onClick={() => navigate('/')} className="flex items-center space-x-3" aria-label="quicktools home">
+                <span aria-hidden="true" className="brand-mark-icon" />
+                <span className="brand-wordmark">quicktools</span>
+              </button>
             </div>
             <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
               <Button

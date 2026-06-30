@@ -5,6 +5,8 @@ import App from './App';
 
 test('renders QuickTools app', () => {
   render(<App />);
-  const headingElement = screen.getByText(/QuickTools/i);
+  const headingElement = screen.getByRole('heading', {
+    name: /client-side tools for everyday file and text work/i,
+  });
   expect(headingElement).toBeInTheDocument();
 });

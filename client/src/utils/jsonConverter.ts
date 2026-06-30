@@ -1,6 +1,6 @@
 
 import { format as prettierFormat } from 'prettier/standalone';
-import babelParser from 'prettier/parser-babel';
+import babelParser from 'prettier/plugins/babel';
 
 export interface JSONConverterOptions {
   mode: 'beautify' | 'minify';

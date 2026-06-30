@@ -1,471 +1,247 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { 
-  PhotoIcon, 
-  DocumentTextIcon, 
-  CodeBracketIcon, 
-  MagnifyingGlassIcon,
+import React, { useRef } from 'react';
+import {
+  ArrowRightIcon,
+  CodeBracketIcon,
+  DocumentTextIcon,
+  PhotoIcon,
+  ShieldCheckIcon,
   SparklesIcon,
-  RocketLaunchIcon,
-  CheckCircleIcon,
-  StarIcon,
-  ArrowRightIcon
+  Square3Stack3DIcon,
 } from '@heroicons/react/24/outline';
-import { motion, Variants } from 'framer-motion';
 import { Button } from '@headlessui/react';
 import { Link } from 'react-router-dom';
+import { motion, Variants } from 'framer-motion';
+
+const tools = [
+  {
+    name: 'Base64 Encoder/Decoder',
+    path: '/tools/base64',
+    icon: CodeBracketIcon,
+    description: 'Encode readable text or decode valid Base64 strings directly in the browser.',
+    meta: 'Text utility',
+  },
+  {
+    name: 'JSON Converter',
+    path: '/tools/json-converter',
+    icon: Square3Stack3DIcon,
+    description: 'Beautify or minify JSON with immediate validation feedback.',
+    meta: 'Data formatter',
+  },
+  {
+    name: 'Text Formatter',
+    path: '/tools/text-formatter',
+    icon: DocumentTextIcon,
+    description: 'Clean JSON, XML, HTML, and plain text into readable output.',
+    meta: 'Content cleanup',
+  },
+  {
+    name: 'WebP Converter',
+    path: '/tools/webp-converter',
+    icon: PhotoIcon,
+    description: 'Convert up to 20 JPG or PNG images into optimized WebP files.',
+    meta: 'Image conversion',
+  },
+];
+
+const principles = [
+  'Browser-local processing by default',
+  'Focused tools with visible validation',
+  'No account, install, or backend upload required',
+];
+
+const panelVariants: Variants = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.2, ease: 'easeOut' } },
+};
 
 const QuickToolsLanding = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const toolsSectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
 
   const scrollToTools = () => {
     toolsSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const tools = [
-    {
-      category: "Image Tools",
-      icon: <PhotoIcon className="w-6 h-6" />,
-      items: ["WebP Converter", "Image Resizer", "Favicon Generator", "SVG Optimizer"]
-    },
-    {
-      category: "Text Tools", 
-      icon: <DocumentTextIcon className="w-6 h-6" />,
-      items: ["Text Formatter", "Grammar Checker", "Text Summarizer", "Word Counter"]
-    },
-    {
-      category: "Code Tools",
-      icon: <CodeBracketIcon className="w-6 h-6" />,
-      items: ["Base64 Encoder/Decoder", "JSON Converter", "Text Formatter", "HTML Beautifier", "CSS Minifier"]
-    },
-    {
-      category: "SEO & Social",
-      icon: <MagnifyingGlassIcon className="w-6 h-6" />,
-      items: ["Open Graph Previewer", "Meta Tag Generator", "Twitter Card Tester", "Slug Generator"]
-    }
-  ];
-
-  const features = [
-    {
-      icon: <RocketLaunchIcon className="w-8 h-8" />,
-      title: "Instant WebP Converter",
-      description: "Convert your images to WebP format for lightning-fast web performance."
-    },
-    {
-      icon: <CodeBracketIcon className="w-8 h-8" />,
-      title: "Text Formatter", 
-      description: "Clean up your code, JSON, XML, and HTML with just a click."
-    },
-    {
-      icon: <SparklesIcon className="w-8 h-8" />,
-      title: "Grammar & Style Checker",
-      description: "Perfect your writing with real-time grammar checks and style suggestions."
-    },
-    {
-      icon: <PhotoIcon className="w-8 h-8" />,
-      title: "Image Resizer & Compressor",
-      description: "Keep your visuals crisp without sacrificing performance."
-    }
-  ];
-
-  const steps = [
-    {
-      number: "1",
-      title: "Pick a Tool",
-      description: "Select the tool you need from our list of powerful utilities."
-    },
-    {
-      number: "2", 
-      title: "Upload or Input Your Data",
-      description: "Drop your files, paste your text, or select your image."
-    },
-    {
-      number: "3",
-      title: "Download or Copy",
-      description: "Get the optimized output instantly and integrate it into your workflow."
-    }
-  ];
-
-  const benefits = [
-    {
-      icon: <CheckCircleIcon className="w-6 h-6" />,
-      title: "Free to Use",
-      description: "All tools are free and always will be."
-    },
-    {
-      icon: <CheckCircleIcon className="w-6 h-6" />,
-      title: "No Installations", 
-      description: "Access tools instantly from any browser. No downloads, no extensions."
-    },
-    {
-      icon: <CheckCircleIcon className="w-6 h-6" />,
-      title: "Multi-Purpose",
-      description: "Whether you're coding or writing, QuickTools has something for every professional."
-    },
-    {
-      icon: <CheckCircleIcon className="w-6 h-6" />,
-      title: "Optimized Performance",
-      description: "Each tool is designed for speed—process your data in seconds."
-    }
-  ];
-
-  const testimonials = [
-    {
-      text: "QuickTools has made my life so much easier. I can format JSON, check grammar, and compress images all in one place!",
-      author: "Jane Doe",
-      role: "Web Developer",
-      rating: 5
-    },
-    {
-      text: "As a writer, I love how fast and reliable the text summarizer and grammar checker are.",
-      author: "John Smith", 
-      role: "Content Writer",
-      rating: 5
-    }
-  ];
-
-  const sectionVariants: Variants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } }
-  };
-
-  const cardVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: 'easeOut' } },
-    hover: { scale: 1.05, transition: { duration: 0.3 } }
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-black">
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-3/4 left-3/4 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
-      </div>
-
-      <header className="relative z-50 backdrop-blur-xl bg-white/5 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-3">
-              <Link to="/" className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/25">
-                  <SparklesIcon className="w-6 h-6 text-white" />
-                </div>
-                <span className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                  QuickTools
-                </span>
-              </Link>
-            </div>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button onClick={scrollToTools} className="relative overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-6 py-2.5 rounded-xl font-medium shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40">
-                Get Started
-              </Button>
-            </motion.div>
+    <div className="brand-page min-h-screen">
+      <header className="brand-header sticky top-0 z-50">
+        <div className="brand-shell">
+          <div className="flex items-center justify-between py-4">
+            <Link to="/" className="flex items-center gap-3" aria-label="quicktools home">
+              <span aria-hidden="true" className="brand-mark-icon" />
+              <span className="brand-wordmark">quicktools</span>
+            </Link>
+            <nav className="hidden items-center gap-6 text-sm font-medium text-brand-muted md:flex">
+              <button type="button" onClick={scrollToTools} className="transition-colors hover:text-brand-accent">
+                Tools
+              </button>
+              <a href="#privacy" className="transition-colors hover:text-brand-accent">
+                Privacy-first
+              </a>
+              <a href="#workflow" className="transition-colors hover:text-brand-accent">
+                Workflow
+              </a>
+            </nav>
+            <Button onClick={scrollToTools} className="brand-button hidden px-3 py-2 text-sm sm:inline-flex sm:px-4">
+              <span className="sm:hidden">Tools</span>
+              <span className="hidden sm:inline">Open tools</span>
+            </Button>
           </div>
         </div>
       </header>
 
-      <motion.section
-        variants={sectionVariants}
-        initial="hidden"
-        animate={isVisible ? "visible" : "hidden"}
-        className="relative py-20 overflow-hidden"
-      >
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent">
-                The Ultimate
-              </span>
-              <br />
-              <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-400 bg-clip-text text-transparent">
-                Toolbox
-              </span>
-              <br />
-              <span className="bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent">
-                for Developers & Writers
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-10 max-w-4xl mx-auto leading-relaxed">
-              Boost productivity with powerful, fast, and easy-to-use tools for all your content and coding needs.
-            </p>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button onClick={scrollToTools} className="relative overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-8 py-4 rounded-xl text-lg font-medium inline-flex items-center group">
-                <span className="relative">Start Using QuickTools</span>
-                <ArrowRightIcon className="w-5 h-5 ml-2 relative group-hover:translate-x-1 transition-transform" />
-              </Button>
+      <main>
+        <section className="brand-shell py-16 lg:py-24">
+          <div className="grid min-w-0 items-center gap-10 lg:grid-cols-[1fr_520px]">
+            <motion.div initial="hidden" animate="visible" variants={panelVariants} className="min-w-0">
+              <h1 className="max-w-4xl text-2xl font-bold leading-tight text-brand sm:text-5xl lg:text-6xl">
+                <span className="block sm:inline">Client-side tools for</span>
+                <span className="block sm:inline"> everyday file and text work</span>
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-brand-muted">
+                Convert images, format data, encode text, and clean up content directly in your browser.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Button onClick={scrollToTools} className="brand-button px-5 py-3">
+                  Browse tools
+                  <ArrowRightIcon className="h-5 w-5" />
+                </Button>
+                <Link to="/tools/json-converter" className="brand-button-secondary px-5 py-3">
+                  Open JSON converter
+                </Link>
+              </div>
+              <div id="privacy" className="mt-10 grid gap-3 text-sm text-brand-muted sm:grid-cols-3">
+                {principles.map((principle) => (
+                  <div key={principle} className="brand-panel flex items-start gap-3 p-4">
+                    <ShieldCheckIcon className="mt-0.5 h-5 w-5 flex-none text-brand-accent" />
+                    <span>{principle}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={panelVariants}
+              transition={{ delay: 0.08 }}
+              className="brand-panel-raised hidden w-full min-w-0 max-w-full overflow-hidden lg:block"
+            >
+              <div className="flex items-center justify-between border-b border-brand px-5 py-4">
+                <div>
+                  <p className="font-display text-lg font-semibold text-brand">Tool workspace</p>
+                  <p className="text-sm text-brand-muted">Input, validate, copy, download.</p>
+                </div>
+                <div className="hidden rounded-[var(--radius-sm)] bg-[var(--color-accent)] px-3 py-1.5 text-sm font-semibold text-[var(--color-accent-text)] sm:block">
+                  Live
+                </div>
+              </div>
+              <div className="grid gap-4 p-5">
+                <div className="grid min-w-0 gap-4 sm:grid-cols-2">
+                  <div className="brand-code-panel min-h-48 min-w-0 p-4">
+                    <div className="mb-3 flex items-center justify-between text-xs text-brand-muted">
+                      <span>Input</span>
+                      <span>128 chars</span>
+                    </div>
+                    <pre className="whitespace-pre-wrap text-sm leading-relaxed text-brand">{`{"tool":"quicktools","mode":"beautify"}`}</pre>
+                  </div>
+                  <div className="brand-code-panel min-h-48 min-w-0 p-4">
+                    <div className="mb-3 flex items-center justify-between text-xs text-brand-muted">
+                      <span>Output</span>
+                      <span>ready</span>
+                    </div>
+                    <pre className="whitespace-pre-wrap text-sm leading-relaxed text-brand">{`{
+  "tool": "quicktools",
+  "mode": "beautify"
+}`}</pre>
+                  </div>
+                </div>
+                <div className="grid gap-3 sm:grid-cols-3">
+                  {['Beautify', 'Minify', 'Copy'].map((item, index) => (
+                    <div
+                      key={item}
+                      className={`rounded-[var(--radius-sm)] border px-3 py-2 text-center text-sm font-semibold ${
+                        index === 0
+                          ? 'border-[var(--color-accent)] bg-[var(--color-accent)] text-[var(--color-accent-text)]'
+                          : 'border-brand bg-brand-surface text-brand-muted'
+                      }`}
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </motion.div>
           </div>
-        </div>
-      </motion.section>
+        </section>
 
-      <motion.section
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="relative py-20"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-4">
-              Everything You Need, All in One Place
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                whileHover="hover"
-                viewport={{ once: true }}
-                className="group relative overflow-hidden backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6"
-              >
-                <div className="relative text-cyan-400 mb-4 group-hover:text-cyan-300">
-                  {feature.icon}
+        <section id="workflow" className="brand-shell pb-10">
+          <div className="brand-panel-raised grid gap-4 p-5 md:grid-cols-3">
+            {['Choose a tool', 'Paste or upload', 'Copy or download'].map((step, index) => (
+              <div key={step} className="flex gap-4">
+                <div className="flex h-8 w-8 flex-none items-center justify-center rounded-[var(--radius-sm)] bg-[var(--color-surface)] font-display font-semibold text-brand-accent">
+                  {index + 1}
                 </div>
-                <h3 className="relative text-xl font-semibold text-white mb-3">{feature.title}</h3>
-                <p className="relative text-gray-400">{feature.description}</p>
-              </motion.div>
+                <div>
+                  <h2 className="text-base font-semibold text-brand">{step}</h2>
+                  <p className="mt-1 text-sm text-brand-muted">
+                    {index === 0
+                      ? 'Open one of the implemented utilities.'
+                      : index === 1
+                        ? 'Run work locally with clear validation.'
+                        : 'Take the result into your workflow.'}
+                  </p>
+                </div>
+              </div>
             ))}
           </div>
-        </div>
-      </motion.section>
+        </section>
 
-      <motion.section
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="relative py-20"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-4">
-              Using QuickTools is as Simple as 1-2-3!
-            </h2>
+        <section ref={toolsSectionRef} className="brand-shell py-14">
+          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+            <div>
+              <h2 className="text-3xl font-bold text-brand">Available tools</h2>
+              <p className="mt-2 max-w-2xl text-brand-muted">
+                The catalog only lists tools that have implemented routes in this app.
+              </p>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-brand-muted">
+              <SparklesIcon className="h-5 w-5 text-brand-accent" />
+              <span>Modular utilities, one frame</span>
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {steps.map((step, index) => (
-              <motion.div
-                key={index}
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                whileHover="hover"
-                viewport={{ once: true }}
-                className="text-center group"
-              >
-                <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl font-bold text-white shadow-lg shadow-cyan-500/25 group-hover:shadow-cyan-500/40">
-                  {step.number}
-                </div>
-                <h3 className="text-2xl font-semibold text-white mb-4">{step.title}</h3>
-                <p className="text-gray-400 text-lg">{step.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
 
-      <motion.section
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="relative py-20"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-4">
-              Effortless, Efficient, and Always Available
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((benefit, index) => (
-              <motion.div
-                key={index}
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                whileHover="hover"
-                viewport={{ once: true }}
-                className="text-center group"
-              >
-                <div className="text-cyan-400 mb-4 flex justify-center group-hover:text-cyan-300">
-                  {benefit.icon}
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-3">{benefit.title}</h3>
-                <p className="text-gray-400">{benefit.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      <motion.section
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="relative py-20"
-        ref={toolsSectionRef}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-4">
-              Browse the Full List of Tools
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {tools.map((category, index) => (
-              <motion.div
-                key={index}
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                whileHover="hover"
-                viewport={{ once: true }}
-                className="group relative overflow-hidden backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6"
-              >
-                <div className="relative flex items-center mb-4">
-                  <div className="text-cyan-400 mr-3 group-hover:text-cyan-300">
-                    {category.icon}
+          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {tools.map((tool) => {
+              const Icon = tool.icon;
+              return (
+                <Link
+                  key={tool.path}
+                  to={tool.path}
+                  className="brand-panel group block p-5 transition-colors hover:border-[var(--color-accent)]"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-surface-raised)] text-brand-accent">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <ArrowRightIcon className="h-5 w-5 text-brand-faint transition-transform group-hover:translate-x-1 group-hover:text-brand-accent" />
                   </div>
-                  <h3 className="text-xl font-semibold text-white">{category.category}</h3>
-                </div>
-                <ul className="relative space-y-2">
-                  {category.items.map((item, itemIndex) => (
-                    <li key={itemIndex} className="text-gray-400 hover:text-cyan-400 cursor-pointer transition-colors">
-                      {item === "Base64 Encoder/Decoder" ? (
-                        <Link to="/tools/base64">{item}</Link>
-                      ) : item === "Text Formatter" ? (
-                        <Link to="/tools/text-formatter">{item}</Link>
-                      ) : item === "WebP Converter" ? (
-                        <Link to="/tools/webp-converter">{item}</Link>
-                      ) : item === "JSON Converter" ? (
-                        <Link to="/tools/json-converter">{item}</Link>
-                      ) : (
-                        item
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
+                  <p className="mt-5 text-xs font-semibold uppercase tracking-wider text-brand-faint">{tool.meta}</p>
+                  <h3 className="mt-2 text-xl font-semibold text-brand">{tool.name}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-brand-muted">{tool.description}</p>
+                </Link>
+              );
+            })}
           </div>
-        </div>
-      </motion.section>
+        </section>
+      </main>
 
-      <motion.section
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="relative py-20"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-4">
-              What Our Users Are Saying
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                whileHover="hover"
-                viewport={{ once: true }}
-                className="relative overflow-hidden backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-8"
-              >
-                <div className="relative flex mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <StarIcon key={i} className="w-5 h-5 text-cyan-400 fill-current" />
-                  ))}
-                </div>
-                <p className="relative text-gray-300 text-lg mb-6 italic">"{testimonial.text}"</p>
-                <div className="relative">
-                  <p className="text-white font-semibold">{testimonial.author}</p>
-                  <p className="text-cyan-400">{testimonial.role}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      <motion.section
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="relative py-20"
-      >
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-12">
-            <div className="relative">
-              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-6">
-                Ready to Get Started?
-              </h2>
-              <p className="text-xl text-gray-300 mb-8">
-                Join thousands of developers and writers already using QuickTools. Start saving time today.
-              </p>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button onClick={scrollToTools} className="relative overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-8 py-4 rounded-xl text-lg font-medium inline-flex items-center group">
-                  <span className="relative">Try QuickTools Now</span>
-                  <ArrowRightIcon className="w-5 h-5 ml-2 relative group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </motion.section>
-
-      <footer className="relative backdrop-blur-xl bg-white/5 border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="md:col-span-2">
-              <Link to="/" className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/25">
-                  <SparklesIcon className="w-6 h-6 text-white" />
-                </div>
-                <span className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                  QuickTools
-                </span>
-              </Link>
-              <p className="text-gray-400 mb-4">
-                QuickTools is the ultimate productivity platform for developers and writers.
-              </p>
-            </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Button onClick={scrollToTools} className="text-gray-400 hover:text-cyan-400 transition-colors">All Tools</Button></li>
-                <li><Button className="text-gray-400 hover:text-cyan-400 transition-colors">About Us</Button></li>
-                <li><Button className="text-gray-400 hover:text-cyan-400 transition-colors">Contact</Button></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Legal</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Button className="text-gray-400 hover:text-cyan-400 transition-colors">Privacy Policy</Button></li>
-                <li><Button className="text-gray-400 hover:text-cyan-400 transition-colors">Terms of Service</Button></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-white/10 mt-8 pt-8 text-center">
-            <p className="text-gray-500">
-              © 2025 QuickTools. All rights reserved.
-            </p>
-          </div>
+      <footer className="border-t border-brand">
+        <div className="brand-shell flex flex-col gap-4 py-8 text-sm text-brand-muted md:flex-row md:items-center md:justify-between">
+          <Link to="/" className="flex items-center gap-3">
+            <span aria-hidden="true" className="brand-mark-icon h-7 w-7" />
+            <span className="brand-wordmark text-xl">quicktools</span>
+          </Link>
+          <p>Client-first utilities for text, data, and image conversion.</p>
         </div>
       </footer>
     </div>
