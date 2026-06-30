@@ -271,7 +271,7 @@ Current state:
 - The client can be built with `npm run build` from `client`.
 - `client/build` exists in the repository.
 - GitHub Actions workflows exist for lint, type check, build, unit tests, Playwright smoke checks, Lighthouse, dependency audit, security scanning, and preview build artifacts.
-- No production deployment target, hosting platform, domain, or server deployment process is documented in the repo.
+- Vercel is the documented client deployment target through the root `vercel.json` build and SPA rewrite config.
 - The server package has no runnable application entrypoint.
 
 Rules:
@@ -280,12 +280,13 @@ Rules:
 - Treat `client/build` as generated output.
 - Run `npm run build` before production client release work.
 - Do not deploy automatically to production from CI.
+- Keep the client as a browser SPA and preserve route refresh behavior through Vercel rewrites.
 
 Future plan:
 
 - Decide whether `client/build` should remain committed.
 - Stabilize CI blockers identified by repository review.
-- Document hosting and rollback steps when a deployment target exists.
+- Document hosting and rollback steps for the active deployment target when needed.
 
 ## Roadmap
 

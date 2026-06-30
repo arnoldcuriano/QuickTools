@@ -11,8 +11,9 @@ import {
 } from '@heroicons/react/24/outline';
 import { Button, Textarea } from '@headlessui/react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { convertJson, JSONConverterOptions } from '../../utils/jsonConverter';
+import AppHeader from '../../components/ui/AppHeader';
 
 const JSONConverter = () => {
   const [input, setInput] = useState('');
@@ -105,27 +106,17 @@ const JSONConverter = () => {
       </div>
 
       {/* Header */}
-      <header className="relative z-50 backdrop-blur-xl bg-white/5 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-3">
-              <Link to="/" className="flex items-center space-x-3">
-                <span aria-hidden="true" className="brand-mark-icon" />
-                <span className="brand-wordmark">quicktools</span>
-              </Link>
-            </div>
-            <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
-              <Button
-                onClick={clearAll}
-                className="relative overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-6 py-2.5 rounded-xl font-medium flex items-center space-x-2 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
-              >
-                <TrashIcon className="w-4 h-4" />
-                <span>Clear All</span>
-              </Button>
-            </motion.div>
-          </div>
-        </div>
-      </header>
+      <AppHeader>
+        <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
+          <Button
+            onClick={clearAll}
+            className="relative overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-6 py-2.5 rounded-xl font-medium flex items-center space-x-2 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
+          >
+            <TrashIcon className="w-4 h-4" />
+            <span>Clear All</span>
+          </Button>
+        </motion.div>
+      </AppHeader>
 
       {/* Main Content */}
       <motion.section

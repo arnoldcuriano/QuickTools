@@ -11,6 +11,7 @@ import {
 import { Button } from '@headlessui/react';
 import { Link } from 'react-router-dom';
 import { motion, Variants } from 'framer-motion';
+import AppHeader from '../components/ui/AppHeader';
 
 const tools = [
   {
@@ -63,31 +64,23 @@ const QuickToolsLanding = () => {
 
   return (
     <div className="brand-page min-h-screen">
-      <header className="brand-header sticky top-0 z-50">
-        <div className="brand-shell">
-          <div className="flex items-center justify-between py-4">
-            <Link to="/" className="flex items-center gap-3" aria-label="quicktools home">
-              <span aria-hidden="true" className="brand-mark-icon" />
-              <span className="brand-wordmark">quicktools</span>
-            </Link>
-            <nav className="hidden items-center gap-6 text-sm font-medium text-brand-muted md:flex">
-              <button type="button" onClick={scrollToTools} className="transition-colors hover:text-brand-accent">
-                Tools
-              </button>
-              <a href="#privacy" className="transition-colors hover:text-brand-accent">
-                Privacy-first
-              </a>
-              <a href="#workflow" className="transition-colors hover:text-brand-accent">
-                Workflow
-              </a>
-            </nav>
-            <Button onClick={scrollToTools} className="brand-button hidden px-3 py-2 text-sm sm:inline-flex sm:px-4">
-              <span className="sm:hidden">Tools</span>
-              <span className="hidden sm:inline">Open tools</span>
-            </Button>
-          </div>
-        </div>
-      </header>
+      <AppHeader>
+        <nav className="hidden items-center gap-6 text-sm font-medium text-brand-muted md:flex">
+          <button type="button" onClick={scrollToTools} className="transition-colors hover:text-brand-accent">
+            Tools
+          </button>
+          <a href="#privacy" className="transition-colors hover:text-brand-accent">
+            Privacy-first
+          </a>
+          <a href="#workflow" className="transition-colors hover:text-brand-accent">
+            Workflow
+          </a>
+        </nav>
+        <Button onClick={scrollToTools} className="brand-button hidden px-3 py-2 text-sm sm:inline-flex sm:px-4">
+          <span className="sm:hidden">Tools</span>
+          <span className="hidden sm:inline">Open tools</span>
+        </Button>
+      </AppHeader>
 
       <main>
         <section className="brand-shell py-16 lg:py-24">
