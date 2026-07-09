@@ -5,7 +5,7 @@ Use this matrix to decide which agents, workflows, skills, checklists, and templ
 ## Feature Work
 
 - Workflow: `.codex/workflows/new-feature.md`
-- Agents: product-manager, architect, frontend, QA, reviewer, documentation
+- Agents: lead-engineer, product-manager, architect, frontend, QA, reviewer, documentation
 - Conditional agents: backend, security, performance, SEO, deployment
 - Skills: react, typescript, tailwind, testing, playwright
 - Conditional skills: security, performance, accessibility, seo, deployment
@@ -15,7 +15,7 @@ Use this matrix to decide which agents, workflows, skills, checklists, and templ
 ## Bug Fix
 
 - Workflow: `.codex/workflows/bug-fix.md`
-- Agents: QA, frontend or backend, reviewer, documentation
+- Agents: lead-engineer, QA, frontend or backend, reviewer, documentation
 - Conditional agents: security, performance
 - Skills: testing, code-review, react, typescript
 - Conditional skills: security, performance, accessibility
@@ -25,7 +25,7 @@ Use this matrix to decide which agents, workflows, skills, checklists, and templ
 ## Code Review
 
 - Workflow: `.codex/workflows/testing.md` for validation context, then reviewer agent
-- Agents: reviewer, QA
+- Agents: lead-engineer, reviewer, QA
 - Conditional agents: architect, security, performance, documentation
 - Skills: code-review, git, testing
 - Checklist: `.codex/checklists/pull-request.md`
@@ -34,7 +34,7 @@ Use this matrix to decide which agents, workflows, skills, checklists, and templ
 ## Refactor
 
 - Workflow: `.codex/workflows/refactor.md`
-- Agents: architect, frontend or backend, QA, reviewer, documentation
+- Agents: lead-engineer, architect, frontend or backend, QA, reviewer, documentation
 - Skills: refactoring, testing, code-review, react, typescript
 - Checklist: `.codex/checklists/definition-of-done.md`
 - Template: `.codex/templates/refactoring-proposal.md`
@@ -42,7 +42,7 @@ Use this matrix to decide which agents, workflows, skills, checklists, and templ
 ## Release
 
 - Workflow: `.codex/workflows/release.md`
-- Agents: release, QA, reviewer, documentation, product-manager
+- Agents: lead-engineer, release, QA, reviewer, documentation, product-manager
 - Conditional agents: deployment, security, performance
 - Skills: deployment, git, testing, code-review
 - Checklist: `.codex/checklists/release.md`
@@ -51,7 +51,7 @@ Use this matrix to decide which agents, workflows, skills, checklists, and templ
 ## Deployment
 
 - Workflow: `.codex/workflows/deployment.md`
-- Agents: deployment, release, QA, documentation
+- Agents: lead-engineer, deployment, release, QA, documentation
 - Conditional agents: backend, security, performance
 - Skills: deployment, git, testing, playwright, security
 - Checklist: `.codex/checklists/deployment.md`
@@ -60,7 +60,7 @@ Use this matrix to decide which agents, workflows, skills, checklists, and templ
 ## Security Review
 
 - Workflow: `.codex/workflows/security-review.md`
-- Agents: security, reviewer, QA, documentation
+- Agents: lead-engineer, security, reviewer, QA, documentation
 - Conditional agents: frontend, backend, deployment
 - Skills: security, code-review, testing, deployment
 - Checklist: `.codex/checklists/security.md`
@@ -69,7 +69,7 @@ Use this matrix to decide which agents, workflows, skills, checklists, and templ
 ## Performance Review
 
 - Workflow: `.codex/workflows/performance-review.md`
-- Agents: performance, QA, reviewer, documentation
+- Agents: lead-engineer, performance, QA, reviewer, documentation
 - Conditional agents: architect, frontend, backend
 - Skills: performance, testing, playwright, react, typescript
 - Checklist: `.codex/checklists/performance.md`
@@ -78,8 +78,17 @@ Use this matrix to decide which agents, workflows, skills, checklists, and templ
 ## Documentation
 
 - Workflow: `.codex/workflows/documentation.md`
-- Agents: documentation, reviewer
+- Agents: lead-engineer, documentation, reviewer
 - Conditional agents: architect, product-manager, backend, release
 - Skills: git, code-review plus domain skill
 - Checklist: `.codex/checklists/documentation.md`
 - Template: `.codex/templates/documentation-update.md`
+
+## Cross-Cutting Or Ambiguous Work
+
+- Workflow: `.codex/workflows/agent-governed-change.md`
+- Agents: lead-engineer, then specialists based on scope
+- Skills: agent-governance, repository-context, git
+- Conditional skills: react, typescript, deployment, testing, security, performance, accessibility, seo
+- Checklist: `.codex/checklists/definition-of-done.md`
+- Template: use the most specific template after classification

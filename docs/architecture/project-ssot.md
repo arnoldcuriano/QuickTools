@@ -87,6 +87,19 @@ Folder ownership:
 - `docs`: Canonical engineering documentation.
 - `server`: Reserved backend package; currently scaffolded only.
 
+## Agent Governance
+
+QuickTools uses a governed AI engineering model rather than ad hoc chat-driven edits.
+
+Canonical governance references:
+
+- `docs/architecture/agent-operating-model.md`: agent levels, routing, escalation, and review gates.
+- `.codex/agents/lead-engineer.md`: task classification and readiness owner.
+- `.codex/workflows/agent-governed-change.md`: default workflow for non-trivial changes.
+- `.codex/skills/agent-governance.md`: reusable routing and escalation guidance.
+
+Non-trivial work should be classified before editing, routed through the correct workflow, verified according to risk, and handed off with remaining risk and documentation status.
+
 ## Technology Stack
 
 ### Client
@@ -273,6 +286,7 @@ Current state:
 - GitHub Actions workflows exist for lint, type check, build, unit tests, Playwright smoke checks, Lighthouse, dependency audit, security scanning, and preview build artifacts.
 - Vercel is the documented client deployment target through the root `vercel.json` build and SPA rewrite config.
 - The server package has no runnable application entrypoint.
+- `docs/architecture/deployment-ssot.md` is the deployment source of truth.
 
 Rules:
 
@@ -321,6 +335,7 @@ A change is done when:
 - Existing behavior is preserved unless intentionally changed.
 - Errors and edge cases relevant to the change are handled.
 - Tests were run or skipped with a clear reason.
+- Verification follows `docs/quality/verification-matrix.md`.
 - Documentation is updated for behavior, architecture, setup, or workflow changes.
 - UI changes remain responsive and consistent with the current design language.
 - No placeholders, fake APIs, or invented features are added.
@@ -406,6 +421,9 @@ Future plan:
 This SSOT should stay aligned with:
 
 - `AGENTS.md`
+- `docs/architecture/agent-operating-model.md`
+- `docs/architecture/deployment-ssot.md`
+- `docs/architecture/tool-contract.md`
 - `ENGINEERING.md`
 - `CONTRIBUTING.md`
 - `docs/architecture/overview.md`
@@ -418,6 +436,8 @@ This SSOT should stay aligned with:
 - `docs/api/server-api.md`
 - `docs/standards/coding-standards.md`
 - `docs/standards/ui-standards.md`
+- `docs/quality/verification-matrix.md`
+- `docs/release/release-gates.md`
 
 When these documents conflict, update the stale document and keep this SSOT canonical.
 

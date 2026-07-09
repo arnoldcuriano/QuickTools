@@ -13,6 +13,8 @@ This repository is an AI-first engineering workspace for QuickTools, a browser-b
 ## Agent Operating Rules
 
 - Do not modify production code unless the user explicitly asks for implementation work.
+- Route non-trivial requests through `.codex/workflows/agent-governed-change.md` before editing.
+- Use `.codex/agents/lead-engineer.md` for task classification, escalation, and final readiness decisions.
 - Read the relevant source before proposing or making changes.
 - Prefer minimal, localized edits that match existing patterns.
 - Preserve user changes in the working tree. Do not reset, checkout, or delete unrelated files.
@@ -58,6 +60,7 @@ This repository is an AI-first engineering workspace for QuickTools, a browser-b
 - Existing user-facing behavior is preserved unless intentionally changed.
 - New or changed logic has focused tests when practical.
 - UI changes are checked for responsive layout, readable text, error states, and keyboard-accessible controls.
+- Verification follows `docs/quality/verification-matrix.md`.
 - Documentation is updated when behavior, architecture, setup, or workflows change.
 - No generated placeholders, fake APIs, or undocumented assumptions remain.
 

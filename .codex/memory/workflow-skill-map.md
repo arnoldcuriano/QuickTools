@@ -4,6 +4,7 @@ This file maps each workflow to the reusable skills it should activate.
 
 | Workflow | Required Skills | Conditional Skills |
 | --- | --- | --- |
+| `agent-governed-change.md` | `agent-governance.md`, `repository-context.md`, `git.md` | `react.md`, `typescript.md`, `deployment.md`, `testing.md`, `security.md`, `performance.md`, `accessibility.md`, `seo.md` |
 | `new-feature.md` | `react.md`, `typescript.md`, `tailwind.md`, `testing.md`, `playwright.md` | `security.md`, `performance.md`, `accessibility.md`, `seo.md`, `deployment.md`, `shadcn.md`, `nextjs.md` |
 | `bug-fix.md` | `testing.md`, `code-review.md`, `git.md` | `react.md`, `typescript.md`, `security.md`, `performance.md`, `accessibility.md` |
 | `refactor.md` | `refactoring.md`, `testing.md`, `code-review.md`, `git.md` | `react.md`, `typescript.md`, `tailwind.md`, `performance.md` |

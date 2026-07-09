@@ -27,6 +27,9 @@ All other documents must align with it:
 ## Repository Documentation Layer
 
 - `docs/architecture/overview.md`: shorter architecture summary.
+- `docs/architecture/agent-operating-model.md`: governed AI agent hierarchy, routing, escalation, and review gates.
+- `docs/architecture/deployment-ssot.md`: Vercel/GitHub deployment source of truth.
+- `docs/architecture/tool-contract.md`: required behavior for every browser utility.
 - `docs/architecture/folder-structure.md`: repository layout and ownership.
 - `docs/architecture/repository-review.md`: senior engineering review and prioritized roadmap.
 - `docs/adr/0001-client-first-tool-processing.md`: accepted architecture decision for client-first processing.
@@ -34,6 +37,8 @@ All other documents must align with it:
 - `docs/roadmap/product-roadmap.md`: roadmap derived from current implementation gaps.
 - `docs/standards/coding-standards.md`: coding standards for source changes.
 - `docs/standards/ui-standards.md`: UI consistency standards.
+- `docs/quality/verification-matrix.md`: verification requirements by change type.
+- `docs/release/release-gates.md`: release readiness gates.
 - `docs/patchnotes/*`: release/change notes.
 - `docs/knowledgebase/*`: durable behavior and process explanations.
 
@@ -54,6 +59,7 @@ All other documents must align with it:
 
 Agents define who owns a concern:
 
+- `lead-engineer.md`: task routing, agent orchestration, escalation, and final readiness.
 - `architect.md`: architecture boundaries, ADRs, SSOT consistency.
 - `frontend.md`: React client implementation.
 - `backend.md`: server/API work only when explicitly required.
@@ -73,6 +79,7 @@ Each agent file references its primary workflows.
 
 Workflows define how work moves through agents:
 
+- `agent-governed-change.md`: default governed workflow for non-trivial or cross-cutting work.
 - `new-feature.md`: product scope through implementation and documentation.
 - `bug-fix.md`: reproduction, minimal fix, regression verification.
 - `refactor.md`: behavior-preserving structural improvement.
@@ -91,6 +98,7 @@ Each workflow references required agents and required skills.
 
 Skills define reusable technical standards:
 
+- `agent-governance.md`: routing, escalation, and agent-level quality gates.
 - `react.md`, `typescript.md`, `tailwind.md`: current client implementation.
 - `nextjs.md`, `shadcn.md`: future-compatible guidance; not current stack.
 - `seo.md`, `accessibility.md`, `performance.md`, `security.md`: cross-cutting quality.
@@ -211,6 +219,7 @@ Security:
 ## Consistency Rules
 
 - SSOT outranks all other docs.
+- Agent operating model defines routing and escalation.
 - Agents use workflows.
 - Workflows reference skills.
 - Skills reference standards.

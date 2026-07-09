@@ -2,7 +2,7 @@
 
 Reusable guidance for deployment and release operations.
 
-Standards reference: follow `docs/architecture/project-ssot.md`, `ENGINEERING.md`, and `.codex/workflows/deployment.md` before applying this skill.
+Standards reference: follow `docs/architecture/project-ssot.md`, `docs/architecture/deployment-ssot.md`, `ENGINEERING.md`, and `.codex/workflows/deployment.md` before applying this skill.
 
 ## Best Practices
 
@@ -27,6 +27,7 @@ Standards reference: follow `docs/architecture/project-ssot.md`, `ENGINEERING.md
 - Runtime configuration is documented.
 - Rollback path is realistic.
 - Server deployment is documented only after server runtime exists.
+- Production root and at least one direct `/tools/*` route are checked when Vercel is involved.
 
 ## Optimization Strategies
 

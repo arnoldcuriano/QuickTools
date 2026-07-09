@@ -6,9 +6,19 @@ Use this guide to load only the documents needed for a request while preserving 
 
 1. `AGENTS.md`
 2. `docs/architecture/project-ssot.md`
-3. `docs/architecture/engineering-map.md`
-4. `.codex/memory/repository-index.md`
-5. `.codex/memory/task-routing.md`
+3. `docs/architecture/agent-operating-model.md`
+4. `docs/architecture/engineering-map.md`
+5. `.codex/memory/repository-index.md`
+6. `.codex/memory/task-routing.md`
+
+## Cross-Cutting Or Ambiguous Request
+
+Then load:
+
+- `.codex/workflows/agent-governed-change.md`
+- `.codex/agents/lead-engineer.md`
+- `.codex/skills/agent-governance.md`
+- `docs/quality/verification-matrix.md`
 
 ## Feature Request
 
