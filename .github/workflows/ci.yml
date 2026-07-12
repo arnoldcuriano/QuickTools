@@ -226,15 +226,7 @@ jobs:
         run: npx wait-on http://127.0.0.1:3000
 
       - name: Run Lighthouse CI
-        run: |
-          npx lhci autorun \
-            --collect.url=http://127.0.0.1:3000/ \
-            --collect.url=http://127.0.0.1:3000/tools/base64 \
-            --collect.url=http://127.0.0.1:3000/tools/text-formatter \
-            --collect.url=http://127.0.0.1:3000/tools/webp-converter \
-            --collect.url=http://127.0.0.1:3000/tools/json-converter \
-            --assert.preset=lighthouse:recommended \
-            --upload.target=temporary-public-storage
+        run: npx lhci autorun --config=./lighthouserc.json
 
   dependency-audit:
     name: Dependency Audit

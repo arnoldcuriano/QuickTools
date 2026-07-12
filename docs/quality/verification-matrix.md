@@ -64,6 +64,13 @@ Required:
 - If logs are unavailable, state the tool/auth limitation.
 - Reproduce locally using the closest command sequence.
 
+Lighthouse CI gates:
+
+- Accessibility and best-practices category scores are release-blocking at 0.90.
+- Performance is warning-level at 0.75 because hosted-runner timing is variable.
+- SEO is warning-level at 0.90 while the SPA has no route-specific metadata system.
+- Individual Lighthouse opportunities remain visible in uploaded reports but do not all block releases.
+
 ## Governance Or Workflow Changes
 
 Required:
