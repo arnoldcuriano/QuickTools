@@ -1,15 +1,17 @@
 # UI Standards
 
+The canonical identity, visual direction, information architecture, and tool-page principles are defined in `docs/standards/brand-foundation.md`.
+
 ## Current Design Language
 
-QuickTools currently uses a dark gradient application background, translucent panels, cyan/blue primary actions, Heroicons, Headless UI primitives, and Framer Motion interaction states.
+QuickTools currently supports light and dark themes using neutral surfaces, an amber accent, Heroicons, Headless UI primitives, and restrained Framer Motion interaction states. Legacy tool pages are being aligned incrementally through compatibility styles.
 
 ## Page Structure
 
 Tool pages should follow the current structure:
 
-- Full-height dark page shell.
-- Subtle non-interactive background accents.
+- Full-height theme-aware page shell.
+- Subtle non-interactive background structure.
 - Header with QuickTools brand and primary page action.
 - Back navigation to home.
 - Page title and short description.
@@ -36,7 +38,8 @@ Tool pages should follow the current structure:
 - Use single-column layouts on smaller screens.
 - Use two-column input/output layouts on large screens when space allows.
 - Prevent textareas, cards, and result grids from causing horizontal overflow.
-- Keep dense result grids scrollable when the page could become too long.
+- Keep large result grids scrollable when the page could become too long.
+- Preserve breathing room and prioritize workspace dimensions over decorative panels.
 
 ## Motion
 

@@ -8,9 +8,13 @@ This document is the canonical source of truth for QuickTools. It describes the 
 
 QuickTools is a browser-accessible productivity toolbox for developers and writers. The project prioritizes fast, understandable utilities that help users transform text, data, and images without complex setup.
 
+Approved product direction expands the intended audience to developers, technical writers, students, general users, marketing teams, and creative teams while preserving a professional workbench structure. Planned categories must not be documented as implemented until corresponding routes and behavior exist.
+
 ## Mission
 
 Provide simple, reliable, client-first tools that solve common formatting, conversion, and content-preparation tasks directly in the browser whenever practical.
+
+QuickTools is an open-source project under the MIT License. Browser-local processing remains the default when practical; future API-backed tools must disclose their provider, data flow, terms, limits, and privacy implications.
 
 ## Current Architecture
 
@@ -436,6 +440,7 @@ This SSOT should stay aligned with:
 - `docs/api/server-api.md`
 - `docs/standards/coding-standards.md`
 - `docs/standards/ui-standards.md`
+- `docs/standards/brand-foundation.md`
 - `docs/quality/verification-matrix.md`
 - `docs/release/release-gates.md`
 

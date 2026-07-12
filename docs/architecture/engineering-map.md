@@ -37,6 +37,7 @@ All other documents must align with it:
 - `docs/roadmap/product-roadmap.md`: roadmap derived from current implementation gaps.
 - `docs/standards/coding-standards.md`: coding standards for source changes.
 - `docs/standards/ui-standards.md`: UI consistency standards.
+- `docs/standards/brand-foundation.md`: product identity, open-source positioning, visual direction, and tool information architecture.
 - `docs/quality/verification-matrix.md`: verification requirements by change type.
 - `docs/release/release-gates.md`: release readiness gates.
 - `docs/patchnotes/*`: release/change notes.
