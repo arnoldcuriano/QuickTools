@@ -2,11 +2,15 @@ import React, { useRef } from 'react';
 import {
   ArrowRightIcon,
   CodeBracketIcon,
+  DocumentMagnifyingGlassIcon,
   DocumentTextIcon,
+  MagnifyingGlassIcon,
+  QrCodeIcon,
   PhotoIcon,
   ShieldCheckIcon,
   SparklesIcon,
   Square3Stack3DIcon,
+  TableCellsIcon,
 } from '@heroicons/react/24/outline';
 import { Button } from '@headlessui/react';
 import { Link } from 'react-router-dom';
@@ -41,6 +45,37 @@ const tools = [
     icon: PhotoIcon,
     description: 'Convert up to 20 JPG or PNG images into optimized WebP files.',
     meta: 'Image conversion',
+  },
+];
+
+const developerTools = [
+  {
+    name: 'QR Code Generator',
+    path: '/tools/qr-code-generator',
+    icon: QrCodeIcon,
+    description: 'Generate browser-only QR codes with premium styling, logo overlays, and download support.',
+    meta: 'Link sharing',
+  },
+  {
+    name: 'JSON Compare',
+    path: '/tools/json-compare',
+    icon: DocumentMagnifyingGlassIcon,
+    description: 'Compare two JSON documents and inspect nested additions, removals, and changes.',
+    meta: 'Diff review',
+  },
+  {
+    name: 'CSV / TSV Converter',
+    path: '/tools/csv-tsv-converter',
+    icon: TableCellsIcon,
+    description: 'Convert quoted delimited data locally between CSV and TSV with table previews.',
+    meta: 'Data exchange',
+  },
+  {
+    name: 'Regex Tester',
+    path: '/tools/regex-tester',
+    icon: MagnifyingGlassIcon,
+    description: 'Test expressions, view captured groups, and highlight matches in-place.',
+    meta: 'Pattern tools',
   },
 ];
 
@@ -91,7 +126,7 @@ const QuickToolsLanding = () => {
                 <span className="block sm:inline"> everyday file and text work</span>
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-brand-muted">
-                Convert images, format data, encode text, and clean up content directly in your browser.
+                Convert images, format data, encode text, and work through developer utilities directly in your browser.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button onClick={scrollToTools} className="brand-button px-5 py-3">
@@ -205,6 +240,44 @@ const QuickToolsLanding = () => {
 
           <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {tools.map((tool) => {
+              const Icon = tool.icon;
+              return (
+                <Link
+                  key={tool.path}
+                  to={tool.path}
+                  className="brand-panel group block p-5 transition-colors hover:border-[var(--color-accent)]"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-surface-raised)] text-brand-accent">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <ArrowRightIcon className="h-5 w-5 text-brand-faint transition-transform group-hover:translate-x-1 group-hover:text-brand-accent" />
+                  </div>
+                  <p className="mt-5 text-xs font-semibold uppercase tracking-wider text-brand-faint">{tool.meta}</p>
+                  <h3 className="mt-2 text-xl font-semibold text-brand">{tool.name}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-brand-muted">{tool.description}</p>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className="brand-shell pb-14">
+          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+            <div>
+              <h2 className="text-3xl font-bold text-brand">Developer tools</h2>
+              <p className="mt-2 max-w-2xl text-brand-muted">
+                Browser-only utilities for generation, comparison, parsing, and inspection.
+              </p>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-brand-muted">
+              <SparklesIcon className="h-5 w-5 text-brand-accent" />
+              <span>Local, fast, and open source</span>
+            </div>
+          </div>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {developerTools.map((tool) => {
               const Icon = tool.icon;
               return (
                 <Link

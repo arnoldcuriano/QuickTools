@@ -1,6 +1,6 @@
 # QuickTools Project SSOT
 
-Last reviewed: 2026-06-30
+Last reviewed: 2026-07-13
 
 This document is the canonical source of truth for QuickTools. It describes the repository as it exists today and separates current behavior from future plans.
 
@@ -143,6 +143,10 @@ Implemented routes:
 - `/tools/text-formatter`: JSON, XML, HTML, and plain text formatter.
 - `/tools/webp-converter`: JPG/PNG to WebP converter.
 - `/tools/json-converter`: JSON beautifier/minifier.
+- `/tools/qr-code-generator`: QR code generator with browser-only premium styling.
+- `/tools/json-compare`: nested JSON compare and diff view.
+- `/tools/csv-tsv-converter`: CSV and TSV converter with quoted-field handling.
+- `/tools/regex-tester`: regex tester and match highlighter.
 
 Do not document landing-page-listed tools as implemented unless they have a route and page implementation.
 
@@ -155,9 +159,15 @@ Current component boundaries:
 - `client/src/App.tsx`: routing.
 - `client/src/pages/Home.tsx`: landing page and tool discovery.
 - `client/src/pages/tools/*.tsx`: individual tool screens and workflow state.
+- `client/src/components/ui/AppHeader.tsx`: shared header shell with GitHub star link.
+- `client/src/components/ui/GitHubRepoStar.tsx`: live GitHub repository star badge.
 - `client/src/components/ui/ImagePreviewCard.tsx`: reusable WebP preview card.
 - `client/src/utils/jsonConverter.ts`: JSON conversion utility.
 - `client/src/utils/formatFileSize.ts`: file-size display utility.
+- `client/src/utils/qrCode.ts`: QR code generation helpers.
+- `client/src/utils/jsonCompare.ts`: JSON comparison helpers.
+- `client/src/utils/delimitedText.ts`: CSV/TSV parsing and serialization helpers.
+- `client/src/utils/regexTools.ts`: regex analysis and highlighting helpers.
 
 Current pattern:
 
@@ -315,10 +325,14 @@ Current implemented product:
 - Text formatter.
 - WebP converter.
 - JSON converter.
+- QR code generator.
+- JSON compare.
+- CSV / TSV converter.
+- Regex tester.
 
 Near-term future plans:
 
-- Align the landing-page tool list with implemented routes.
+- Expand the browser-only developer tool suite with additional focused utilities as demand emerges.
 - Fix visible text encoding artifacts in UI copy.
 - Add focused tests for existing tool behavior.
 - Decide whether generated build output should remain versioned.
