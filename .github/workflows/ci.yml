@@ -145,8 +145,8 @@ jobs:
       - name: Build client
         run: npm run build
 
-      - name: Run accessibility and route checks
-        run: npm run test:a11y
+      - name: Run accessibility, route, and responsive checks
+        run: npm run test:browser
 
   lighthouse:
     name: Lighthouse

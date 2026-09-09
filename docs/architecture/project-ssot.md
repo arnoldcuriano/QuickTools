@@ -163,8 +163,10 @@ Current component boundaries:
 
 - `client/src/App.tsx`: routing.
 - `client/src/pages/Home.tsx`: landing page and tool discovery.
+- `client/src/data/toolCatalog.ts`: canonical implemented-tool metadata used by catalog discovery.
 - `client/src/pages/tools/*.tsx`: individual tool screens and workflow state.
-- `client/src/components/ui/AppHeader.tsx`: shared header shell with GitHub star link.
+- `client/src/components/ui/AppHeader.tsx`: shared responsive header shell.
+- `client/src/components/ui/ThemeToggle.tsx`: persistent light/dark theme control.
 - `client/src/components/ui/GitHubRepoStar.tsx`: live GitHub repository star badge.
 - `client/src/components/ui/ImagePreviewCard.tsx`: reusable WebP preview card.
 - `client/src/utils/jsonConverter.ts`: JSON conversion utility.
@@ -208,14 +210,15 @@ Future plan:
 
 ## Design Philosophy
 
-QuickTools currently uses a dark, modern utility-tool aesthetic:
+QuickTools currently uses a professional workbench design language:
 
-- Dark gradient page background.
-- Translucent panels.
-- Cyan/blue primary actions.
-- Rounded panels and controls.
+- Equal light and dark themes with persistent user selection.
+- Neutral graphite and cool-gray surfaces with restrained amber accents.
+- Inter for interface text and JetBrains Mono for structured technical content.
+- A searchable, category-filtered home catalog generated from centralized route metadata.
+- Restrained 6-12 px radii and spacious responsive layouts.
 - Heroicons for action icons.
-- Framer Motion for entry, hover, and tap feedback.
+- Framer Motion only where an existing tool benefits from restrained interaction feedback.
 
 Design goals:
 
@@ -278,7 +281,8 @@ Future plan:
 Current state:
 
 - Client uses Vitest and React Testing Library for unit and render tests.
-- Playwright and Axe check every implemented route for serious or critical accessibility violations.
+- Playwright and Axe check every implemented route in light and dark modes for serious or critical accessibility violations.
+- Playwright checks home-page usability and horizontal overflow at 320 px, 768 px, and 1440 px.
 - Current unit coverage focuses on the app shell, JSON comparison, CSV/TSV conversion, regex behavior, and QR generation.
 - No server tests exist.
 
@@ -319,7 +323,6 @@ Rules:
 Future plan:
 
 - Decide whether `client/build` should remain committed.
-- Add route-level code splitting to reduce the current production bundle warning.
 - Keep hosting and rollback steps aligned with the active Vercel deployment.
 
 ## Roadmap
@@ -419,7 +422,7 @@ Rules:
 
 Current automation:
 
-- GitHub Actions runs Playwright and Axe across every implemented route.
+- GitHub Actions runs Playwright and Axe across every implemented route in both themes, plus responsive home checks.
 - Serious and critical Axe findings block the accessibility job.
 
 ## SEO Standards

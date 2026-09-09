@@ -6,6 +6,8 @@ The canonical identity, visual direction, information architecture, and tool-pag
 
 QuickTools currently supports light and dark themes using neutral surfaces, an amber accent, Heroicons, Headless UI primitives, and restrained Framer Motion interaction states. Legacy tool pages are being aligned incrementally through compatibility styles.
 
+The home page is an application discovery surface, not a marketing landing page. It exposes the implemented tools through a searchable, category-filtered catalog backed by `client/src/data/toolCatalog.ts`.
+
 ## Page Structure
 
 Tool pages should follow the current structure:
@@ -25,6 +27,7 @@ Tool pages should follow the current structure:
 - Use icon plus text for primary actions.
 - Use icon-only buttons only when an accessible label is present.
 - Keep copy, clear, download, and mode-switch interactions consistent across tools.
+- Persist the user's explicit light or dark theme selection across routes and reloads.
 
 ## Feedback
 
@@ -40,6 +43,7 @@ Tool pages should follow the current structure:
 - Prevent textareas, cards, and result grids from causing horizontal overflow.
 - Keep large result grids scrollable when the page could become too long.
 - Preserve breathing room and prioritize workspace dimensions over decorative panels.
+- Verify the home page at 320 px, 768 px, and 1440 px without horizontal overflow.
 
 ## Motion
 

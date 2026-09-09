@@ -1,6 +1,6 @@
 {
   "name": "quicktools-client",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -14,7 +14,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint .",
-    "test:a11y": "playwright test tests/accessibility.spec.ts"
+    "test:a11y": "playwright test tests/accessibility.spec.ts",
+    "test:browser": "playwright test"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.10",

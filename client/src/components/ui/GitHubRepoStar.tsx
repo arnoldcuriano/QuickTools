@@ -14,14 +14,23 @@ const formatStarCount = (count: number | null) => {
 
 const readCachedStars = () => {
   if (typeof window === 'undefined') return null;
-  const cached = window.localStorage.getItem(CACHE_KEY);
-  if (!cached) return null;
-  const parsed = Number(cached);
-  return Number.isFinite(parsed) ? parsed : null;
+  try {
+    const cached = window.localStorage.getItem(CACHE_KEY);
+    if (!cached) return null;
+    const parsed = Number(cached);
+    return Number.isFinite(parsed) ? parsed : null;
+  } catch {
+    return null;
+  }
 };
 
 const writeCachedStars = (count: number) => {
-  if (typeof window !== 'undefined') window.localStorage.setItem(CACHE_KEY, String(count));
+  if (typeof window === 'undefined') return;
+  try {
+    window.localStorage.setItem(CACHE_KEY, String(count));
+  } catch {
+    // Caching is optional; the live repository link remains usable.
+  }
 };
 
 const GitHubRepoStar = () => {
@@ -64,16 +73,14 @@ const GitHubRepoStar = () => {
       href={REPO_URL}
       target="_blank"
       rel="noreferrer"
+      aria-label={`Open QuickTools on GitHub, ${label}`}
       className="inline-flex items-center gap-2 rounded-[var(--radius-sm)] border border-brand bg-brand-surface px-3 py-2 text-sm font-semibold text-brand transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
       title="Open the QuickTools repository"
     >
       <StarIcon className="h-4 w-4 text-[var(--color-accent)]" />
       <span className="hidden sm:inline">GitHub</span>
-      <span className="text-brand-muted sm:hidden">Stars</span>
-      <span aria-hidden="true" className="text-brand-muted">/</span>
       <span>{label}</span>
-      <ArrowTopRightOnSquareIcon className="h-4 w-4" />
-      <span className="sr-only">QuickTools repository, opens in a new tab</span>
+      <ArrowTopRightOnSquareIcon aria-hidden="true" className="hidden h-4 w-4 sm:block" />
     </a>
   );
 };

@@ -1,8 +1,8 @@
 # QuickTools Brand Foundation
 
-Status: Approved direction for Phase 1
+Status: Phase 1 implemented
 
-Last reviewed: 2026-07-13
+Last reviewed: 2026-09-09
 
 ## Brand Idea
 
@@ -75,7 +75,7 @@ Accent color must not carry meaning alone. Text, icons, and state labels remain 
 - Use one interface family across headings and body text; hierarchy comes from size and weight.
 - Avoid oversized marketing typography inside the workbench.
 
-Inter adoption is a future runtime change and is not implemented by this document.
+Inter and JetBrains Mono are loaded by the client runtime with system font fallbacks.
 
 ### Spacing And Shape
 
@@ -160,6 +160,8 @@ The intended quality bar draws from:
 
 These are quality references, not visual templates.
 
-## Phase 1 Boundary
+## Phase 1 Implementation
 
-This foundation defines direction only. Runtime font loading, color changes, logo assets, component changes, navigation changes, and page redesign require separate implementation tasks with visual, responsive, accessibility, and browser verification.
+The runtime now implements the approved graphite and amber themes, Inter and JetBrains Mono typography, persistent light/dark selection, a centralized searchable catalog, category filters, and a responsive shared header. The current focus mark remains in use pending a separate logo comparison milestone.
+
+Tool processing behavior and routes were not changed by the Phase 1 identity work. Legacy tool screens use a shared compatibility layer until their layouts are migrated to reusable workbench components.

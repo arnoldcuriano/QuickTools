@@ -14,15 +14,20 @@ const routes = [
 ];
 
 for (const route of routes) {
-  test(`${route} has no serious accessibility violations`, async ({ page }) => {
-    await page.goto(route);
-    await page.waitForLoadState('networkidle');
+  for (const theme of ['dark', 'light'] as const) {
+    test(`${route} has no serious accessibility violations in ${theme} mode`, async ({ page }) => {
+      await page.addInitScript((selectedTheme) => {
+        window.localStorage.setItem('quicktools.theme', selectedTheme);
+      }, theme);
+      await page.goto(route);
+      await page.waitForLoadState('networkidle');
 
-    const results = await new AxeBuilder({ page }).analyze();
-    const seriousViolations = results.violations.filter(({ impact }) =>
-      impact === 'serious' || impact === 'critical',
-    );
+      const results = await new AxeBuilder({ page }).analyze();
+      const seriousViolations = results.violations.filter(
+        ({ impact }) => impact === 'serious' || impact === 'critical',
+      );
 
-    expect(seriousViolations).toEqual([]);
-  });
+      expect(seriousViolations).toEqual([]);
+    });
+  }
 }
