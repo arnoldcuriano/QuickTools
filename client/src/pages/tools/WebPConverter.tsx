@@ -184,7 +184,7 @@ const WebPConverter = () => {
           >
             <InformationCircleIcon className="w-6 h-6 text-cyan-400 flex-shrink-0 mt-0.5" />
             <div>
-              <h3 className="text-lg font-semibold text-white mb-2">About WebP Converter</h3>
+              <h2 className="text-lg font-semibold text-white mb-2">About WebP Converter</h2>
               <p className="text-gray-300">
                 WebP provides superior compression. Upload multiple images (up to 20) for batch conversion and download as ZIP.
               </p>
@@ -224,8 +224,11 @@ const WebPConverter = () => {
               </motion.div>
               <p className="text-gray-300">or drag and drop JPG/PNG images here</p>
               <div className="mt-4">
-                <label className="text-gray-300 block mb-2">Compression Quality: {quality}%</label>
+                <label htmlFor="webp-quality" className="text-gray-300 block mb-2">
+                  Compression Quality: {quality}%
+                </label>
                 <input
+                  id="webp-quality"
                   type="range"
                   min="10"
                   max="100"

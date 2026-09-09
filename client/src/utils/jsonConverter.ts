@@ -31,7 +31,7 @@ export const convertJson = async (input: string, options: JSONConverterOptions):
           trailingComma: 'none',
         });
         return { result: formatted, originalSize, resultSize: formatted.length };
-      } catch (prettierError) {
+      } catch {
         // Fallback to basic JSON formatting
         const fallback = JSON.stringify(parsed, null, options.indent || 2);
         return { result: fallback, originalSize, resultSize: fallback.length };
@@ -51,7 +51,7 @@ export const convertJson = async (input: string, options: JSONConverterOptions):
         // Additional cleanup to ensure minimal output
         const compact = minified.replace(/\s+/g, '');
         return { result: compact, originalSize, resultSize: compact.length };
-      } catch (prettierError) {
+      } catch {
         // Fallback to basic minification
         const fallback = JSON.stringify(parsed);
         return { result: fallback, originalSize, resultSize: fallback.length };

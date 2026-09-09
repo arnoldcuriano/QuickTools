@@ -20,3 +20,4 @@ test('serializeDelimitedRows quotes cells when needed', () => {
 
   expect(output).toBe('"value,one",line two');
 });
+import { expect, test } from 'vitest';

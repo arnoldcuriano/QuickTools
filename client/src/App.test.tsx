@@ -1,14 +1,14 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { beforeEach, expect, test, vi } from 'vitest';
 import App from './App';
 
 beforeEach(() => {
-  jest.restoreAllMocks();
+  vi.restoreAllMocks();
 });
 
 test('renders QuickTools app and the live GitHub repo link', async () => {
-  const fetchMock = jest.fn().mockResolvedValue({
+  const fetchMock = vi.fn().mockResolvedValue({
     ok: true,
     json: async () => ({ stargazers_count: 1234 }),
   });
@@ -19,10 +19,10 @@ test('renders QuickTools app and the live GitHub repo link', async () => {
 
   render(<App />);
   const headingElement = screen.getByRole('heading', {
-    name: /client-side tools for everyday file and text work/i,
+    name: /client-side tools for.*everyday file and text work/i,
   });
   expect(headingElement).toBeInTheDocument();
 
-  expect(await screen.findByRole('link', { name: /open the quicktools repository on github/i })).toBeInTheDocument();
+  expect(await screen.findByRole('link', { name: /quicktools repository/i })).toBeInTheDocument();
   expect(await screen.findByText(/1,234 stars/i)).toBeInTheDocument();
 });

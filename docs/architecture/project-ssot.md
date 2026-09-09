@@ -1,6 +1,6 @@
 # QuickTools Project SSOT
 
-Last reviewed: 2026-07-13
+Last reviewed: 2026-09-09
 
 This document is the canonical source of truth for QuickTools. It describes the repository as it exists today and separates current behavior from future plans.
 
@@ -48,6 +48,7 @@ There is no implemented backend API at this time.
 |-- client/
 |   |-- build/
 |   |-- public/
+|   |-- tests/
 |   |-- src/
 |   |   |-- components/
 |   |   |   `-- ui/
@@ -57,9 +58,12 @@ There is no implemented backend API at this time.
 |   |   |-- App.tsx
 |   |   |-- index.css
 |   |   `-- index.tsx
+|   |-- index.html
 |   |-- package.json
+|   |-- playwright.config.ts
 |   |-- tailwind.config.js
-|   `-- tsconfig.json
+|   |-- tsconfig.json
+|   `-- vite.config.ts
 |-- docs/
 |   |-- adr/
 |   |-- api/
@@ -109,14 +113,15 @@ Non-trivial work should be classified before editing, routed through the correct
 ### Client
 
 - React 18.
-- Create React App with `react-scripts`.
-- TypeScript 4.9.
-- React Router 6.
+- Vite 8.
+- TypeScript 5.9.
+- React Router 7.
 - Tailwind CSS 3.
 - Headless UI.
 - Heroicons.
 - Framer Motion.
-- Jest and React Testing Library.
+- Vitest and React Testing Library.
+- Playwright and Axe for route-level accessibility checks.
 
 Client tool dependencies:
 
@@ -172,6 +177,7 @@ Current component boundaries:
 Current pattern:
 
 - Tool pages own `input`, `output`, `error`, and interaction state.
+- Tool routes are lazy-loaded so specialized dependencies do not inflate the initial home-page bundle.
 - Tool pages use Headless UI controls and Heroicons.
 - Reusable pure logic belongs in `client/src/utils`.
 - Reusable visual pieces belong in `client/src/components`.
@@ -271,9 +277,9 @@ Future plan:
 
 Current state:
 
-- Client uses Jest and React Testing Library through Create React App.
-- Current test coverage is minimal.
-- Existing test checks that the app renders QuickTools text.
+- Client uses Vitest and React Testing Library for unit and render tests.
+- Playwright and Axe check every implemented route for serious or critical accessibility violations.
+- Current unit coverage focuses on the app shell, JSON comparison, CSV/TSV conversion, regex behavior, and QR generation.
 - No server tests exist.
 
 Rules:
@@ -313,8 +319,8 @@ Rules:
 Future plan:
 
 - Decide whether `client/build` should remain committed.
-- Stabilize CI blockers identified by repository review.
-- Document hosting and rollback steps for the active deployment target when needed.
+- Add route-level code splitting to reduce the current production bundle warning.
+- Keep hosting and rollback steps aligned with the active Vercel deployment.
 
 ## Roadmap
 
@@ -411,15 +417,16 @@ Rules:
 - Keep contrast readable on dark backgrounds.
 - Avoid motion that interferes with readability or operation.
 
-Future plan:
+Current automation:
 
-- Add accessibility checks to the verification workflow when UI changes become larger.
+- GitHub Actions runs Playwright and Axe across every implemented route.
+- Serious and critical Axe findings block the accessibility job.
 
 ## SEO Standards
 
 Current state:
 
-- Create React App serves a single `public/index.html`.
+- Vite builds a single-page application from `client/index.html`.
 - No route-specific metadata system is implemented.
 - Public assets include manifest, favicon, icons, and robots file.
 - The landing page communicates the product name and tagline.

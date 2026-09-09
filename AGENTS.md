@@ -5,10 +5,10 @@ This repository is an AI-first engineering workspace for QuickTools, a browser-b
 ## Current Repository State
 
 - Product: QuickTools, a productivity toolbox with client-side utilities for Base64, JSON, text formatting, and WebP conversion.
-- Client: Create React App, React 18, TypeScript 4.9, React Router 6, Tailwind CSS 3, Headless UI, Heroicons, Framer Motion.
+- Client: Vite 8, React 18, TypeScript 5.9, React Router 7, Tailwind CSS 3, Headless UI, Heroicons, Framer Motion.
 - Server: Node.js/Express dependency scaffold with folders for controllers, middleware, models, routes, and utils. `server/app.js` is currently empty.
 - Build artifact: `client/build` is present in the repository.
-- Tests: Jest/React Testing Library through `react-scripts test`; current test coverage is minimal.
+- Tests: Vitest and React Testing Library for unit tests; Playwright and Axe for all-route accessibility checks.
 
 ## Agent Operating Rules
 

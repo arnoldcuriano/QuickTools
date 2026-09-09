@@ -230,8 +230,8 @@ Security:
 
 ## Current Known Engineering Reality
 
-- Current app is React/TypeScript with Create React App.
+- Current app is React 18/TypeScript 5.9 with Vite 8.
 - Current backend is scaffolded but not implemented.
-- Current CI is configured but local review found likely blockers: missing ESLint config and Jest failure around Prettier parser imports.
+- Current CI covers ESLint, TypeScript, Vitest, Vite builds, Playwright/Axe, Lighthouse, dependency audits, and CodeQL.
 - Current production deployment target is not documented.
 - Current source of implemented routes is `client/src/App.tsx`.

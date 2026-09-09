@@ -135,7 +135,7 @@ const CSVTSVConverter = () => {
           >
             <InformationCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-cyan-400" />
             <div>
-              <h3 className="mb-2 text-lg font-semibold text-white">Browser-delimited workflow</h3>
+              <h2 className="mb-2 text-lg font-semibold text-white">Browser-delimited workflow</h2>
               <p className="text-gray-300">
                 Paste a table export, convert it in place, and inspect rows or output without sending data to a service.
               </p>
@@ -248,7 +248,7 @@ const CSVTSVConverter = () => {
 
               <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-semibold text-white">Converted output</h3>
+                  <h2 className="text-lg font-semibold text-white">Converted output</h2>
                   <span className="text-sm text-gray-400">{convertedOutput.length} characters</span>
                 </div>
                 <Textarea
@@ -260,7 +260,7 @@ const CSVTSVConverter = () => {
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-                <h3 className="text-lg font-semibold text-white">Table preview</h3>
+                <h2 className="text-lg font-semibold text-white">Table preview</h2>
                 <div className="mt-4 max-h-[16rem] overflow-auto rounded-xl border border-white/10">
                   <table className="min-w-full border-collapse text-left text-sm text-gray-200">
                     <tbody>

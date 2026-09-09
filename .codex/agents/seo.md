@@ -9,7 +9,7 @@ Keep QuickTools search-facing metadata and public content accurate without claim
 - Review public-facing copy for accuracy.
 - Ensure implemented tools are represented truthfully.
 - Maintain static metadata standards.
-- Identify limitations of the current Create React App SPA model.
+- Identify limitations of the current Vite SPA model.
 
 ## Scope
 
@@ -28,7 +28,7 @@ Keep QuickTools search-facing metadata and public content accurate without claim
 ## Inputs
 
 - `docs/architecture/project-ssot.md`.
-- `client/public/index.html`.
+- `client/index.html`.
 - `client/public/manifest.json`.
 - Landing page source.
 - Route list from `client/src/App.tsx`.

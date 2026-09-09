@@ -211,7 +211,7 @@ const QRCodeGenerator = () => {
           >
             <InformationCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-cyan-400" />
             <div>
-              <h3 className="mb-2 text-lg font-semibold text-white">About QR generation</h3>
+              <h2 className="mb-2 text-lg font-semibold text-white">About QR generation</h2>
               <p className="text-gray-300">
                 Build a scannable code locally, style it for marketing or sharing, and keep the full workflow inside the browser.
               </p>
@@ -247,7 +247,7 @@ const QRCodeGenerator = () => {
 
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-                  <h3 className="text-base font-semibold text-white">Basic options</h3>
+                  <h2 className="text-base font-semibold text-white">Basic options</h2>
                   <div className="mt-4 space-y-4">
                     <label className="block text-sm text-gray-300">
                       Size: {size}px
@@ -291,7 +291,7 @@ const QRCodeGenerator = () => {
                 </div>
 
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-                  <h3 className="text-base font-semibold text-white">Colors</h3>
+                  <h2 className="text-base font-semibold text-white">Colors</h2>
                   <div className="mt-4 grid grid-cols-2 gap-4">
                     <label className="block text-sm text-gray-300">
                       Foreground
@@ -316,7 +316,7 @@ const QRCodeGenerator = () => {
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-                <h3 className="text-base font-semibold text-white">Premium options</h3>
+                <h2 className="text-base font-semibold text-white">Premium options</h2>
                 <div className="mt-4 grid gap-4">
                   <label className="block text-sm text-gray-300">
                     Frame text

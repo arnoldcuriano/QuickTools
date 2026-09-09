@@ -7,7 +7,11 @@
         "http://127.0.0.1:3000/tools/base64",
         "http://127.0.0.1:3000/tools/text-formatter",
         "http://127.0.0.1:3000/tools/webp-converter",
-        "http://127.0.0.1:3000/tools/json-converter"
+        "http://127.0.0.1:3000/tools/json-converter",
+        "http://127.0.0.1:3000/tools/qr-code-generator",
+        "http://127.0.0.1:3000/tools/json-compare",
+        "http://127.0.0.1:3000/tools/csv-tsv-converter",
+        "http://127.0.0.1:3000/tools/regex-tester"
       ]
     },
     "assert": {

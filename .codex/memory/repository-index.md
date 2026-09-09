@@ -1,6 +1,6 @@
 # Repository Memory Index
 
-Last reviewed: 2026-06-30
+Last reviewed: 2026-09-09
 
 This index gives future AI sessions a fast map of what exists, what is authoritative, and what must not be inferred.
 
@@ -16,11 +16,11 @@ This index gives future AI sessions a fast map of what exists, what is authorita
 ## Current Application Facts
 
 - Product: QuickTools.
-- Current app: React 18, Create React App, TypeScript, React Router, Tailwind.
+- Current app: React 18, Vite 8, TypeScript 5.9, React Router 7, Tailwind CSS 3.
 - Current processing model: client-first.
 - Current server: scaffolded package only; `server/app.js` is empty.
-- Current production deployment: none documented.
-- Current CI: GitHub Actions configured, but lint and unit test blockers are documented.
+- Current production deployment: Vercel, configured by root `vercel.json` and connected to `main`.
+- Current CI: GitHub Actions runs lint, type checks, Vitest, Vite builds, Playwright/Axe, Lighthouse, dependency audits, and CodeQL.
 
 ## Implemented Routes
 
@@ -29,6 +29,10 @@ This index gives future AI sessions a fast map of what exists, what is authorita
 - `/tools/text-formatter`
 - `/tools/webp-converter`
 - `/tools/json-converter`
+- `/tools/qr-code-generator`
+- `/tools/json-compare`
+- `/tools/csv-tsv-converter`
+- `/tools/regex-tester`
 
 ## Main Source Files
 
@@ -52,17 +56,15 @@ This index gives future AI sessions a fast map of what exists, what is authorita
 - `.codex/commands`: command-style prompt contracts.
 - `.codex/memory`: stable repository memory.
 
-## Known Blockers
+## Known Risks
 
-- Unit tests fail due `prettier/parser-babel` resolution.
-- Lint fails because ESLint config is missing.
-- Landing page lists unimplemented tools.
-- UI source contains encoding artifacts and stray text.
-- `client/build` is committed and needs a policy decision.
+- The production bundle currently triggers Vite's 500 kB chunk warning and needs route-level code splitting.
+- `client/build` remains committed but is treated as generated output.
+- The server is only a dependency scaffold and has no runtime behavior.
 
 ## Do Not Infer
 
 - Do not infer a backend API.
-- Do not infer authentication, database, deployment target, production domain, SSR, or route-level SEO.
+- Do not infer authentication, database, backend runtime, SSR, or route-level SEO.
 - Do not treat planned tools as implemented.
 - Do not treat slash-command files as executable commands.

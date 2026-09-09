@@ -23,3 +23,4 @@ test('compareJsonTexts rejects invalid input', () => {
   expect(result.error).toMatch(/Left JSON is invalid/i);
   expect(result.differences).toHaveLength(0);
 });
+import { expect, test } from 'vitest';

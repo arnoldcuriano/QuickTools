@@ -151,7 +151,7 @@ const JSONConverter = () => {
           >
             <InformationCircleIcon className="w-6 h-6 text-cyan-400 flex-shrink-0 mt-0.5" />
             <div>
-              <h3 className="text-lg font-semibold text-white mb-2">About JSON Converter</h3>
+              <h2 className="text-lg font-semibold text-white mb-2">About JSON Converter</h2>
               <p className="text-gray-300">
                 Format JSON for readability with proper indentation or minify it to reduce size for efficient storage and transmission.
               </p>

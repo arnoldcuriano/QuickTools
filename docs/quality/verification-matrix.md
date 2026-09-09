@@ -1,6 +1,6 @@
 # Verification Matrix
 
-Last reviewed: 2026-07-06
+Last reviewed: 2026-09-09
 
 Use this matrix to choose verification for QuickTools changes.
 
@@ -21,7 +21,7 @@ Required:
 
 - `npm.cmd run lint`
 - `npx.cmd tsc --noEmit`
-- `npm.cmd test -- --watchAll=false --runInBand`
+- `npm.cmd test`
 
 Required when routing, imports, dependencies, or production behavior change:
 
@@ -29,8 +29,8 @@ Required when routing, imports, dependencies, or production behavior change:
 
 Recommended for rendered UI:
 
-- Browser smoke test for `/`.
-- Browser smoke test for the changed route.
+- `npm.cmd run test:a11y` for all implemented routes.
+- Browser interaction check for the changed route.
 
 ## Tool Behavior
 

@@ -1,6 +1,6 @@
 # Deployment SSOT
 
-Last reviewed: 2026-07-06
+Last reviewed: 2026-09-09
 
 This document is the deployment source of truth for QuickTools.
 
@@ -38,7 +38,8 @@ The following files must be tracked in Git:
 - `vercel.json`
 - `client/package.json`
 - `client/package-lock.json`
-- `client/public/index.html`
+- `client/index.html`
+- `client/vite.config.ts`
 - client source under `client/src`
 
 The server package is not part of the current Vercel runtime.

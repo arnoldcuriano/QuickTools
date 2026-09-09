@@ -1,12 +1,13 @@
 import * as QRCode from 'qrcode';
+import { expect, test, vi } from 'vitest';
 import { generateQrCodeDataUrl } from './qrCode';
 
-jest.mock('qrcode', () => ({
-  toDataURL: jest.fn(),
+vi.mock('qrcode', () => ({
+  toDataURL: vi.fn(),
 }));
 
 test('generateQrCodeDataUrl passes style options to qrcode', async () => {
-  const mockedToDataURL = QRCode.toDataURL as jest.MockedFunction<typeof QRCode.toDataURL>;
+  const mockedToDataURL = vi.mocked(QRCode.toDataURL);
   mockedToDataURL.mockResolvedValue('data:image/png;base64,QR');
 
   const dataUrl = await generateQrCodeDataUrl('https://quicktools.dev', {

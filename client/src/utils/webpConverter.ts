@@ -47,7 +47,7 @@ export const convertToWebP = async (file: File, quality: number): Promise<ImageD
             webpSize: webpBlob.size,
             reduction,
           });
-        } catch (err) {
+        } catch {
           resolve({
             filename: file.name,
             originalUrl: '',

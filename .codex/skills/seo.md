@@ -1,6 +1,6 @@
 # SEO Skill
 
-Reusable guidance for search-facing work. QuickTools is currently a Create React App SPA with static metadata only.
+Reusable guidance for search-facing work. QuickTools is currently a Vite SPA with static metadata only.
 
 Standards reference: follow `docs/architecture/project-ssot.md`, `ENGINEERING.md`, and the SSOT SEO section before applying this skill.
 

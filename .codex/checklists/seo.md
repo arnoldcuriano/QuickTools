@@ -4,7 +4,7 @@ Use this checklist for public copy, metadata, route naming, and landing page cha
 
 ## Current SPA Reality
 
-- [ ] Change acknowledges QuickTools is currently a Create React App SPA.
+- [ ] Change acknowledges QuickTools is currently a Vite SPA.
 - [ ] No route-level SEO behavior is claimed unless implemented.
 - [ ] No server-side rendering or static generation is claimed.
 - [ ] Metadata changes are limited to actual static app shell capabilities.

@@ -31,7 +31,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
           cache-dependency-path: client/package-lock.json
 
@@ -54,7 +54,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
           cache-dependency-path: client/package-lock.json
 
@@ -77,7 +77,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
           cache-dependency-path: client/package-lock.json
 
@@ -85,7 +85,7 @@ jobs:
         run: npm ci
 
       - name: Run tests
-        run: CI=true npm test -- --watchAll=false
+        run: npm test
 
   build:
     name: Build
@@ -100,7 +100,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
           cache-dependency-path: client/package-lock.json
 
@@ -119,7 +119,7 @@ jobs:
           retention-days: 14
 
   playwright:
-    name: Playwright Smoke
+    name: Accessibility and Route Smoke
     runs-on: ubuntu-latest
     needs: build
     defaults:
@@ -132,65 +132,21 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
           cache-dependency-path: client/package-lock.json
 
       - name: Install client dependencies
         run: npm ci
 
-      - name: Install Playwright smoke dependencies
-        run: npm install --no-save @playwright/test serve wait-on
-
       - name: Install Chromium
-        run: npx playwright install chromium
+        run: npx playwright install --with-deps chromium
 
       - name: Build client
         run: npm run build
 
-      - name: Start preview server
-        run: npx serve -s build -l 3000 &
-
-      - name: Wait for preview server
-        run: npx wait-on http://127.0.0.1:3000
-
-      - name: Run route smoke checks
-        run: |
-          node - <<'NODE'
-          const { chromium } = require('@playwright/test');
-
-          const routes = [
-            '/',
-            '/tools/base64',
-            '/tools/text-formatter',
-            '/tools/webp-converter',
-            '/tools/json-converter',
-          ];
-
-          (async () => {
-            const browser = await chromium.launch();
-            const page = await browser.newPage();
-            const consoleErrors = [];
-            page.on('console', (message) => {
-              if (message.type() === 'error') consoleErrors.push(message.text());
-            });
-
-            for (const route of routes) {
-              const response = await page.goto(`http://127.0.0.1:3000${route}`, {
-                waitUntil: 'networkidle',
-              });
-              if (!response || !response.ok()) {
-                throw new Error(`Route failed: ${route}`);
-              }
-              await page.getByText('QuickTools').first().waitFor({ timeout: 10000 });
-            }
-
-            await browser.close();
-            if (consoleErrors.length > 0) {
-              throw new Error(`Console errors detected:\n${consoleErrors.join('\n')}`);
-            }
-          })();
-          NODE
+      - name: Run accessibility and route checks
+        run: npm run test:a11y
 
   lighthouse:
     name: Lighthouse
@@ -206,21 +162,21 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
           cache-dependency-path: client/package-lock.json
 
       - name: Install client dependencies
         run: npm ci
 
-      - name: Install Lighthouse CI dependencies
-        run: npm install --no-save @lhci/cli serve wait-on
+      - name: Install pinned Lighthouse CI runner
+        run: npm install --no-save @lhci/cli@0.15.1
 
       - name: Build client
         run: npm run build
 
       - name: Start preview server
-        run: npx serve -s build -l 3000 &
+        run: npm run preview -- --host 127.0.0.1 --port 3000 &
 
       - name: Wait for preview server
         run: npx wait-on http://127.0.0.1:3000
@@ -247,7 +203,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
           cache-dependency-path: ${{ matrix.package }}/package-lock.json
 
@@ -281,7 +237,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
           cache-dependency-path: client/package-lock.json
 

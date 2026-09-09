@@ -38,3 +38,4 @@ test('buildRegexFlags assembles enabled flags', () => {
     }),
   ).toBe('gis');
 });
+import { expect, test } from 'vitest';

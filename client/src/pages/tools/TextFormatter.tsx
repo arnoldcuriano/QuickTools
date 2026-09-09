@@ -22,7 +22,7 @@ const formatXmlString = (xmlString: string): string => {
   try {
     const PADDING = ' '.repeat(2); // 2 spaces for indentation
     const reg = /(>)(<)(\/*)/g;
-    let formatted = xmlString.replace(reg, '$1\r\n$2$3');
+    const formatted = xmlString.replace(reg, '$1\r\n$2$3');
     let pad = 0;
     
     return formatted.split('\r\n').map((node) => {
@@ -41,7 +41,7 @@ const formatXmlString = (xmlString: string): string => {
       pad += indent;
       return padding + node;
     }).join('\n');
-  } catch (error) {
+  } catch {
     return xmlString; // Return original if formatting fails
   }
 };
@@ -110,7 +110,7 @@ const TextFormatter = () => {
             trailingComma: 'none'
           });
           setOutput(formatted);
-        } catch (prettierError) {
+        } catch {
           // Fallback to basic JSON formatting if Prettier fails
           setOutput(jsonString);
         }
@@ -131,7 +131,7 @@ const TextFormatter = () => {
           // Use basic XML formatting instead of Prettier for better reliability
           const formatted = formatXmlString(xmlString);
           setOutput(formatted);
-        } catch (xmlError) {
+        } catch {
           // Fallback to very basic XML formatting
           const basicFormatted = formatXmlString(trimmedText);
           setOutput(basicFormatted);
@@ -149,7 +149,7 @@ const TextFormatter = () => {
             indent_inner_html: false
           });
           setOutput(formatted);
-        } catch (htmlError) {
+        } catch {
           throw new Error('Invalid HTML structure');
         }
       } else if (type === 'text') {
@@ -347,7 +347,7 @@ const TextFormatter = () => {
           >
             <InformationCircleIcon className="w-6 h-6 text-cyan-400 flex-shrink-0 mt-0.5" />
             <div>
-              <h3 className="text-lg font-semibold text-white mb-2">About Text Formatter</h3>
+              <h2 className="text-lg font-semibold text-white mb-2">About Text Formatter</h2>
               <p className="text-gray-300 leading-relaxed">
                 Beautify your JSON, XML, HTML, or plain text with proper formatting to enhance readability and streamline your workflow.
               </p>

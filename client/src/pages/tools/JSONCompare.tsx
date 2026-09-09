@@ -81,7 +81,7 @@ const JSONCompare = () => {
           >
             <InformationCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-cyan-400" />
             <div>
-              <h3 className="mb-2 text-lg font-semibold text-white">Comparison mode</h3>
+              <h2 className="mb-2 text-lg font-semibold text-white">Comparison mode</h2>
               <p className="text-gray-300">
                 Parse both sides locally, compare nested objects and arrays, and keep the diff readable without sending data to a server.
               </p>
@@ -137,7 +137,7 @@ const JSONCompare = () => {
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-                <h3 className="text-lg font-semibold text-white">Differences</h3>
+                <h2 className="text-lg font-semibold text-white">Differences</h2>
                 <div className="mt-4 max-h-[20rem] space-y-3 overflow-y-auto pr-1">
                   {comparison.differences.length === 0 ? (
                     <p className="text-sm text-gray-400">No differences detected.</p>

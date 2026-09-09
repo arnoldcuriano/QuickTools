@@ -10,13 +10,14 @@ The engineering foundation should keep the repository easy for multiple AI assis
 
 Client:
 
-- React 18 with Create React App.
-- TypeScript 4.9.
-- React Router 6 for page routing.
+- React 18 with Vite 8.
+- TypeScript 5.9.
+- React Router 7 for page routing.
 - Tailwind CSS 3 for utility-first styling.
 - Headless UI for accessible primitives.
 - Heroicons for icons.
 - Framer Motion for page and control animations.
+- Vitest, React Testing Library, Playwright, and Axe for automated verification.
 - Prettier standalone, js-beautify, `@xmldom/xmldom`, JSZip, and file-saver for tool behavior.
 
 Server:
@@ -33,6 +34,10 @@ QuickTools currently behaves as a single-page React application. Routes are regi
 - `/tools/text-formatter`
 - `/tools/webp-converter`
 - `/tools/json-converter`
+- `/tools/qr-code-generator`
+- `/tools/json-compare`
+- `/tools/csv-tsv-converter`
+- `/tools/regex-tester`
 
 Most tool logic is implemented directly in page components. Reusable utility logic exists in `client/src/utils`, and the WebP image preview card is extracted to `client/src/components/ui/ImagePreviewCard.tsx`.
 

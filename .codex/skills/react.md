@@ -1,6 +1,6 @@
 # React Skill
 
-Reusable guidance for React work. QuickTools currently uses React 18 with Create React App.
+Reusable guidance for React work. QuickTools currently uses React 18 with Vite 8 and TypeScript 5.9.
 
 Standards reference: follow `docs/architecture/project-ssot.md`, `ENGINEERING.md`, and `docs/standards/coding-standards.md` before applying this skill.
 

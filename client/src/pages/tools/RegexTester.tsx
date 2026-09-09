@@ -106,7 +106,7 @@ const RegexTester = () => {
           >
             <InformationCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-cyan-400" />
             <div>
-              <h3 className="mb-2 text-lg font-semibold text-white">Regex inspection</h3>
+              <h2 className="mb-2 text-lg font-semibold text-white">Regex inspection</h2>
               <p className="text-gray-300">
                 Enter a pattern, toggle flags, and inspect live matches with a readable highlighted preview.
               </p>
@@ -189,7 +189,7 @@ const RegexTester = () => {
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-                <h3 className="text-lg font-semibold text-white">Highlighted preview</h3>
+                <h2 className="text-lg font-semibold text-white">Highlighted preview</h2>
                 <div className="mt-4 max-h-[18rem] overflow-auto rounded-xl border border-white/10 bg-slate-950/50 p-4 font-mono text-sm leading-6 text-gray-200 whitespace-pre-wrap">
                   {segments.map((segment) => (
                     <span
@@ -203,7 +203,7 @@ const RegexTester = () => {
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-                <h3 className="text-lg font-semibold text-white">Matches</h3>
+                <h2 className="text-lg font-semibold text-white">Matches</h2>
                 <div className="mt-4 max-h-[18rem] space-y-3 overflow-y-auto pr-1">
                   {analysis.matches.length === 0 ? (
                     <p className="text-sm text-gray-400">No matches to show.</p>

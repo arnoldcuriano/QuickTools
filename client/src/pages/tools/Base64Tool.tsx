@@ -35,7 +35,7 @@ const Base64Tool = () => {
         const decoded = decodeURIComponent(escape(atob(text)));
         setOutput(decoded);
       }
-    } catch (err) {
+    } catch {
       setError(operation === 'decode' ? 'Invalid Base64 string.' : 'Error encoding text.');
       setOutput('');
     }
@@ -208,7 +208,7 @@ const Base64Tool = () => {
           >
             <InformationCircleIcon className="w-6 h-6 text-cyan-400 flex-shrink-0 mt-0.5" />
             <div>
-              <h3 className="text-lg font-semibold text-white mb-2">About Base64</h3>
+              <h2 className="text-lg font-semibold text-white mb-2">About Base64</h2>
               <p className="text-gray-300">
                 Base64 is a binary-to-text encoding scheme used to encode binary data for text-based protocols, such as embedding images in HTML or encoding API credentials.
               </p>

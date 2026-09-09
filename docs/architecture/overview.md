@@ -10,14 +10,20 @@ The application provides browser tools for common developer and writer workflows
 - JSON beautification and minification.
 - JSON, XML, HTML, and plain text formatting.
 - JPG/PNG to WebP conversion with ZIP download.
+- QR code generation.
+- Nested JSON comparison.
+- CSV and TSV conversion.
+- Regular expression testing and match highlighting.
 
 ## Client Architecture
 
-The client lives in `client` and is built with Create React App.
+The client lives in `client` and is built with Vite.
 
 Primary files:
 
 - `client/src/index.tsx`: React root setup with `React.StrictMode`.
+- `client/index.html`: Vite HTML entry point.
+- `client/vite.config.ts`: build and Vitest configuration.
 - `client/src/App.tsx`: Router and route definitions.
 - `client/src/pages/Home.tsx`: Landing page and tool navigation.
 - `client/src/pages/tools`: Routed tool pages.
