@@ -11,6 +11,7 @@ Release date: 2026-09-09
 - Improved muted-text contrast, heading structure, external-link labeling, and the WebP quality control label.
 - Updated client and server dependencies to resolve the high-severity production audit findings.
 - Standardized local and GitHub Actions builds on Node.js 24.
+- Updated official GitHub Actions to their Node.js 24 runtime releases.
 
 ## Deployment
 
