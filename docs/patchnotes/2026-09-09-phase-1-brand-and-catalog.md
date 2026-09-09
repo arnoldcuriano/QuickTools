@@ -16,6 +16,7 @@ Release date: 2026-09-09
 - Standardized neutral surfaces, restrained amber accents, focus visibility, and reduced-motion behavior.
 - Extended accessibility validation to every route in both light and dark modes.
 - Improved the shared header for smaller screens without changing tool workflows.
+- Updated CodeQL workflow actions to the current v4 runtime.
 
 ## Developer Notes
 
