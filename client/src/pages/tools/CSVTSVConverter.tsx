@@ -1,16 +1,14 @@
 import React, { useMemo, useState } from 'react';
 import {
-  ArrowLeftIcon,
   ClipboardDocumentCheckIcon,
   ClipboardIcon,
   ArrowsRightLeftIcon,
   InformationCircleIcon,
-  TrashIcon,
 } from '@heroicons/react/24/outline';
 import { Button, Textarea } from '@headlessui/react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import AppHeader from '../../components/ui/AppHeader';
+import ToolWorkbenchHeader from '../../components/ui/ToolWorkbenchHeader';
 import { DelimitedFormat, convertDelimitedText, parseDelimitedText, summarizeDelimitedRows } from '../../utils/delimitedText';
 
 const sampleCsv = 'name,role,location\n"QuickTools","Browser app","Local machine"\n"QR","Generator","Client-side"';
@@ -25,7 +23,6 @@ const CSVTSVConverter = () => {
   const [sourceFormat, setSourceFormat] = useState<DelimitedFormat>('csv');
   const [targetFormat, setTargetFormat] = useState<DelimitedFormat>('tsv');
   const [copied, setCopied] = useState(false);
-  const navigate = useNavigate();
 
   const parsedResult = useMemo(() => {
     try {
@@ -87,44 +84,27 @@ const CSVTSVConverter = () => {
         <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl" />
       </div>
 
-      <AppHeader>
-        <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
-          <Button
-            onClick={copyOutput}
-            disabled={!convertedOutput}
-            className="relative flex items-center space-x-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-2.5 font-medium text-white shadow-lg shadow-cyan-500/25 hover:from-cyan-400 hover:to-blue-500 hover:shadow-cyan-500/40 disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            {copied ? <ClipboardDocumentCheckIcon className="h-4 w-4" /> : <ClipboardIcon className="h-4 w-4" />}
-            <span>{copied ? 'Copied' : 'Copy'}</span>
-          </Button>
-        </motion.div>
-        <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
-          <Button
-            onClick={clearAll}
-            className="relative flex items-center space-x-2 rounded-xl bg-white/5 px-6 py-2.5 font-medium text-gray-200 shadow-lg shadow-black/10 ring-1 ring-white/10 hover:bg-white/10 hover:text-white"
-          >
-            <TrashIcon className="h-4 w-4" />
-            <span>Reset</span>
-          </Button>
-        </motion.div>
-      </AppHeader>
+      <AppHeader />
 
       <motion.section variants={sectionVariants} initial="hidden" animate="visible" className="relative py-20">
         <div className="brand-shell">
-          <div className="mb-12 text-center">
-            <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap" className="inline-block mb-4">
-              <Button onClick={() => navigate('/')} className="flex items-center space-x-2 text-gray-300 hover:text-white">
-                <ArrowLeftIcon className="h-6 w-6" />
-                <span>Back to Home</span>
-              </Button>
-            </motion.div>
-            <h1 className="mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-4xl font-bold text-transparent md:text-5xl">
-              CSV / TSV Converter
-            </h1>
-            <p className="mx-auto max-w-4xl text-xl text-gray-300">
-              Convert delimited data locally, preserve quoted values, and switch between CSV and TSV without leaving the browser.
-            </p>
-          </div>
+          <ToolWorkbenchHeader
+            title="CSV / TSV Converter"
+            description="Convert delimited data locally, preserve quoted values, and switch between CSV and TSV without leaving the browser."
+            onReset={clearAll}
+            resetLabel="Clear"
+            resetDisabled={!input}
+          >
+            <Button
+              type="button"
+              onClick={copyOutput}
+              disabled={!convertedOutput}
+              className="brand-button min-h-11 px-4 py-2.5 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {copied ? <ClipboardDocumentCheckIcon className="h-4 w-4" /> : <ClipboardIcon className="h-4 w-4" />}
+              <span>{copied ? 'Copied' : 'Copy output'}</span>
+            </Button>
+          </ToolWorkbenchHeader>
 
           <motion.div
             variants={sectionVariants}
@@ -143,7 +123,7 @@ const CSVTSVConverter = () => {
           </motion.div>
 
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)]">
-            <div className="space-y-4">
+            <div className="min-w-0 space-y-4">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-semibold text-white">Input</h2>
                 <span className="text-sm text-gray-400">{input.length} characters</span>
@@ -178,7 +158,7 @@ const CSVTSVConverter = () => {
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="min-w-0 space-y-4">
               <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
                 <div className="flex items-center justify-between">
                   <h2 className="text-xl font-semibold text-white">Conversion</h2>

@@ -1,21 +1,19 @@
 import React, { useState, useCallback } from 'react';
 import { 
-  ArrowLeftIcon, 
   ClipboardIcon, 
   ClipboardDocumentCheckIcon, 
-  TrashIcon,
   InformationCircleIcon,
   ExclamationTriangleIcon,
   ChevronDownIcon
 } from '@heroicons/react/24/outline';
 import { Button, Textarea, Listbox } from '@headlessui/react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import { format as prettierFormat } from 'prettier/standalone';
 import babelParser from 'prettier/plugins/babel';
 import { DOMParser, XMLSerializer } from '@xmldom/xmldom';
 import { html as beautifyHtml } from 'js-beautify';
 import AppHeader from '../../components/ui/AppHeader';
+import ToolWorkbenchHeader from '../../components/ui/ToolWorkbenchHeader';
 
 // Helper function to format XML strings
 const formatXmlString = (xmlString: string): string => {
@@ -52,7 +50,6 @@ const TextFormatter = () => {
   const [format, setFormat] = useState<'json' | 'xml' | 'html' | 'text'>('json');
   const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
-  const navigate = useNavigate();
 
   const formats = [
     { id: 'json', name: 'JSON' },
@@ -262,17 +259,7 @@ const TextFormatter = () => {
         <div className="absolute top-3/4 left-3/4 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
       </div>
 
-      <AppHeader>
-        <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
-          <Button
-            onClick={clearAll}
-            className="relative overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-6 py-2.5 rounded-xl font-medium flex items-center space-x-2 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
-          >
-            <TrashIcon className="w-4 h-4" />
-            <span>Clear All</span>
-          </Button>
-        </motion.div>
-      </AppHeader>
+      <AppHeader />
 
       <motion.section
         variants={sectionVariants}
@@ -281,20 +268,12 @@ const TextFormatter = () => {
         className="relative py-20"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap" className="inline-block mb-4">
-              <Button onClick={() => navigate('/')} className="text-gray-300 hover:text-white flex items-center space-x-2">
-                <ArrowLeftIcon className="w-6 h-6" />
-                <span>Back to Home</span>
-              </Button>
-            </motion.div>
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-4">
-              Text Formatter
-            </h1>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-              Format JSON, XML, HTML, or plain text with proper indentation and line breaks for clean, readable output.
-            </p>
-          </div>
+          <ToolWorkbenchHeader
+            title="Text Formatter"
+            description="Format JSON, XML, HTML, or plain text with proper indentation and line breaks for clean, readable output."
+            onReset={clearAll}
+            resetDisabled={!input && !output && !error}
+          />
 
           <motion.div
             variants={sectionVariants}

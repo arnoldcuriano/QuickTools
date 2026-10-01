@@ -1,16 +1,14 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  ArrowLeftIcon,
   CheckCircleIcon,
   CloudArrowDownIcon,
   ExclamationTriangleIcon,
   InformationCircleIcon,
-  TrashIcon,
 } from '@heroicons/react/24/outline';
 import { Button, Textarea } from '@headlessui/react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import AppHeader from '../../components/ui/AppHeader';
+import ToolWorkbenchHeader from '../../components/ui/ToolWorkbenchHeader';
 import {
   generatePremiumQrCodeDataUrl,
   QrErrorCorrectionLevel,
@@ -45,7 +43,6 @@ const QRCodeGenerator = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const navigate = useNavigate();
 
   const clearAll = useCallback(() => {
     setContent(sampleValues[0]);
@@ -164,43 +161,16 @@ const QRCodeGenerator = () => {
         <div className="absolute top-3/4 left-3/4 h-64 w-64 rounded-full bg-teal-500/10 blur-3xl" />
       </div>
 
-      <AppHeader>
-        <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
-          <Button
-            onClick={downloadQr}
-            className="relative flex items-center space-x-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-2.5 font-medium text-white shadow-lg shadow-cyan-500/25 hover:from-cyan-400 hover:to-blue-500 hover:shadow-cyan-500/40"
-          >
-            <CloudArrowDownIcon className="h-4 w-4" />
-            <span>Download PNG</span>
-          </Button>
-        </motion.div>
-        <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
-          <Button
-            onClick={clearAll}
-            className="relative flex items-center space-x-2 rounded-xl bg-white/5 px-6 py-2.5 font-medium text-gray-200 shadow-lg shadow-black/10 ring-1 ring-white/10 hover:bg-white/10 hover:text-white"
-          >
-            <TrashIcon className="h-4 w-4" />
-            <span>Reset</span>
-          </Button>
-        </motion.div>
-      </AppHeader>
+      <AppHeader />
 
       <motion.section variants={sectionVariants} initial="hidden" animate="visible" className="relative py-20">
         <div className="brand-shell">
-          <div className="mb-12 text-center">
-            <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap" className="inline-block mb-4">
-              <Button onClick={() => navigate('/')} className="flex items-center space-x-2 text-gray-300 hover:text-white">
-                <ArrowLeftIcon className="h-6 w-6" />
-                <span>Back to Home</span>
-              </Button>
-            </motion.div>
-            <h1 className="mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-4xl font-bold text-transparent md:text-5xl">
-              QR Code Generator
-            </h1>
-            <p className="mx-auto max-w-4xl text-xl text-gray-300">
-              Generate browser-only QR codes with logo, frame, and color controls. No cloud processing required.
-            </p>
-          </div>
+          <ToolWorkbenchHeader
+            title="QR Code Generator"
+            description="Generate browser-only QR codes with logo, frame, and color controls. No cloud processing required."
+            onReset={clearAll}
+            resetLabel="Reset"
+          />
 
           <motion.div
             variants={sectionVariants}

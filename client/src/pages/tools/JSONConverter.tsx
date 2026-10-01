@@ -1,9 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { 
-  ArrowLeftIcon, 
   ClipboardIcon, 
   ClipboardDocumentCheckIcon, 
-  TrashIcon,
   InformationCircleIcon,
   ExclamationTriangleIcon,
   ArrowsRightLeftIcon,
@@ -11,9 +9,9 @@ import {
 } from '@heroicons/react/24/outline';
 import { Button, Textarea } from '@headlessui/react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import { convertJson, JSONConverterOptions } from '../../utils/jsonConverter';
 import AppHeader from '../../components/ui/AppHeader';
+import ToolWorkbenchHeader from '../../components/ui/ToolWorkbenchHeader';
 
 const JSONConverter = () => {
   const [input, setInput] = useState('');
@@ -22,7 +20,6 @@ const JSONConverter = () => {
   const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
   const [sizeReduction, setSizeReduction] = useState<string>('');
-  const navigate = useNavigate();
 
   const sampleJsons = [
     '{"name":"John","age":30,"city":"New York"}',
@@ -105,18 +102,7 @@ const JSONConverter = () => {
         <div className="absolute top-3/4 left-3/4 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
       </div>
 
-      {/* Header */}
-      <AppHeader>
-        <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
-          <Button
-            onClick={clearAll}
-            className="relative overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-6 py-2.5 rounded-xl font-medium flex items-center space-x-2 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
-          >
-            <TrashIcon className="w-4 h-4" />
-            <span>Clear All</span>
-          </Button>
-        </motion.div>
-      </AppHeader>
+      <AppHeader />
 
       {/* Main Content */}
       <motion.section
@@ -126,20 +112,12 @@ const JSONConverter = () => {
         className="relative py-20"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap" className="inline-block mb-4">
-              <Button onClick={() => navigate('/')} className="text-gray-300 hover:text-white flex items-center space-x-2">
-                <ArrowLeftIcon className="w-6 h-6" />
-                <span>Back to Home</span>
-              </Button>
-            </motion.div>
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-4">
-              JSON Converter
-            </h1>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-              Beautify or minify your JSON data with ease for better readability or compact storage.
-            </p>
-          </div>
+          <ToolWorkbenchHeader
+            title="JSON Converter"
+            description="Beautify or minify your JSON data with ease for better readability or compact storage."
+            onReset={clearAll}
+            resetDisabled={!input && !output && !error}
+          />
 
           {/* Info Section */}
           <motion.div
