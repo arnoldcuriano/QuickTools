@@ -24,7 +24,9 @@ for (const viewport of viewports) {
 
 test('command shortcut opens and focuses catalog search', async ({ page }) => {
   await page.goto('/tools/base64');
-  await page.keyboard.press('Control+K');
+  await page.evaluate(() => {
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true }));
+  });
 
   await expect(page).toHaveURL(/\?focus=search#catalog$/);
   await expect(page.getByRole('searchbox', { name: 'Search tools' })).toBeFocused();
