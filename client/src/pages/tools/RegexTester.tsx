@@ -54,12 +54,7 @@ const RegexTester = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-black">
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl" />
-      </div>
-
+    <div className="tool-page">
       <AppHeader />
 
       <motion.section variants={sectionVariants} initial="hidden" animate="visible" className="relative py-20">
@@ -79,7 +74,7 @@ const RegexTester = () => {
             transition={{ delay: 0.1 }}
             className="mb-8 flex items-start space-x-3 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
           >
-            <InformationCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-cyan-400" />
+            <InformationCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-brand" />
             <div>
               <h2 className="mb-2 text-lg font-semibold text-white">Regex inspection</h2>
               <p className="text-gray-300">
@@ -98,7 +93,7 @@ const RegexTester = () => {
                 value={pattern}
                 onChange={(event) => setPattern(event.target.value)}
                 placeholder="Enter regex pattern..."
-                className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 font-mono text-base text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 font-mono text-base text-white placeholder-gray-400 outline-none focus:ring-2"
               />
               <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
                 <h3 className="text-base font-semibold text-white">Flags</h3>
@@ -122,7 +117,7 @@ const RegexTester = () => {
                           if (flag.key === 'dotAll') setDotAll(checked);
                           if (flag.key === 'unicode') setUnicode(checked);
                         }}
-                        className="h-4 w-4 rounded border-white/20 bg-transparent accent-cyan-500"
+                        className="h-4 w-4 rounded border-white/20 bg-transparent accent-[var(--accent)]"
                       />
                       <span>/{flag.label}</span>
                     </label>
@@ -138,7 +133,7 @@ const RegexTester = () => {
                   value={text}
                   onChange={(event) => setText(event.target.value)}
                   placeholder="Paste test text here..."
-                  className="h-[20rem] w-full resize-none rounded-2xl border border-white/10 bg-white/5 p-4 font-mono text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                  className="h-[20rem] w-full resize-none rounded-2xl border border-white/10 bg-white/5 p-4 font-mono text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2"
                 />
               </div>
             </div>
@@ -169,7 +164,7 @@ const RegexTester = () => {
                   {segments.map((segment) => (
                     <span
                       key={segment.key}
-                      className={segment.matched ? 'rounded bg-cyan-500/20 px-0.5 text-cyan-200' : ''}
+                      className={segment.matched ? 'rounded border-b border-brand px-0.5 text-brand' : ''}
                     >
                       {segment.text}
                     </span>
@@ -186,7 +181,7 @@ const RegexTester = () => {
                     analysis.matches.map((match, index) => (
                       <div key={`${match.start}-${match.end}-${index}`} className="rounded-xl border border-white/10 bg-slate-950/50 p-4">
                         <div className="flex items-center justify-between gap-3">
-                          <span className="font-mono text-sm text-cyan-300">
+                          <span className="font-mono text-sm text-brand">
                             Match {index + 1} at {match.start}-{match.end}
                           </span>
                           <span className="text-sm text-gray-300">{match.text}</span>
@@ -215,10 +210,10 @@ const RegexTester = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
-                className="mt-8 flex items-start space-x-3 rounded-xl border border-red-500/20 bg-white/5 p-4 backdrop-blur-xl"
+                className="mt-8 flex items-start space-x-3 rounded-xl border border-brand bg-white/5 p-4 backdrop-blur-xl"
               >
-                <ExclamationTriangleIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-red-400" />
-                <p className="text-red-300">{analysis.error}</p>
+                <ExclamationTriangleIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand" />
+                <p className="text-brand">{analysis.error}</p>
               </motion.div>
             )}
           </AnimatePresence>

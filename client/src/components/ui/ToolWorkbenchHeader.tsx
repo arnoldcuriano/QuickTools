@@ -20,10 +20,10 @@ const ToolWorkbenchHeader = ({
   resetDisabled = false,
   children,
 }: ToolWorkbenchHeaderProps) => (
-  <div className="mb-10 border-b border-white/10 pb-8 sm:mb-12 sm:pb-10">
+  <div className="mb-10 border-b border-brand pb-8 sm:mb-12 sm:pb-10">
     <Link
       to="/"
-      className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-gray-300 transition-colors hover:text-white"
+      className="brand-nav-link mb-6 inline-flex items-center gap-2"
     >
       <ArrowLeftIcon className="h-4 w-4" aria-hidden="true" />
       Back to tools
@@ -31,12 +31,12 @@ const ToolWorkbenchHeader = ({
 
     <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
       <div className="max-w-4xl">
-        <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-cyan-300">
+        <div className="brand-eyebrow mb-3 flex items-center gap-2">
           <ShieldCheckIcon className="h-4 w-4" aria-hidden="true" />
           Runs locally in your browser
         </div>
-        <h1 className="text-4xl font-bold text-white md:text-5xl">{title}</h1>
-        <p className="mt-4 text-lg leading-8 text-gray-300 sm:text-xl">{description}</p>
+        <h1 className="text-4xl font-medium text-brand md:text-5xl">{title}</h1>
+        <p className="mt-4 max-w-3xl text-base leading-7 text-brand-muted sm:text-lg">{description}</p>
       </div>
 
       <div

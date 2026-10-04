@@ -91,14 +91,7 @@ const Base64Tool = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-black">
-      {/* Animated background elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-3/4 left-3/4 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
-      </div>
-
+    <div className="tool-page">
       <AppHeader />
 
       {/* Main Content */}
@@ -108,7 +101,7 @@ const Base64Tool = () => {
         animate="visible"
         className="relative py-20"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="brand-shell">
           <ToolWorkbenchHeader
             title="Base64 Encoder/Decoder"
             description="Convert text to Base64 and vice versa with ease. Perfect for embedding assets or encoding data URIs."
@@ -137,8 +130,8 @@ const Base64Tool = () => {
                   }}
                   className={`px-6 py-3 rounded-xl font-semibold ${
                     mode === 'encode'
-                      ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25'
-                      : 'text-gray-300 hover:text-white'
+                      ? 'brand-button'
+                      : 'text-brand-muted hover:text-brand'
                   }`}
                 >
                   Encode
@@ -166,8 +159,8 @@ const Base64Tool = () => {
                   }}
                   className={`px-6 py-3 rounded-xl font-semibold ${
                     mode === 'decode'
-                      ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25'
-                      : 'text-gray-300 hover:text-white'
+                      ? 'brand-button'
+                      : 'text-brand-muted hover:text-brand'
                   }`}
                 >
                   Decode
@@ -184,7 +177,7 @@ const Base64Tool = () => {
             transition={{ delay: 0.4 }}
             className="mb-8 backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6 flex items-start space-x-3"
           >
-            <InformationCircleIcon className="w-6 h-6 text-cyan-400 flex-shrink-0 mt-0.5" />
+            <InformationCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-brand" />
             <div>
               <h2 className="text-lg font-semibold text-white mb-2">About Base64</h2>
               <p className="text-gray-300">
@@ -204,7 +197,7 @@ const Base64Tool = () => {
                 value={input}
                 onChange={(e) => handleInputChange(e.target.value)}
                 placeholder={mode === 'encode' ? 'Enter text to encode...' : 'Enter Base64 string to decode...'}
-                className="w-full h-64 backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-4 text-white placeholder-gray-400 resize-none focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full h-64 backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-4 text-white placeholder-gray-400 resize-none focus:outline-none focus:ring-2"
               />
               <div>
                 <h3 className="text-sm font-medium text-gray-300 mb-2">Sample texts:</h3>
@@ -238,7 +231,7 @@ const Base64Tool = () => {
                     <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
                       <Button
                         onClick={copyToClipboard}
-                        className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-3 py-1 rounded-lg flex items-center space-x-1 text-sm shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
+                        className="brand-button px-3 py-1 text-sm"
                       >
                         {copied ? (
                           <>
@@ -268,10 +261,10 @@ const Base64Tool = () => {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="backdrop-blur-xl bg-white/5 border border-red-500/20 rounded-xl p-4 flex items-start space-x-3"
+                    className="backdrop-blur-xl bg-white/5 border border-brand rounded-xl p-4 flex items-start space-x-3"
                   >
-                    <ExclamationTriangleIcon className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
-                    <p className="text-red-300">{error}</p>
+                    <ExclamationTriangleIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand" />
+                    <p className="text-brand">{error}</p>
                   </motion.div>
                 )}
               </AnimatePresence>

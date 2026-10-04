@@ -121,20 +121,8 @@ const WebPConverter = () => {
     tap: { scale: 0.95 }
   };
 
-  const imageVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } }
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-black">
-      {/* Animated background elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-3/4 left-3/4 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
-      </div>
-
+    <div className="tool-page">
       <AppHeader />
 
       {/* Main Content */}
@@ -144,7 +132,7 @@ const WebPConverter = () => {
         animate="visible"
         className="relative py-20"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="brand-shell">
           <ToolWorkbenchHeader
             title="WebP Converter"
             description="Convert up to 20 JPG or PNG images to WebP format for optimized web performance with bulk upload support."
@@ -160,7 +148,7 @@ const WebPConverter = () => {
             transition={{ delay: 0.2 }}
             className="mb-8 backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6 flex items-start space-x-3"
           >
-            <InformationCircleIcon className="w-6 h-6 text-cyan-400 flex-shrink-0 mt-0.5" />
+            <InformationCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-brand" />
             <div>
               <h2 className="text-lg font-semibold text-white mb-2">About WebP Converter</h2>
               <p className="text-gray-300">
@@ -181,7 +169,7 @@ const WebPConverter = () => {
               onDrop={handleDrop}
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
-              className={`backdrop-blur-xl bg-white/5 border-2 ${isDragging ? 'border-cyan-500' : 'border-white/10'} rounded-2xl p-8 text-center transition-all duration-300`}
+              className={`backdrop-blur-xl bg-white/5 border-2 ${isDragging ? 'border-brand' : 'border-white/10'} rounded-2xl p-8 text-center transition-colors duration-100`}
             >
               <input
                 type="file"
@@ -195,7 +183,7 @@ const WebPConverter = () => {
               <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
                 <Button
                   onClick={() => fileInputRef.current?.click()}
-                  className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-6 py-3 rounded-xl font-medium shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 mb-4"
+                  className="brand-button mb-4 px-6 py-3"
                 >
                   Upload Images (up to 20)
                 </Button>
@@ -212,14 +200,14 @@ const WebPConverter = () => {
                   max="100"
                   value={quality}
                   onChange={(e) => setQuality(Number(e.target.value))}
-                  className="w-full accent-cyan-500"
+                  className="w-full accent-[var(--accent)]"
                 />
               </div>
               {images.length > 0 && (
                 <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap" className="mt-4">
                   <Button
                     onClick={reconvertAll}
-                    className="bg-gradient-to-r from-teal-500 to-green-600 hover:from-teal-400 hover:to-green-500 text-white px-6 py-3 rounded-xl font-medium shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40"
+                    className="brand-button px-6 py-3"
                   >
                     Reconvert with New Quality
                   </Button>
@@ -237,7 +225,7 @@ const WebPConverter = () => {
             >
               <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-4">
                 <div className="w-full bg-gray-700 rounded-full h-2.5">
-                  <div className="bg-cyan-500 h-2.5 rounded-full transition-all duration-300" style={{ width: `${progress}%` }}></div>
+                  <div className="h-2.5 rounded-full bg-[var(--accent)]" style={{ width: `${progress}%` }}></div>
                 </div>
                 <p className="text-center text-gray-300 mt-2">Processing...</p>
               </div>
@@ -252,7 +240,7 @@ const WebPConverter = () => {
                 <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
                   <Button
                     onClick={downloadAllAsZip}
-                    className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-4 py-2 rounded-xl flex items-center space-x-2 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
+                    className="brand-button px-4 py-2"
                   >
                     <DocumentArrowDownIcon className="w-5 h-5" />
                     <span>Download All as ZIP</span>
@@ -271,8 +259,6 @@ const WebPConverter = () => {
                       index={index}
                       onRemove={removeImage}
                       onDownload={downloadSingle}
-                      buttonVariants={buttonVariants}
-                      imageVariants={imageVariants}
                     />
                   ))}
                 </AnimatePresence>
@@ -287,10 +273,10 @@ const WebPConverter = () => {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="mt-8 backdrop-blur-xl bg-white/5 border border-red-500/20 rounded-xl p-4 flex items-start space-x-3"
+                className="mt-8 backdrop-blur-xl bg-white/5 border border-brand rounded-xl p-4 flex items-start space-x-3"
               >
-                <ExclamationTriangleIcon className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
-                <p className="text-red-300">{globalError}</p>
+                <ExclamationTriangleIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand" />
+                <p className="text-brand">{globalError}</p>
               </motion.div>
             )}
           </AnimatePresence>

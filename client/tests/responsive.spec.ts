@@ -1,9 +1,9 @@
 import { expect, test } from '@playwright/test';
 
 const viewports = [
-  { name: 'mobile', width: 320, height: 800 },
+  { name: 'mobile', width: 360, height: 800 },
   { name: 'tablet', width: 768, height: 900 },
-  { name: 'desktop', width: 1440, height: 1000 },
+  { name: 'desktop', width: 1280, height: 1000 },
 ];
 
 for (const viewport of viewports) {
@@ -21,6 +21,41 @@ for (const viewport of viewports) {
     expect(hasHorizontalOverflow).toBe(false);
   });
 }
+
+test('command shortcut opens and focuses catalog search', async ({ page }) => {
+  await page.goto('/tools/base64');
+  await page.keyboard.press('Control+K');
+
+  await expect(page).toHaveURL(/\?focus=search#catalog$/);
+  await expect(page.getByRole('searchbox', { name: 'Search tools' })).toBeFocused();
+});
+
+test('shared visual tokens remain monochrome and flat in both themes', async ({ page }) => {
+  for (const theme of ['light', 'dark']) {
+    await page.addInitScript((selectedTheme) => {
+      window.localStorage.setItem('quicktools.theme', selectedTheme);
+    }, theme);
+    await page.goto('/');
+
+    const styles = await page.evaluate(() => {
+      const root = getComputedStyle(document.documentElement);
+      const row = getComputedStyle(document.querySelector('.tool-row') as HTMLElement);
+      return {
+        background: root.getPropertyValue('--bg').trim(),
+        text: root.getPropertyValue('--text').trim(),
+        radius: root.getPropertyValue('--radius').trim(),
+        cardShadow: row.boxShadow,
+        cardBackgroundImage: row.backgroundImage,
+      };
+    });
+
+    expect(styles.radius).toBe('0px');
+    expect(styles.cardShadow).toBe('none');
+    expect(styles.cardBackgroundImage).toBe('none');
+    expect(styles.background).toMatch(theme === 'light' ? /^#fff(?:fff)?$/ : /^#000(?:000)?$/);
+    expect(styles.text).toMatch(theme === 'light' ? /^#000(?:000)?$/ : /^#fff(?:fff)?$/);
+  }
+});
 
 test('theme selection survives navigation and reload', async ({ page }) => {
   await page.goto('/');

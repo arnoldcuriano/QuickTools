@@ -78,12 +78,7 @@ const CSVTSVConverter = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-black">
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl" />
-      </div>
-
+    <div className="tool-page">
       <AppHeader />
 
       <motion.section variants={sectionVariants} initial="hidden" animate="visible" className="relative py-20">
@@ -113,7 +108,7 @@ const CSVTSVConverter = () => {
             transition={{ delay: 0.1 }}
             className="mb-8 flex items-start space-x-3 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
           >
-            <InformationCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-cyan-400" />
+            <InformationCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-brand" />
             <div>
               <h2 className="mb-2 text-lg font-semibold text-white">Browser-delimited workflow</h2>
               <p className="text-gray-300">
@@ -132,7 +127,7 @@ const CSVTSVConverter = () => {
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
                 placeholder="Paste CSV or TSV content here..."
-                className="h-[28rem] w-full resize-none rounded-2xl border border-white/10 bg-white/5 p-4 font-mono text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="h-[28rem] w-full resize-none rounded-2xl border border-white/10 bg-white/5 p-4 font-mono text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2"
               />
               <div className="flex flex-wrap gap-2">
                 {['Load sample CSV', 'Load sample TSV'].map((label, index) => (
@@ -186,7 +181,7 @@ const CSVTSVConverter = () => {
                             setTargetFormat(event.target.value as DelimitedFormat);
                           }
                         }}
-                        className="mt-2 w-full rounded-xl border border-white/10 bg-slate-900 px-3 py-2 text-white outline-none focus:ring-2 focus:ring-cyan-500"
+                        className="mt-2 w-full rounded-xl border border-white/10 bg-slate-900 px-3 py-2 text-white outline-none focus:ring-2"
                       >
                         {(Object.keys(formatLabels) as DelimitedFormat[]).map((option) => (
                           <option key={option} value={option}>
@@ -218,10 +213,10 @@ const CSVTSVConverter = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                    className="flex items-start space-x-3 rounded-xl border border-red-500/20 bg-white/5 p-4 backdrop-blur-xl"
+                    className="flex items-start space-x-3 rounded-xl border border-brand bg-white/5 p-4 backdrop-blur-xl"
                   >
-                    <InformationCircleIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-red-400" />
-                    <p className="text-red-300">{parsedResult.error}</p>
+                    <InformationCircleIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand" />
+                    <p className="text-brand">{parsedResult.error}</p>
                   </motion.div>
                 )}
               </AnimatePresence>

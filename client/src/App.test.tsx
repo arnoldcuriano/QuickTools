@@ -9,22 +9,12 @@ beforeEach(() => {
   document.documentElement.dataset.theme = 'dark';
 });
 
-test('renders QuickTools app and the live GitHub repo link', async () => {
-  const fetchMock = vi.fn().mockResolvedValue({
-    ok: true,
-    json: async () => ({ stargazers_count: 1234 }),
-  });
-  Object.defineProperty(globalThis, 'fetch', {
-    configurable: true,
-    value: fetchMock,
-  });
-
+test('renders QuickTools app and the GitHub repository link', () => {
   render(<App />);
   const headingElement = screen.getByRole('heading', { name: 'QuickTools', level: 1 });
   expect(headingElement).toBeInTheDocument();
 
-  expect(await screen.findByRole('link', { name: /open quicktools on github/i })).toBeInTheDocument();
-  expect(await screen.findByText(/1,234 stars/i)).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: /open quicktools on github/i })).toBeInTheDocument();
 });
 
 test('filters the tool catalog by search and category', () => {
@@ -61,4 +51,16 @@ test('switches and persists the selected theme', () => {
 
   expect(document.documentElement.dataset.theme).toBe('light');
   expect(window.localStorage.getItem('quicktools.theme')).toBe('light');
+});
+
+test('focuses catalog search from the global command shortcut', () => {
+  Object.defineProperty(globalThis, 'fetch', {
+    configurable: true,
+    value: vi.fn().mockRejectedValue(new Error('offline')),
+  });
+
+  render(<App />);
+  fireEvent.keyDown(window, { key: 'k', ctrlKey: true });
+
+  expect(screen.getByRole('searchbox', { name: /search tools/i })).toHaveFocus();
 });

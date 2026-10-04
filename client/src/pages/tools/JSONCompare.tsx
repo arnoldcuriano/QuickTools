@@ -29,12 +29,7 @@ const JSONCompare = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-black">
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl" />
-      </div>
-
+    <div className="tool-page">
       <AppHeader />
 
       <motion.section variants={sectionVariants} initial="hidden" animate="visible" className="relative py-20">
@@ -53,7 +48,7 @@ const JSONCompare = () => {
             transition={{ delay: 0.1 }}
             className="mb-8 flex items-start space-x-3 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
           >
-            <InformationCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-cyan-400" />
+            <InformationCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-brand" />
             <div>
               <h2 className="mb-2 text-lg font-semibold text-white">Comparison mode</h2>
               <p className="text-gray-300">
@@ -72,7 +67,7 @@ const JSONCompare = () => {
                 value={leftText}
                 onChange={(event) => setLeftText(event.target.value)}
                 placeholder="Paste the original JSON here..."
-                className="h-[28rem] w-full resize-none rounded-2xl border border-white/10 bg-white/5 p-4 font-mono text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="h-[28rem] w-full resize-none rounded-2xl border border-white/10 bg-white/5 p-4 font-mono text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2"
               />
             </div>
 
@@ -85,7 +80,7 @@ const JSONCompare = () => {
                 value={rightText}
                 onChange={(event) => setRightText(event.target.value)}
                 placeholder="Paste the new JSON here..."
-                className="h-[28rem] w-full resize-none rounded-2xl border border-white/10 bg-white/5 p-4 font-mono text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="h-[28rem] w-full resize-none rounded-2xl border border-white/10 bg-white/5 p-4 font-mono text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2"
               />
             </div>
 
@@ -119,7 +114,7 @@ const JSONCompare = () => {
                     comparison.differences.map((difference) => (
                       <div key={`${difference.kind}-${difference.path}`} className="rounded-xl border border-white/10 bg-slate-950/50 p-4">
                         <div className="flex items-center justify-between gap-3">
-                          <span className="font-mono text-sm text-cyan-300">{difference.path}</span>
+                          <span className="font-mono text-sm text-brand">{difference.path}</span>
                           <span className="rounded-full border border-white/10 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-gray-300">
                             {difference.kind}
                           </span>
@@ -127,13 +122,21 @@ const JSONCompare = () => {
                         <div className="mt-3 grid gap-3 text-sm md:grid-cols-2">
                           <div>
                             <p className="mb-1 text-gray-400">Left</p>
-                            <pre className="whitespace-pre-wrap break-words rounded-lg bg-black/30 p-3 text-gray-200">
+                            <pre
+                              tabIndex={0}
+                              aria-label="Left JSON value"
+                              className="whitespace-pre-wrap break-words rounded-lg bg-black/30 p-3 text-gray-200"
+                            >
                               {formatJsonCompareValue(difference.leftValue)}
                             </pre>
                           </div>
                           <div>
                             <p className="mb-1 text-gray-400">Right</p>
-                            <pre className="whitespace-pre-wrap break-words rounded-lg bg-black/30 p-3 text-gray-200">
+                            <pre
+                              tabIndex={0}
+                              aria-label="Right JSON value"
+                              className="whitespace-pre-wrap break-words rounded-lg bg-black/30 p-3 text-gray-200"
+                            >
                               {formatJsonCompareValue(difference.rightValue)}
                             </pre>
                           </div>
@@ -152,10 +155,10 @@ const JSONCompare = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
-                className="mt-8 flex items-start space-x-3 rounded-xl border border-red-500/20 bg-white/5 p-4 backdrop-blur-xl"
+                className="mt-8 flex items-start space-x-3 rounded-xl border border-brand bg-white/5 p-4 backdrop-blur-xl"
               >
-                <ExclamationTriangleIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-red-400" />
-                <p className="text-red-300">{comparison.error}</p>
+                <ExclamationTriangleIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand" />
+                <p className="text-brand">{comparison.error}</p>
               </motion.div>
             )}
           </AnimatePresence>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#15171c" />
+    <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="QuickTools is an open-source browser workbench for formatting data, encoding text, and converting images."
@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"
       rel="stylesheet"
     />
     <link rel="icon" type="image/svg+xml" href="/logo/mark.svg" />
@@ -28,9 +28,7 @@
         let theme = 'dark';
         try {
           const savedTheme = localStorage.getItem('quicktools.theme');
-          theme = savedTheme === 'light' || savedTheme === 'dark'
-            ? savedTheme
-            : window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+          theme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : 'dark';
         } catch {
           theme = 'dark';
         }

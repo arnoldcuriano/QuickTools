@@ -94,14 +94,7 @@ const JSONConverter = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-black">
-      {/* Animated background elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-3/4 left-3/4 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
-      </div>
-
+    <div className="tool-page">
       <AppHeader />
 
       {/* Main Content */}
@@ -111,7 +104,7 @@ const JSONConverter = () => {
         animate="visible"
         className="relative py-20"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="brand-shell">
           <ToolWorkbenchHeader
             title="JSON Converter"
             description="Beautify or minify your JSON data with ease for better readability or compact storage."
@@ -127,7 +120,7 @@ const JSONConverter = () => {
             transition={{ delay: 0.2 }}
             className="mb-8 backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6 flex items-start space-x-3"
           >
-            <InformationCircleIcon className="w-6 h-6 text-cyan-400 flex-shrink-0 mt-0.5" />
+            <InformationCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-brand" />
             <div>
               <h2 className="text-lg font-semibold text-white mb-2">About JSON Converter</h2>
               <p className="text-gray-300">
@@ -158,8 +151,8 @@ const JSONConverter = () => {
                   }}
                   className={`px-6 py-3 rounded-xl font-semibold ${
                     mode === 'beautify'
-                      ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25'
-                      : 'text-gray-300 hover:text-white'
+                      ? 'brand-button'
+                      : 'text-brand-muted hover:text-brand'
                   }`}
                 >
                   Beautify
@@ -188,8 +181,8 @@ const JSONConverter = () => {
                   }}
                   className={`px-6 py-3 rounded-xl font-semibold ${
                     mode === 'minify'
-                      ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25'
-                      : 'text-gray-300 hover:text-white'
+                      ? 'brand-button'
+                      : 'text-brand-muted hover:text-brand'
                   }`}
                 >
                   Minify
@@ -209,7 +202,7 @@ const JSONConverter = () => {
                 value={input}
                 onChange={(e) => handleInputChange(e.target.value)}
                 placeholder="Enter JSON to format..."
-                className="w-full h-64 backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-4 text-white placeholder-gray-400 resize-none focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full h-64 backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-4 text-white placeholder-gray-400 resize-none focus:outline-none focus:ring-2"
               />
               <div>
                 <h3 className="text-sm font-medium text-gray-300 mb-2">Sample JSONs:</h3>
@@ -243,7 +236,7 @@ const JSONConverter = () => {
                     <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
                       <Button
                         onClick={copyToClipboard}
-                        className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-3 py-1 rounded-lg flex items-center space-x-1 text-sm shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
+                        className="brand-button px-3 py-1 text-sm"
                       >
                         {copied ? (
                           <>
@@ -273,10 +266,10 @@ const JSONConverter = () => {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="backdrop-blur-xl bg-white/5 border border-cyan-500/20 rounded-xl p-4 flex items-start space-x-3"
+                    className="backdrop-blur-xl bg-white/5 border border-brand rounded-xl p-4 flex items-start space-x-3"
                   >
-                    <CheckCircleIcon className="w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5" />
-                    <p className="text-cyan-300">{sizeReduction}</p>
+                    <CheckCircleIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand" />
+                    <p className="text-brand">{sizeReduction}</p>
                   </motion.div>
                 )}
                 {error && (
@@ -284,10 +277,10 @@ const JSONConverter = () => {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="backdrop-blur-xl bg-white/5 border border-red-500/20 rounded-xl p-4 flex items-start space-x-3"
+                    className="backdrop-blur-xl bg-white/5 border border-brand rounded-xl p-4 flex items-start space-x-3"
                   >
-                    <ExclamationTriangleIcon className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
-                    <p className="text-red-300">{error}</p>
+                    <ExclamationTriangleIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand" />
+                    <p className="text-brand">{error}</p>
                   </motion.div>
                 )}
               </AnimatePresence>

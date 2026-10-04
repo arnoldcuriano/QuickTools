@@ -33,7 +33,7 @@ const QRCodeGenerator = () => {
   const [size, setSize] = useState(320);
   const [margin, setMargin] = useState(2);
   const [errorCorrectionLevel, setErrorCorrectionLevel] = useState<QrErrorCorrectionLevel>('M');
-  const [foreground, setForeground] = useState('#111827');
+  const [foreground, setForeground] = useState('#000000');
   const [background, setBackground] = useState('#ffffff');
   const [frameText, setFrameText] = useState('Scan to open');
   const [logoDataUrl, setLogoDataUrl] = useState<string>('');
@@ -49,7 +49,7 @@ const QRCodeGenerator = () => {
     setSize(320);
     setMargin(2);
     setErrorCorrectionLevel('M');
-    setForeground('#111827');
+    setForeground('#000000');
     setBackground('#ffffff');
     setFrameText('Scan to open');
     setLogoDataUrl('');
@@ -154,13 +154,7 @@ const QRCodeGenerator = () => {
   const isContentEmpty = useMemo(() => !content.trim(), [content]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-black">
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl" />
-        <div className="absolute top-3/4 left-3/4 h-64 w-64 rounded-full bg-teal-500/10 blur-3xl" />
-      </div>
-
+    <div className="tool-page">
       <AppHeader />
 
       <motion.section variants={sectionVariants} initial="hidden" animate="visible" className="relative py-20">
@@ -179,7 +173,7 @@ const QRCodeGenerator = () => {
             transition={{ delay: 0.1 }}
             className="mb-8 flex items-start space-x-3 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
           >
-            <InformationCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-cyan-400" />
+            <InformationCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-brand" />
             <div>
               <h2 className="mb-2 text-lg font-semibold text-white">About QR generation</h2>
               <p className="text-gray-300">
@@ -199,7 +193,7 @@ const QRCodeGenerator = () => {
                   value={content}
                   onChange={(event) => setContent(event.target.value)}
                   placeholder="Enter text, URL, phone number, Wi-Fi payload, or any shareable content..."
-                  className="mt-4 h-40 w-full resize-none rounded-2xl border border-white/10 bg-white/5 p-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                  className="mt-4 h-40 w-full resize-none rounded-2xl border border-white/10 bg-white/5 p-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2"
                 />
                 <div className="mt-4 flex flex-wrap gap-2">
                   {sampleValues.map((sample) => (
@@ -228,7 +222,7 @@ const QRCodeGenerator = () => {
                         step="8"
                         value={size}
                         onChange={(event) => setSize(Number(event.target.value))}
-                        className="mt-2 w-full accent-cyan-500"
+                        className="mt-2 w-full accent-[var(--accent)]"
                       />
                     </label>
                     <label className="block text-sm text-gray-300">
@@ -240,7 +234,7 @@ const QRCodeGenerator = () => {
                         step="1"
                         value={margin}
                         onChange={(event) => setMargin(Number(event.target.value))}
-                        className="mt-2 w-full accent-cyan-500"
+                        className="mt-2 w-full accent-[var(--accent)]"
                       />
                     </label>
                     <label className="block text-sm text-gray-300">
@@ -248,7 +242,7 @@ const QRCodeGenerator = () => {
                       <select
                         value={errorCorrectionLevel}
                         onChange={(event) => setErrorCorrectionLevel(event.target.value as QrErrorCorrectionLevel)}
-                        className="mt-2 w-full rounded-xl border border-white/10 bg-slate-900 px-3 py-2 text-white outline-none focus:ring-2 focus:ring-cyan-500"
+                        className="mt-2 w-full rounded-xl border border-white/10 bg-slate-900 px-3 py-2 text-white outline-none focus:ring-2"
                       >
                         {errorCorrectionOptions.map((option) => (
                           <option key={option.value} value={option.value}>
@@ -295,7 +289,7 @@ const QRCodeGenerator = () => {
                       value={frameText}
                       onChange={(event) => setFrameText(event.target.value)}
                       placeholder="Scan to open"
-                      className="mt-2 w-full rounded-xl border border-white/10 bg-slate-900 px-3 py-2 text-white outline-none focus:ring-2 focus:ring-cyan-500"
+                      className="mt-2 w-full rounded-xl border border-white/10 bg-slate-900 px-3 py-2 text-white outline-none focus:ring-2"
                     />
                   </label>
                   <label className="block text-sm text-gray-300">
@@ -307,7 +301,7 @@ const QRCodeGenerator = () => {
                       step="1"
                       value={logoScale}
                       onChange={(event) => setLogoScale(Number(event.target.value))}
-                      className="mt-2 w-full accent-cyan-500"
+                      className="mt-2 w-full accent-[var(--accent)]"
                     />
                   </label>
                   <div className="flex flex-wrap items-center gap-3">
@@ -343,7 +337,7 @@ const QRCodeGenerator = () => {
                     <img
                       src={previewUrl}
                       alt="Generated QR code preview"
-                      className="max-h-[24rem] max-w-full rounded-2xl bg-white p-3 shadow-lg"
+                      className="max-h-[24rem] max-w-full rounded-2xl bg-white p-3"
                     />
                   ) : (
                     <div className="text-center text-gray-400">
@@ -357,7 +351,7 @@ const QRCodeGenerator = () => {
                     <Button
                       onClick={downloadQr}
                       disabled={!previewUrl}
-                      className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-cyan-500/25 disabled:cursor-not-allowed disabled:opacity-50"
+                      className="brand-button px-4 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       <CloudArrowDownIcon className="h-4 w-4" />
                       Download PNG
@@ -369,7 +363,7 @@ const QRCodeGenerator = () => {
 
               <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
                 <div className="flex items-start space-x-3">
-                  <CheckCircleIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-cyan-400" />
+                  <CheckCircleIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand" />
                   <div>
                     <h3 className="text-base font-semibold text-white">Browser-only output</h3>
                     <p className="mt-1 text-sm text-gray-300">
@@ -387,10 +381,10 @@ const QRCodeGenerator = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
-                className="mt-8 flex items-start space-x-3 rounded-xl border border-red-500/20 bg-white/5 p-4 backdrop-blur-xl"
+                className="mt-8 flex items-start space-x-3 rounded-xl border border-brand bg-white/5 p-4 backdrop-blur-xl"
               >
-                <ExclamationTriangleIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-red-400" />
-                <p className="text-red-300">{error}</p>
+                <ExclamationTriangleIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand" />
+                <p className="text-brand">{error}</p>
               </motion.div>
             )}
           </AnimatePresence>

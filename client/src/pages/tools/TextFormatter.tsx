@@ -252,13 +252,7 @@ const TextFormatter = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-black">
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-3/4 left-3/4 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
-      </div>
-
+    <div className="tool-page">
       <AppHeader />
 
       <motion.section
@@ -267,7 +261,7 @@ const TextFormatter = () => {
         animate="visible"
         className="relative py-20"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="brand-shell">
           <ToolWorkbenchHeader
             title="Text Formatter"
             description="Format JSON, XML, HTML, or plain text with proper indentation and line breaks for clean, readable output."
@@ -284,7 +278,7 @@ const TextFormatter = () => {
           >
             <Listbox value={format} onChange={handleFormatChange}>
               <div className="relative">
-                <Listbox.Button className="relative w-48 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-4 py-2.5 rounded-xl font-semibold shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 flex items-center justify-between">
+                <Listbox.Button className="brand-button relative w-48 justify-between px-4 py-2.5">
                   <span>{formats.find(f => f.id === format)?.name}</span>
                   <ChevronDownIcon className="w-4 h-4" />
                 </Listbox.Button>
@@ -294,7 +288,7 @@ const TextFormatter = () => {
                     initial="hidden"
                     animate="visible"
                     exit="hidden"
-                    className="absolute mt-2 w-48 backdrop-blur-2xl bg-white/10 border border-white/20 rounded-xl shadow-xl z-50 overflow-hidden"
+                    className="absolute z-50 mt-2 w-48 overflow-hidden rounded-xl border border-white/20 bg-white/10 backdrop-blur-2xl"
                   >
                     <Listbox.Options>
                       {formats.map(f => (
@@ -303,7 +297,7 @@ const TextFormatter = () => {
                           value={f.id}
                           className={({ active }) =>
                             `px-4 py-2 text-gray-300 cursor-pointer transition-all duration-200 ${
-                              active ? 'bg-cyan-500/20 text-white scale-105' : ''
+                              active ? 'bg-brand-surface text-brand' : ''
                             }`
                           }
                         >
@@ -324,7 +318,7 @@ const TextFormatter = () => {
             transition={{ delay: 0.4 }}
             className="mb-12 backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-8 flex items-start space-x-4 relative z-10"
           >
-            <InformationCircleIcon className="w-6 h-6 text-cyan-400 flex-shrink-0 mt-0.5" />
+            <InformationCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-brand" />
             <div>
               <h2 className="text-lg font-semibold text-white mb-2">About Text Formatter</h2>
               <p className="text-gray-300 leading-relaxed">
@@ -343,7 +337,7 @@ const TextFormatter = () => {
                 value={input}
                 onChange={(e) => handleInputChange(e.target.value)}
                 placeholder={`Enter ${format.toUpperCase()} to format...`}
-                className="w-full h-64 backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-4 text-white placeholder-gray-400 resize-none focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full h-64 backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-4 text-white placeholder-gray-400 resize-none focus:outline-none focus:ring-2"
               />
               <div>
                 <h3 className="text-sm font-medium text-gray-300 mb-2">Sample texts:</h3>
@@ -377,7 +371,7 @@ const TextFormatter = () => {
                     <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
                       <Button
                         onClick={copyToClipboard}
-                        className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-3 py-1 rounded-lg flex items-center space-x-1 text-sm shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
+                        className="brand-button px-3 py-1 text-sm"
                       >
                         {copied ? (
                           <>
@@ -407,10 +401,10 @@ const TextFormatter = () => {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="backdrop-blur-xl bg-white/5 border border-red-500/20 rounded-xl p-4 flex items-start space-x-3"
+                    className="backdrop-blur-xl bg-white/5 border border-brand rounded-xl p-4 flex items-start space-x-3"
                   >
-                    <ExclamationTriangleIcon className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
-                    <p className="text-red-300">{error}</p>
+                    <ExclamationTriangleIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand" />
+                    <p className="text-brand">{error}</p>
                   </motion.div>
                 )}
               </AnimatePresence>

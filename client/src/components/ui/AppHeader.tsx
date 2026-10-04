@@ -1,31 +1,45 @@
-import React, { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import { useCallback, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import GitHubRepoStar from './GitHubRepoStar';
 import ThemeToggle from './ThemeToggle';
 
-interface AppHeaderProps {
-  children?: ReactNode;
-}
+const AppHeader = () => {
+  const navigate = useNavigate();
 
-const AppHeader = ({ children }: AppHeaderProps) => {
+  const openCatalogSearch = useCallback(() => {
+    navigate('/?focus=search#catalog');
+  }, [navigate]);
+
+  useEffect(() => {
+    const handleShortcut = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+        event.preventDefault();
+        openCatalogSearch();
+      }
+    };
+
+    window.addEventListener('keydown', handleShortcut);
+    return () => window.removeEventListener('keydown', handleShortcut);
+  }, [openCatalogSearch]);
+
   return (
     <header className="brand-header sticky top-0 z-50">
       <div className="brand-shell">
-        <div className="flex flex-wrap items-center justify-between gap-3 py-3">
-          <Link to="/" className="flex items-center gap-3" aria-label="quicktools home">
-            <span aria-hidden="true" className="brand-mark-icon" />
-            <span>
-              <span className="brand-wordmark block">quicktools</span>
-              <span className="hidden text-[11px] font-semibold uppercase text-brand-faint sm:block">
-                Open Workbench
-              </span>
-            </span>
+        <div className="flex items-center justify-between gap-6 py-4">
+          <Link to="/" className="flex min-w-0 items-baseline gap-2" aria-label="QuickTools home">
+            <span className="brand-wordmark">quicktools</span>
+            <span className="brand-submark">Open workbench</span>
           </Link>
-          <div className="flex w-full min-w-0 flex-wrap items-center justify-end gap-2 sm:w-auto sm:gap-3">
-            {children}
+          <nav className="flex items-center gap-5" aria-label="Primary">
+            <Link to="/#catalog" className="brand-nav-link">
+              Catalog
+            </Link>
+            <Link to="/#principles" className="brand-nav-link">
+              Principles
+            </Link>
             <ThemeToggle />
             <GitHubRepoStar />
-          </div>
+          </nav>
         </div>
       </div>
     </header>
