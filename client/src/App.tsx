@@ -10,6 +10,7 @@ const QRCodeGenerator = lazy(() => import('./pages/tools/QRCodeGenerator'));
 const JSONCompare = lazy(() => import('./pages/tools/JSONCompare'));
 const CSVTSVConverter = lazy(() => import('./pages/tools/CSVTSVConverter'));
 const RegexTester = lazy(() => import('./pages/tools/RegexTester'));
+const KitchenSink = lazy(() => import('./pages/KitchenSink'));
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/tools/json-compare" element={<JSONCompare />} />
             <Route path="/tools/csv-tsv-converter" element={<CSVTSVConverter />} />
             <Route path="/tools/regex-tester" element={<RegexTester />} />
+            <Route path="/kitchen-sink" element={<KitchenSink />} />
           </Routes>
         </Suspense>
       </div>

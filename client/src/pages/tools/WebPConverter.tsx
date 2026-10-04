@@ -1,289 +1,62 @@
-import React, { useState, useCallback, useRef } from 'react';
-import { 
-  InformationCircleIcon,
-  ExclamationTriangleIcon,
-  DocumentArrowDownIcon
-} from '@heroicons/react/24/outline';
-import { Button } from '@headlessui/react';
-import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { useCallback, useRef, useState } from 'react';
 import { saveAs } from 'file-saver';
 import { formatFileSize } from '../../utils/formatFileSize';
-import ImagePreviewCard from '../../components/ui/ImagePreviewCard';
-import { ImageData } from '../../types/imageTools';
-import AppHeader from '../../components/ui/AppHeader';
-import ToolWorkbenchHeader from '../../components/ui/ToolWorkbenchHeader';
-import {
-  convertToWebP,
-  createSourceFileFromImage,
-  createWebPZip,
-  getImageSavingsSummary,
-  getSupportedImageFiles,
-  MAX_WEBP_FILES,
-} from '../../utils/webpConverter';
+import type { ImageData } from '../../types/imageTools';
+import { convertToWebP, createSourceFileFromImage, createWebPZip, getImageSavingsSummary, getSupportedImageFiles, MAX_WEBP_FILES } from '../../utils/webpConverter';
+import { getTool } from '../../data/toolCatalog';
+import { Button, Dropzone, Field, FileList, FileTool, SettingsPanel } from '../../components/ui/ToolPage';
+
+const tool = getTool('webp-converter');
 
 const WebPConverter = () => {
   const [images, setImages] = useState<ImageData[]>([]);
-  const [quality, setQuality] = useState<number>(80);
-  const [globalError, setGlobalError] = useState<string>('');
-  const [isProcessing, setIsProcessing] = useState<boolean>(false);
-  const [progress, setProgress] = useState<number>(0);
-  const [isDragging, setIsDragging] = useState<boolean>(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [quality, setQuality] = useState(80);
+  const [error, setError] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const processFiles = useCallback(async (files: FileList, qual: number) => {
-    setGlobalError('');
-    const fileArray = getSupportedImageFiles(files);
-    if (fileArray.length === 0) {
-      setGlobalError('No valid JPG/PNG images selected.');
-      return;
-    }
-    if (fileArray.length > MAX_WEBP_FILES) {
-      setGlobalError(`Exceeded limit: Only the first ${MAX_WEBP_FILES} images will be processed.`);
-      fileArray.splice(MAX_WEBP_FILES);
-    }
-    setIsProcessing(true);
-    setProgress(0);
+  const processFiles = useCallback(async (files: FileList, selectedQuality: number) => {
+    setError('');
+    const accepted = getSupportedImageFiles(files);
+    if (!accepted.length) return setError('No valid JPG/PNG images selected.');
+    if (accepted.length > MAX_WEBP_FILES) { setError(`Only the first ${MAX_WEBP_FILES} images will be processed.`); accepted.splice(MAX_WEBP_FILES); }
+    setIsProcessing(true); setProgress(0);
     const results: ImageData[] = [];
-    for (let i = 0; i < fileArray.length; i++) {
-      const result = await convertToWebP(fileArray[i], qual);
-      results.push(result);
-      setProgress(((i + 1) / fileArray.length) * 100);
+    for (let index = 0; index < accepted.length; index += 1) {
+      results.push(await convertToWebP(accepted[index], selectedQuality));
+      setProgress(((index + 1) / accepted.length) * 100);
     }
-    setImages(prev => [...prev, ...results]);
-    setIsProcessing(false);
+    setImages((current) => [...current, ...results]); setIsProcessing(false);
   }, []);
 
-  const reconvertAll = useCallback(async () => {
-    if (images.length === 0) return;
-    setIsProcessing(true);
-    setProgress(0);
-    const newImages: ImageData[] = [];
-    for (let i = 0; i < images.length; i++) {
-      if (images[i].error || !images[i].originalUrl) continue;
-      const file = await createSourceFileFromImage(images[i]);
-      const result = await convertToWebP(file, quality);
-      newImages.push(result);
-      setProgress(((i + 1) / images.length) * 100);
+  const reconvert = async () => {
+    setIsProcessing(true); setProgress(0);
+    const results: ImageData[] = [];
+    for (let index = 0; index < images.length; index += 1) {
+      if (!images[index].error && images[index].originalUrl) results.push(await convertToWebP(await createSourceFileFromImage(images[index]), quality));
+      setProgress(((index + 1) / images.length) * 100);
     }
-    setImages(newImages);
-    setIsProcessing(false);
-  }, [images, quality]);
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) processFiles(e.target.files, quality);
+    setImages(results); setIsProcessing(false);
   };
 
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDragging(false);
-    if (e.dataTransfer.files) processFiles(e.dataTransfer.files, quality);
-  };
+  const clearAll = () => { setImages([]); setError(''); setProgress(0); if (inputRef.current) inputRef.current.value = ''; };
+  const savings = getImageSavingsSummary(images);
 
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDragging(true);
-  };
-
-  const handleDragLeave = () => setIsDragging(false);
-
-  const downloadSingle = (webpUrl: string, filename: string) => {
-    const link = document.createElement('a');
-    link.href = webpUrl;
-    link.download = filename;
-    link.click();
-  };
-
-  const downloadAllAsZip = async () => {
-    const content = await createWebPZip(images);
-    saveAs(content, 'webp-images.zip');
-  };
-
-  const removeImage = (index: number) => {
-    setImages(prev => prev.filter((_, i) => i !== index));
-  };
-
-  const clearAll = () => {
-    setImages([]);
-    setGlobalError('');
-    setProgress(0);
-    if (fileInputRef.current) fileInputRef.current.value = '';
-  };
-
-  const { totalSavings, avgReduction } = getImageSavingsSummary(images);
-
-  const sectionVariants: Variants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } }
-  };
-
-  const buttonVariants: Variants = {
-    hover: { scale: 1.05 },
-    tap: { scale: 0.95 }
-  };
-
-  return (
-    <div className="tool-page">
-      <AppHeader />
-
-      {/* Main Content */}
-      <motion.section
-        variants={sectionVariants}
-        initial="hidden"
-        animate="visible"
-        className="relative py-20"
-      >
-        <div className="brand-shell">
-          <ToolWorkbenchHeader
-            title="WebP Converter"
-            description="Convert up to 20 JPG or PNG images to WebP format for optimized web performance with bulk upload support."
-            onReset={clearAll}
-            resetDisabled={images.length === 0 && !globalError}
-          />
-
-          {/* Info Section */}
-          <motion.div
-            variants={sectionVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.2 }}
-            className="mb-8 backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6 flex items-start space-x-3"
-          >
-            <InformationCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-brand" />
-            <div>
-              <h2 className="text-lg font-semibold text-white mb-2">About WebP Converter</h2>
-              <p className="text-gray-300">
-                WebP provides superior compression. Upload multiple images (up to 20) for batch conversion and download as ZIP.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Image Upload Section */}
-          <motion.div
-            variants={sectionVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.4 }}
-            className="mb-8"
-          >
-            <div
-              onDrop={handleDrop}
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-              className={`backdrop-blur-xl bg-white/5 border-2 ${isDragging ? 'border-brand' : 'border-white/10'} rounded-2xl p-8 text-center transition-colors duration-100`}
-            >
-              <input
-                type="file"
-                accept="image/jpeg,image/png"
-                multiple
-                onChange={handleFileChange}
-                className="hidden"
-                ref={fileInputRef}
-                aria-label="Upload images"
-              />
-              <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
-                <Button
-                  onClick={() => fileInputRef.current?.click()}
-                  className="brand-button mb-4 px-6 py-3"
-                >
-                  Upload Images (up to 20)
-                </Button>
-              </motion.div>
-              <p className="text-gray-300">or drag and drop JPG/PNG images here</p>
-              <div className="mt-4">
-                <label htmlFor="webp-quality" className="text-gray-300 block mb-2">
-                  Compression Quality: {quality}%
-                </label>
-                <input
-                  id="webp-quality"
-                  type="range"
-                  min="10"
-                  max="100"
-                  value={quality}
-                  onChange={(e) => setQuality(Number(e.target.value))}
-                  className="w-full accent-[var(--accent)]"
-                />
-              </div>
-              {images.length > 0 && (
-                <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap" className="mt-4">
-                  <Button
-                    onClick={reconvertAll}
-                    className="brand-button px-6 py-3"
-                  >
-                    Reconvert with New Quality
-                  </Button>
-                </motion.div>
-              )}
-            </div>
-          </motion.div>
-
-          {/* Progress Bar */}
-          {isProcessing && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="mb-8"
-            >
-              <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-4">
-                <div className="w-full bg-gray-700 rounded-full h-2.5">
-                  <div className="h-2.5 rounded-full bg-[var(--accent)]" style={{ width: `${progress}%` }}></div>
-                </div>
-                <p className="text-center text-gray-300 mt-2">Processing...</p>
-              </div>
-            </motion.div>
-          )}
-
-          {/* Preview Grid */}
-          {images.length > 0 && (
-            <div className="mb-8">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-semibold text-white">Converted Images ({images.length})</h2>
-                <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
-                  <Button
-                    onClick={downloadAllAsZip}
-                    className="brand-button px-4 py-2"
-                  >
-                    <DocumentArrowDownIcon className="w-5 h-5" />
-                    <span>Download All as ZIP</span>
-                  </Button>
-                </motion.div>
-              </div>
-              <div className="mb-4 backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-4 text-gray-300">
-                Total Savings: {formatFileSize(totalSavings)} ({avgReduction.toFixed(1)}% avg)
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[60vh] overflow-y-auto">
-                <AnimatePresence>
-                  {images.map((img, index) => (
-                    <ImagePreviewCard
-                      key={index}
-                      img={img}
-                      index={index}
-                      onRemove={removeImage}
-                      onDownload={downloadSingle}
-                    />
-                  ))}
-                </AnimatePresence>
-              </div>
-            </div>
-          )}
-
-          {/* Global Error Message */}
-          <AnimatePresence>
-            {globalError && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="mt-8 backdrop-blur-xl bg-white/5 border border-brand rounded-xl p-4 flex items-start space-x-3"
-              >
-                <ExclamationTriangleIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand" />
-                <p className="text-brand">{globalError}</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </motion.section>
-    </div>
-  );
+  return <FileTool tool={tool} settings={<SettingsPanel>
+    <Field label={`Quality ${quality}%`} hint="80% is a good balance of size and sharpness for most photos."><input type="range" min="10" max="100" value={quality} onChange={(event) => setQuality(Number(event.target.value))} /></Field>
+    <Button variant="primary" onClick={reconvert} disabled={!images.length || isProcessing}>Convert images</Button>
+    <Button variant="secondary" onClick={async () => saveAs(await createWebPZip(images), 'webp-images.zip')} disabled={!images.some((image) => image.webpUrl)}>Download all as ZIP</Button>
+    <Button variant="ghost" onClick={clearAll} disabled={!images.length && !error}>Clear all</Button>
+    <p className="tool-notice">{isProcessing ? `Processing ${Math.round(progress)}%` : images.length ? `${formatFileSize(savings.totalSavings)} saved (${savings.avgReduction.toFixed(1)}% average)` : 'Add images to get started.'}</p>
+  </SettingsPanel>}>
+    <Dropzone active={isDragging} onDrop={(event) => { event.preventDefault(); setIsDragging(false); void processFiles(event.dataTransfer.files, quality); }} onDragOver={(event) => { event.preventDefault(); setIsDragging(true); }} onDragLeave={() => setIsDragging(false)}>
+      <div><strong>Drag and drop JPG or PNG images</strong><p>or</p><input ref={inputRef} type="file" accept="image/jpeg,image/png" multiple hidden aria-label="Upload images" onChange={(event) => event.target.files && void processFiles(event.target.files, quality)} /><Button variant="secondary" onClick={() => inputRef.current?.click()}>Choose images</Button><p className="tool-notice">Up to 20 files. Images never leave your device.</p></div>
+    </Dropzone>
+    {error && <p className="tool-notice" role="alert">{error}</p>}
+    <FileList>{images.map((image, index) => <div className="output-block" key={`${image.filename}-${index}`}><div className="output-block-header"><strong>{image.filename}</strong><Button variant="ghost" onClick={() => setImages((current) => current.filter((_, itemIndex) => itemIndex !== index))}>Remove</Button></div>{image.error ? <p className="tool-notice">{image.error}</p> : <><div className="image-preview-grid"><figure><figcaption>Original · {formatFileSize(image.originalSize)}</figcaption><img src={image.originalUrl} alt={`Original ${image.filename}`} /></figure><figure><figcaption>WebP · {formatFileSize(image.webpSize)}</figcaption><img src={image.webpUrl} alt={`WebP ${image.filename}`} /></figure></div><div className="tool-actions"><span>{image.reduction.toFixed(1)}% smaller</span><Button variant="secondary" onClick={() => { const link = document.createElement('a'); link.href = image.webpUrl; link.download = image.filename; link.click(); }}>Download WebP</Button></div></>}</div>)}</FileList>
+  </FileTool>;
 };
 
 export default WebPConverter;

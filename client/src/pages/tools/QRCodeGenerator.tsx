@@ -1,397 +1,53 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import {
-  CheckCircleIcon,
-  CloudArrowDownIcon,
-  ExclamationTriangleIcon,
-  InformationCircleIcon,
-} from '@heroicons/react/24/outline';
-import { Button, Textarea } from '@headlessui/react';
-import { motion, AnimatePresence, Variants } from 'framer-motion';
-import AppHeader from '../../components/ui/AppHeader';
-import ToolWorkbenchHeader from '../../components/ui/ToolWorkbenchHeader';
-import {
-  generatePremiumQrCodeDataUrl,
-  QrErrorCorrectionLevel,
-} from '../../utils/qrCode';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { getTool } from '../../data/toolCatalog';
+import { BLACK, WHITE } from '../../data/designTokens';
+import { generatePremiumQrCodeDataUrl, type QrErrorCorrectionLevel } from '../../utils/qrCode';
+import { Button, DataTool, Field, OutputBlock, SettingsPanel, TextInput } from '../../components/ui/ToolPage';
 
-const sampleValues = [
-  'https://quicktools.dev',
-  'mailto:hello@quicktools.dev',
-  'QuickTools QR generator',
-  'WIFI:T:WPA;S:QuickTools;P:browser-only;;',
-];
-
-const errorCorrectionOptions: Array<{ value: QrErrorCorrectionLevel; label: string }> = [
-  { value: 'L', label: 'L' },
-  { value: 'M', label: 'M' },
-  { value: 'Q', label: 'Q' },
-  { value: 'H', label: 'H' },
-];
-
+const tool = getTool('qr-code-generator');
 const QRCodeGenerator = () => {
-  const [content, setContent] = useState(sampleValues[0]);
+  const [content, setContent] = useState('https://quicktools.dev');
   const [size, setSize] = useState(320);
   const [margin, setMargin] = useState(2);
-  const [errorCorrectionLevel, setErrorCorrectionLevel] = useState<QrErrorCorrectionLevel>('M');
-  const [foreground, setForeground] = useState('#000000');
-  const [background, setBackground] = useState('#ffffff');
+  const [level, setLevel] = useState<QrErrorCorrectionLevel>('M');
+  const [foreground, setForeground] = useState(BLACK);
+  const [background, setBackground] = useState(WHITE);
   const [frameText, setFrameText] = useState('Scan to open');
-  const [logoDataUrl, setLogoDataUrl] = useState<string>('');
-  const [logoName, setLogoName] = useState('');
+  const [logo, setLogo] = useState('');
   const [logoScale, setLogoScale] = useState(22);
-  const [previewUrl, setPreviewUrl] = useState('');
-  const [isGenerating, setIsGenerating] = useState(false);
+  const [preview, setPreview] = useState('');
   const [error, setError] = useState('');
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
 
-  const clearAll = useCallback(() => {
-    setContent(sampleValues[0]);
-    setSize(320);
-    setMargin(2);
-    setErrorCorrectionLevel('M');
-    setForeground('#000000');
-    setBackground('#ffffff');
-    setFrameText('Scan to open');
-    setLogoDataUrl('');
-    setLogoName('');
-    setLogoScale(22);
-    setError('');
-    if (fileInputRef.current) {
-      fileInputRef.current.value = '';
-    }
-  }, []);
+  const reset = useCallback(() => { setContent('https://quicktools.dev'); setSize(320); setMargin(2); setLevel('M'); setForeground(BLACK); setBackground(WHITE); setFrameText('Scan to open'); setLogo(''); setLogoScale(22); setError(''); if (fileRef.current) fileRef.current.value = ''; }, []);
 
   useEffect(() => {
     let cancelled = false;
+    if (!content.trim()) return;
+    generatePremiumQrCodeDataUrl(content.trim(), { size, margin, errorCorrectionLevel: level, darkColor: foreground, lightColor: background, logoDataUrl: logo || null, logoScale: logoScale / 100, frameText })
+      .then((value) => { if (!cancelled) { setPreview(value); setError(''); } })
+      .catch((reason) => { if (!cancelled) { setPreview(''); setError(reason instanceof Error ? reason.message : 'QR generation failed.'); } });
+    return () => { cancelled = true; };
+  }, [background, content, foreground, frameText, level, logo, logoScale, margin, size]);
 
-    const renderQr = async () => {
-      const trimmedContent = content.trim();
-      if (!trimmedContent) {
-        setPreviewUrl('');
-        setError('');
-        setIsGenerating(false);
-        return;
-      }
+  const handleLogo = (file?: File) => { if (!file) return; if (!file.type.startsWith('image/')) return setError('Logo uploads must be image files.'); const reader = new FileReader(); reader.onload = () => setLogo(String(reader.result ?? '')); reader.onerror = () => setError('Failed to read logo image.'); reader.readAsDataURL(file); };
+  const download = () => { if (!preview) return; const link = document.createElement('a'); link.href = preview; link.download = 'quicktools-qr.png'; link.click(); };
 
-      try {
-        setIsGenerating(true);
-        const dataUrl = await generatePremiumQrCodeDataUrl(trimmedContent, {
-          size,
-          margin,
-          errorCorrectionLevel,
-          darkColor: foreground,
-          lightColor: background,
-          logoDataUrl: logoDataUrl || null,
-          logoScale: logoScale / 100,
-          frameText,
-        });
-
-        if (!cancelled) {
-          setPreviewUrl(dataUrl);
-          setError('');
-        }
-      } catch (generationError) {
-        if (!cancelled) {
-          const message = generationError instanceof Error ? generationError.message : 'QR generation failed.';
-          setError(message);
-          setPreviewUrl('');
-        }
-      } finally {
-        if (!cancelled) {
-          setIsGenerating(false);
-        }
-      }
-    };
-
-    renderQr();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [background, content, errorCorrectionLevel, foreground, frameText, logoDataUrl, logoScale, margin, size]);
-
-  const downloadQr = async () => {
-    if (!previewUrl) {
-      return;
-    }
-
-    const link = document.createElement('a');
-    link.href = previewUrl;
-    link.download = 'quicktools-qr.png';
-    link.click();
-  };
-
-  const handleLogoChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) {
-      return;
-    }
-
-    if (!file.type.startsWith('image/')) {
-      setError('Logo uploads must be image files.');
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = () => {
-      setLogoDataUrl(String(reader.result ?? ''));
-      setLogoName(file.name);
-    };
-    reader.onerror = () => setError('Failed to read logo image.');
-    reader.readAsDataURL(file);
-  };
-
-  const sectionVariants: Variants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-  };
-
-  const buttonVariants: Variants = {
-    hover: { scale: 1.03 },
-    tap: { scale: 0.97 },
-  };
-
-  const isContentEmpty = useMemo(() => !content.trim(), [content]);
-
-  return (
-    <div className="tool-page">
-      <AppHeader />
-
-      <motion.section variants={sectionVariants} initial="hidden" animate="visible" className="relative py-20">
-        <div className="brand-shell">
-          <ToolWorkbenchHeader
-            title="QR Code Generator"
-            description="Generate browser-only QR codes with logo, frame, and color controls. No cloud processing required."
-            onReset={clearAll}
-            resetLabel="Reset"
-          />
-
-          <motion.div
-            variants={sectionVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.1 }}
-            className="mb-8 flex items-start space-x-3 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
-          >
-            <InformationCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-brand" />
-            <div>
-              <h2 className="mb-2 text-lg font-semibold text-white">About QR generation</h2>
-              <p className="text-gray-300">
-                Build a scannable code locally, style it for marketing or sharing, and keep the full workflow inside the browser.
-              </p>
-            </div>
-          </motion.div>
-
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
-            <div className="space-y-6">
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-                <div className="flex items-center justify-between gap-3">
-                  <h2 className="text-xl font-semibold text-white">Content</h2>
-                  <span className="text-sm text-gray-400">{content.length} characters</span>
-                </div>
-                <Textarea
-                  value={content}
-                  onChange={(event) => setContent(event.target.value)}
-                  placeholder="Enter text, URL, phone number, Wi-Fi payload, or any shareable content..."
-                  className="mt-4 h-40 w-full resize-none rounded-2xl border border-white/10 bg-white/5 p-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2"
-                />
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {sampleValues.map((sample) => (
-                    <motion.div key={sample} variants={buttonVariants} whileHover="hover" whileTap="tap">
-                      <Button
-                        onClick={() => setContent(sample)}
-                        className="rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-sm text-gray-300 hover:bg-white/10 hover:text-white"
-                      >
-                        {sample.length > 28 ? `${sample.slice(0, 28)}...` : sample}
-                      </Button>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="grid gap-4 md:grid-cols-2">
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-                  <h2 className="text-base font-semibold text-white">Basic options</h2>
-                  <div className="mt-4 space-y-4">
-                    <label className="block text-sm text-gray-300">
-                      Size: {size}px
-                      <input
-                        type="range"
-                        min="200"
-                        max="512"
-                        step="8"
-                        value={size}
-                        onChange={(event) => setSize(Number(event.target.value))}
-                        className="mt-2 w-full accent-[var(--accent)]"
-                      />
-                    </label>
-                    <label className="block text-sm text-gray-300">
-                      Margin: {margin}
-                      <input
-                        type="range"
-                        min="0"
-                        max="8"
-                        step="1"
-                        value={margin}
-                        onChange={(event) => setMargin(Number(event.target.value))}
-                        className="mt-2 w-full accent-[var(--accent)]"
-                      />
-                    </label>
-                    <label className="block text-sm text-gray-300">
-                      Error correction
-                      <select
-                        value={errorCorrectionLevel}
-                        onChange={(event) => setErrorCorrectionLevel(event.target.value as QrErrorCorrectionLevel)}
-                        className="mt-2 w-full rounded-xl border border-white/10 bg-slate-900 px-3 py-2 text-white outline-none focus:ring-2"
-                      >
-                        {errorCorrectionOptions.map((option) => (
-                          <option key={option.value} value={option.value}>
-                            {option.label}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-                  </div>
-                </div>
-
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-                  <h2 className="text-base font-semibold text-white">Colors</h2>
-                  <div className="mt-4 grid grid-cols-2 gap-4">
-                    <label className="block text-sm text-gray-300">
-                      Foreground
-                      <input
-                        type="color"
-                        value={foreground}
-                        onChange={(event) => setForeground(event.target.value)}
-                        className="mt-2 h-12 w-full rounded-xl border border-white/10 bg-transparent p-1"
-                      />
-                    </label>
-                    <label className="block text-sm text-gray-300">
-                      Background
-                      <input
-                        type="color"
-                        value={background}
-                        onChange={(event) => setBackground(event.target.value)}
-                        className="mt-2 h-12 w-full rounded-xl border border-white/10 bg-transparent p-1"
-                      />
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-                <h2 className="text-base font-semibold text-white">Premium options</h2>
-                <div className="mt-4 grid gap-4">
-                  <label className="block text-sm text-gray-300">
-                    Frame text
-                    <input
-                      type="text"
-                      value={frameText}
-                      onChange={(event) => setFrameText(event.target.value)}
-                      placeholder="Scan to open"
-                      className="mt-2 w-full rounded-xl border border-white/10 bg-slate-900 px-3 py-2 text-white outline-none focus:ring-2"
-                    />
-                  </label>
-                  <label className="block text-sm text-gray-300">
-                    Logo scale: {logoScale}%
-                    <input
-                      type="range"
-                      min="16"
-                      max="34"
-                      step="1"
-                      value={logoScale}
-                      onChange={(event) => setLogoScale(Number(event.target.value))}
-                      className="mt-2 w-full accent-[var(--accent)]"
-                    />
-                  </label>
-                  <div className="flex flex-wrap items-center gap-3">
-                    <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
-                      <Button
-                        onClick={() => fileInputRef.current?.click()}
-                        className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-gray-200 hover:bg-white/10 hover:text-white"
-                      >
-                        {logoName ? 'Replace logo' : 'Upload logo'}
-                      </Button>
-                    </motion.div>
-                    {logoName && <span className="text-sm text-gray-400">{logoName}</span>}
-                    <input
-                      ref={fileInputRef}
-                      type="file"
-                      accept="image/*"
-                      className="hidden"
-                      onChange={handleLogoChange}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-6">
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-                <div className="flex items-center justify-between gap-3">
-                  <h2 className="text-xl font-semibold text-white">Preview</h2>
-                  <span className="text-sm text-gray-400">{isGenerating ? 'Rendering...' : 'Ready'}</span>
-                </div>
-                <div className="mt-4 flex min-h-[26rem] items-center justify-center rounded-2xl border border-dashed border-white/10 bg-slate-950/50 p-6">
-                  {previewUrl && !isContentEmpty ? (
-                    <img
-                      src={previewUrl}
-                      alt="Generated QR code preview"
-                      className="max-h-[24rem] max-w-full rounded-2xl bg-white p-3"
-                    />
-                  ) : (
-                    <div className="text-center text-gray-400">
-                      <p className="text-lg font-medium text-gray-300">Your QR code will appear here</p>
-                      <p className="mt-2 text-sm">Type content on the left to generate a code locally.</p>
-                    </div>
-                  )}
-                </div>
-                <div className="mt-4 flex flex-wrap items-center gap-3">
-                  <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
-                    <Button
-                      onClick={downloadQr}
-                      disabled={!previewUrl}
-                      className="brand-button px-4 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-50"
-                    >
-                      <CloudArrowDownIcon className="h-4 w-4" />
-                      Download PNG
-                    </Button>
-                  </motion.div>
-                  {logoName && <span className="text-sm text-gray-400">Logo applied from {logoName}</span>}
-                </div>
-              </div>
-
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-                <div className="flex items-start space-x-3">
-                  <CheckCircleIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand" />
-                  <div>
-                    <h3 className="text-base font-semibold text-white">Browser-only output</h3>
-                    <p className="mt-1 text-sm text-gray-300">
-                      QR generation stays inside the browser. No upload step is required for content, logo, or styling.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <AnimatePresence>
-            {error && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                className="mt-8 flex items-start space-x-3 rounded-xl border border-brand bg-white/5 p-4 backdrop-blur-xl"
-              >
-                <ExclamationTriangleIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand" />
-                <p className="text-brand">{error}</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </motion.section>
-    </div>
-  );
+  return <DataTool tool={tool} settings={<SettingsPanel>
+    <Field label={`Size ${size}px`}><input type="range" min="160" max="640" step="40" value={size} onChange={(event) => setSize(Number(event.target.value))} /></Field>
+    <Field label={`Margin ${margin}`}><input type="range" min="0" max="8" value={margin} onChange={(event) => setMargin(Number(event.target.value))} /></Field>
+    <Field label="Error correction"><select value={level} onChange={(event) => setLevel(event.target.value as QrErrorCorrectionLevel)}>{['L', 'M', 'Q', 'H'].map((value) => <option key={value}>{value}</option>)}</select></Field>
+    <Field label="Foreground"><input className="ui-input" type="color" value={foreground} onChange={(event) => setForeground(event.target.value)} /></Field>
+    <Field label="Background"><input className="ui-input" type="color" value={background} onChange={(event) => setBackground(event.target.value)} /></Field>
+    <Field label="Frame text"><input className="ui-input" value={frameText} onChange={(event) => setFrameText(event.target.value)} /></Field>
+    <Field label={`Logo scale ${logoScale}%`}><input type="range" min="10" max="35" value={logoScale} onChange={(event) => setLogoScale(Number(event.target.value))} /></Field>
+    <input ref={fileRef} type="file" accept="image/*" hidden onChange={(event) => handleLogo(event.target.files?.[0])} /><Button variant="secondary" onClick={() => fileRef.current?.click()}>Choose logo</Button>
+    <Button variant="primary" onClick={download} disabled={!preview}>Download PNG</Button><Button variant="ghost" onClick={reset}>Reset</Button>
+  </SettingsPanel>}>
+    <Field label="QR content" hint={`${content.length} characters`}><TextInput value={content} onChange={(event) => { setContent(event.target.value); if (!event.target.value.trim()) { setPreview(''); setError(''); } }} /></Field>
+    <OutputBlock label="Preview" value={preview}>{preview ? <img src={preview} alt="Generated QR code preview" /> : <p className="tool-notice">Enter content to generate a QR code.</p>}</OutputBlock>
+    {error && <p className="tool-notice" role="alert">{error}</p>}
+  </DataTool>;
 };
 
 export default QRCodeGenerator;

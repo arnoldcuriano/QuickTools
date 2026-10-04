@@ -2,6 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, expect, test, vi } from 'vitest';
 import App from './App';
+import { formatStarCount } from './components/ui/GitHubRepoStar';
 
 beforeEach(() => {
   vi.restoreAllMocks();
@@ -14,7 +15,13 @@ test('renders QuickTools app and the GitHub repository link', () => {
   const headingElement = screen.getByRole('heading', { name: 'QuickTools', level: 1 });
   expect(headingElement).toBeInTheDocument();
 
-  expect(screen.getByRole('link', { name: /open quicktools on github/i })).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: /github.*opens in a new tab/i })).toBeInTheDocument();
+});
+
+test('formats GitHub star counts for compact display', () => {
+  expect(formatStarCount(128)).toBe('128');
+  expect(formatStarCount(1200)).toBe('1.2k');
+  expect(formatStarCount(12000)).toBe('12k');
 });
 
 test('filters the tool catalog by search and category', () => {
@@ -47,7 +54,7 @@ test('switches and persists the selected theme', () => {
   });
 
   render(<App />);
-  fireEvent.click(screen.getByRole('button', { name: /switch to light theme/i }));
+  fireEvent.click(screen.getByRole('button', { name: /use light theme/i }));
 
   expect(document.documentElement.dataset.theme).toBe('light');
   expect(window.localStorage.getItem('quicktools.theme')).toBe('light');

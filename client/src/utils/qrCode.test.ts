@@ -1,6 +1,7 @@
 import * as QRCode from 'qrcode';
 import { expect, test, vi } from 'vitest';
 import { generateQrCodeDataUrl } from './qrCode';
+import { QR_TEST_DARK, WHITE } from '../data/designTokens';
 
 vi.mock('qrcode', () => ({
   toDataURL: vi.fn(),
@@ -13,8 +14,8 @@ test('generateQrCodeDataUrl passes style options to qrcode', async () => {
   const dataUrl = await generateQrCodeDataUrl('https://quicktools.dev', {
     size: 256,
     margin: 2,
-    darkColor: '#111111',
-    lightColor: '#ffffff',
+    darkColor: QR_TEST_DARK,
+    lightColor: WHITE,
     errorCorrectionLevel: 'M',
   });
 
@@ -26,8 +27,8 @@ test('generateQrCodeDataUrl passes style options to qrcode', async () => {
       margin: 2,
       errorCorrectionLevel: 'M',
       color: {
-        dark: '#111111',
-        light: '#ffffff',
+        dark: QR_TEST_DARK,
+        light: WHITE,
       },
     }),
   );

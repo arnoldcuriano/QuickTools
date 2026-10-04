@@ -11,6 +11,7 @@ const routes = [
   '/tools/json-compare',
   '/tools/csv-tsv-converter',
   '/tools/regex-tester',
+  '/kitchen-sink',
 ];
 
 for (const route of routes) {

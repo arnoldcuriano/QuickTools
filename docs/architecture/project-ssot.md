@@ -152,6 +152,7 @@ Implemented routes:
 - `/tools/json-compare`: nested JSON compare and diff view.
 - `/tools/csv-tsv-converter`: CSV and TSV converter with quoted-field handling.
 - `/tools/regex-tester`: regex tester and match highlighter.
+- `/kitchen-sink`: shared component examples in light and dark themes.
 
 Do not document landing-page-listed tools as implemented unless they have a route and page implementation.
 
@@ -167,8 +168,9 @@ Current component boundaries:
 - `client/src/pages/tools/*.tsx`: individual tool screens and workflow state.
 - `client/src/components/ui/AppHeader.tsx`: shared responsive header shell.
 - `client/src/components/ui/ThemeToggle.tsx`: persistent light/dark theme control.
-- `client/src/components/ui/GitHubRepoStar.tsx`: live GitHub repository star badge.
-- `client/src/components/ui/ImagePreviewCard.tsx`: reusable WebP preview card.
+- `client/src/components/ui/GitHubRepoStar.tsx`: GitHub repository link and cached star count.
+- `client/src/components/ui/ToolPage.tsx`: shared tool layout and form, output, file, and action components.
+- `client/src/pages/KitchenSink.tsx`: shared component examples.
 - `client/src/utils/jsonConverter.ts`: JSON conversion utility.
 - `client/src/utils/formatFileSize.ts`: file-size display utility.
 - `client/src/utils/qrCode.ts`: QR code generation helpers.
@@ -180,13 +182,12 @@ Current pattern:
 
 - Tool pages own `input`, `output`, `error`, and interaction state.
 - Tool routes are lazy-loaded so specialized dependencies do not inflate the initial home-page bundle.
-- Tool pages use Headless UI controls and Heroicons.
+- Tool pages use shared native controls and Heroicons; the theme control uses Headless UI buttons.
 - Reusable pure logic belongs in `client/src/utils`.
 - Reusable visual pieces belong in `client/src/components`.
 
 Future plan:
 
-- Extract shared tool shell layout only when reuse reduces real duplication.
 - Move more transformation logic out of page components when it becomes shared or needs focused testing.
 
 ## Coding Conventions
@@ -216,7 +217,7 @@ QuickTools currently uses a professional workbench design language:
 - Neutral graphite and cool-gray surfaces with restrained amber accents.
 - Inter for interface text and JetBrains Mono for structured technical content.
 - A searchable, category-filtered home catalog generated from centralized route metadata.
-- Restrained 6-12 px radii and spacious responsive layouts.
+- Restrained 4 px radii and spacious responsive layouts.
 - Heroicons for action icons.
 - Framer Motion only where an existing tool benefits from restrained interaction feedback.
 
@@ -227,9 +228,7 @@ Design goals:
 - Keep visual effects secondary to utility.
 - Preserve consistency across tool pages.
 
-Future plan:
-
-- If the app grows, create shared layout components for tool headers, info panels, input/output grids, and action bars.
+Shared tool layout and controls are implemented in `client/src/components/ui/ToolPage.tsx`.
 
 ## Naming Rules
 
@@ -282,7 +281,7 @@ Current state:
 
 - Client uses Vitest and React Testing Library for unit and render tests.
 - Playwright and Axe check every implemented route in light and dark modes for serious or critical accessibility violations.
-- Playwright checks home-page usability and horizontal overflow at 320 px, 768 px, and 1440 px.
+- Playwright checks home-page usability at mobile, tablet, and desktop widths and tool layout at 360 px, 768 px, and 1280 px.
 - Current unit coverage focuses on the app shell, JSON comparison, CSV/TSV conversion, regex behavior, and QR generation.
 - No server tests exist.
 
@@ -345,7 +344,6 @@ Near-term future plans:
 - Fix visible text encoding artifacts in UI copy.
 - Add focused tests for existing tool behavior.
 - Decide whether generated build output should remain versioned.
-- Extract shared UI only after duplication creates maintenance cost.
 
 Backend future plans:
 

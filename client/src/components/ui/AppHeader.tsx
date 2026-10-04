@@ -1,10 +1,11 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import GitHubRepoStar from './GitHubRepoStar';
 import ThemeToggle from './ThemeToggle';
 
 const AppHeader = () => {
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const openCatalogSearch = useCallback(() => {
     navigate('/?focus=search#catalog');
@@ -16,6 +17,7 @@ const AppHeader = () => {
         event.preventDefault();
         openCatalogSearch();
       }
+      if (event.key === 'Escape') setMenuOpen(false);
     };
 
     window.addEventListener('keydown', handleShortcut);
@@ -30,7 +32,7 @@ const AppHeader = () => {
             <span className="brand-wordmark">quicktools</span>
             <span className="brand-submark">Open workbench</span>
           </Link>
-          <nav className="flex items-center gap-5" aria-label="Primary">
+          <nav className="desktop-nav" aria-label="Primary">
             <Link to="/#catalog" className="brand-nav-link">
               Catalog
             </Link>
@@ -40,6 +42,15 @@ const AppHeader = () => {
             <ThemeToggle />
             <GitHubRepoStar />
           </nav>
+          <button className="menu-btn" type="button" aria-expanded={menuOpen} aria-controls="mobile-menu" onClick={() => setMenuOpen((open) => !open)}>Menu</button>
+        </div>
+      </div>
+      <div className="menu" id="mobile-menu" hidden={!menuOpen}>
+        <div className="brand-shell menu-inner">
+          <Link to="/#catalog" onClick={() => setMenuOpen(false)}>Catalog</Link>
+          <Link to="/#principles" onClick={() => setMenuOpen(false)}>Principles</Link>
+          <GitHubRepoStar mobile />
+          <div className="menu-theme-row"><span>Theme</span><ThemeToggle /></div>
         </div>
       </div>
     </header>

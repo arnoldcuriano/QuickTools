@@ -50,7 +50,7 @@ test('shared visual tokens remain monochrome and flat in both themes', async ({ 
       };
     });
 
-    expect(styles.radius).toBe('0px');
+    expect(styles.radius).toBe('4px');
     expect(styles.cardShadow).toBe('none');
     expect(styles.cardBackgroundImage).toBe('none');
     expect(styles.background).toMatch(theme === 'light' ? /^#fff(?:fff)?$/ : /^#000(?:000)?$/);
@@ -64,7 +64,7 @@ test('theme selection survives navigation and reload', async ({ page }) => {
     window.localStorage.setItem('quicktools.theme', 'dark');
   });
   await page.reload();
-  await page.getByRole('button', { name: /Switch to light theme/ }).click();
+  await page.getByRole('button', { name: /Use light theme/ }).click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
 
   await page.getByRole('link', { name: /JSON Converter/ }).first().click();
@@ -72,4 +72,28 @@ test('theme selection survives navigation and reload', async ({ page }) => {
 
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+});
+
+test('mobile menu renders GitHub as a plain row', async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 800 });
+  await page.route('https://api.github.com/repos/arnoldcuriano/QuickTools', (route) => route.fulfill({ json: { stargazers_count: 1200 } }));
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Menu' }).click();
+  const github = page.getByRole('link', { name: /GitHub.*1.2k.*opens in a new tab/i });
+  await expect(github).toBeVisible();
+  await expect(github).not.toHaveClass(/\bgh\b/);
+  await github.focus();
+  await expect(github).toBeFocused();
+});
+
+test('GitHub stars fall back to cache and hide without one', async ({ page }) => {
+  await page.route('https://api.github.com/repos/arnoldcuriano/QuickTools', (route) => route.fulfill({ status: 429, body: '' }));
+  await page.goto('/');
+  await page.evaluate(() => localStorage.setItem('qt-stars', JSON.stringify({ count: 128, savedAt: 0 })));
+  await page.reload();
+  await expect(page.locator('.desktop-nav [data-stars]')).toHaveText('128');
+
+  await page.evaluate(() => localStorage.removeItem('qt-stars'));
+  await page.reload();
+  await expect(page.locator('.desktop-nav .gh-stars')).toBeHidden();
 });

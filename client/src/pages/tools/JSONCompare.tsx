@@ -1,171 +1,27 @@
-import React, { useMemo, useState } from 'react';
-import {
-  ExclamationTriangleIcon,
-  InformationCircleIcon,
-} from '@heroicons/react/24/outline';
-import { Textarea } from '@headlessui/react';
-import { motion, AnimatePresence, Variants } from 'framer-motion';
-import AppHeader from '../../components/ui/AppHeader';
-import ToolWorkbenchHeader from '../../components/ui/ToolWorkbenchHeader';
+import { useMemo, useState } from 'react';
 import { compareJsonTexts, formatJsonCompareValue } from '../../utils/jsonCompare';
+import { getTool } from '../../data/toolCatalog';
+import { Button, DataTool, Field, OutputBlock, SettingsPanel, TextInput } from '../../components/ui/ToolPage';
 
-const sampleLeft = '{"name":"QuickTools","version":"1.0","features":["base64","json","text"]}';
-const sampleRight = '{"name":"QuickTools","version":"1.1","features":["base64","json","text","qr"]}';
+const tool = getTool('json-compare');
+const sampleLeft = '{"name":"QuickTools","version":"1.0"}';
+const sampleRight = '{"name":"QuickTools","version":"1.1"}';
 
 const JSONCompare = () => {
-  const [leftText, setLeftText] = useState(sampleLeft);
-  const [rightText, setRightText] = useState(sampleRight);
+  const [left, setLeft] = useState(sampleLeft);
+  const [right, setRight] = useState(sampleRight);
+  const result = useMemo(() => compareJsonTexts(left, right), [left, right]);
+  const output = result.differences.map((difference) => `${difference.kind.toUpperCase()} ${difference.path}\n- ${formatJsonCompareValue(difference.leftValue)}\n+ ${formatJsonCompareValue(difference.rightValue)}`).join('\n\n');
 
-  const comparison = useMemo(() => compareJsonTexts(leftText, rightText), [leftText, rightText]);
-
-  const clearAll = () => {
-    setLeftText('');
-    setRightText('');
-  };
-
-  const sectionVariants: Variants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-  };
-
-  return (
-    <div className="tool-page">
-      <AppHeader />
-
-      <motion.section variants={sectionVariants} initial="hidden" animate="visible" className="relative py-20">
-        <div className="brand-shell">
-          <ToolWorkbenchHeader
-            title="JSON Compare"
-            description="Compare two JSON documents in the browser and see added, removed, and changed values instantly."
-            onReset={clearAll}
-            resetDisabled={!leftText && !rightText}
-          />
-
-          <motion.div
-            variants={sectionVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.1 }}
-            className="mb-8 flex items-start space-x-3 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
-          >
-            <InformationCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-brand" />
-            <div>
-              <h2 className="mb-2 text-lg font-semibold text-white">Comparison mode</h2>
-              <p className="text-gray-300">
-                Parse both sides locally, compare nested objects and arrays, and keep the diff readable without sending data to a server.
-              </p>
-            </div>
-          </motion.div>
-
-          <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,0.9fr)]">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl font-semibold text-white">Left JSON</h2>
-                <span className="text-sm text-gray-400">{leftText.length} characters</span>
-              </div>
-              <Textarea
-                value={leftText}
-                onChange={(event) => setLeftText(event.target.value)}
-                placeholder="Paste the original JSON here..."
-                className="h-[28rem] w-full resize-none rounded-2xl border border-white/10 bg-white/5 p-4 font-mono text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2"
-              />
-            </div>
-
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl font-semibold text-white">Right JSON</h2>
-                <span className="text-sm text-gray-400">{rightText.length} characters</span>
-              </div>
-              <Textarea
-                value={rightText}
-                onChange={(event) => setRightText(event.target.value)}
-                placeholder="Paste the new JSON here..."
-                className="h-[28rem] w-full resize-none rounded-2xl border border-white/10 bg-white/5 p-4 font-mono text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2"
-              />
-            </div>
-
-            <div className="space-y-4">
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-                <h2 className="text-xl font-semibold text-white">Summary</h2>
-                <div className="mt-4 grid gap-3">
-                  {[
-                    { label: 'Added', value: comparison.summary.added },
-                    { label: 'Removed', value: comparison.summary.removed },
-                    { label: 'Changed', value: comparison.summary.changed },
-                    { label: 'Total', value: comparison.summary.total },
-                  ].map((item) => (
-                    <div key={item.label} className="flex items-center justify-between rounded-xl border border-white/10 bg-slate-950/50 px-4 py-3">
-                      <span className="text-sm text-gray-300">{item.label}</span>
-                      <span className="text-lg font-semibold text-white">{item.value}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-4 rounded-xl border border-white/10 bg-slate-950/50 px-4 py-3 text-sm text-gray-300">
-                  {comparison.summary.identical ? 'The JSON documents are identical.' : 'Differences are listed below.'}
-                </div>
-              </div>
-
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-                <h2 className="text-lg font-semibold text-white">Differences</h2>
-                <div className="mt-4 max-h-[20rem] space-y-3 overflow-y-auto pr-1">
-                  {comparison.differences.length === 0 ? (
-                    <p className="text-sm text-gray-400">No differences detected.</p>
-                  ) : (
-                    comparison.differences.map((difference) => (
-                      <div key={`${difference.kind}-${difference.path}`} className="rounded-xl border border-white/10 bg-slate-950/50 p-4">
-                        <div className="flex items-center justify-between gap-3">
-                          <span className="font-mono text-sm text-brand">{difference.path}</span>
-                          <span className="rounded-full border border-white/10 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-gray-300">
-                            {difference.kind}
-                          </span>
-                        </div>
-                        <div className="mt-3 grid gap-3 text-sm md:grid-cols-2">
-                          <div>
-                            <p className="mb-1 text-gray-400">Left</p>
-                            <pre
-                              tabIndex={0}
-                              aria-label="Left JSON value"
-                              className="whitespace-pre-wrap break-words rounded-lg bg-black/30 p-3 text-gray-200"
-                            >
-                              {formatJsonCompareValue(difference.leftValue)}
-                            </pre>
-                          </div>
-                          <div>
-                            <p className="mb-1 text-gray-400">Right</p>
-                            <pre
-                              tabIndex={0}
-                              aria-label="Right JSON value"
-                              className="whitespace-pre-wrap break-words rounded-lg bg-black/30 p-3 text-gray-200"
-                            >
-                              {formatJsonCompareValue(difference.rightValue)}
-                            </pre>
-                          </div>
-                        </div>
-                      </div>
-                    ))
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <AnimatePresence>
-            {comparison.error && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                className="mt-8 flex items-start space-x-3 rounded-xl border border-brand bg-white/5 p-4 backdrop-blur-xl"
-              >
-                <ExclamationTriangleIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand" />
-                <p className="text-brand">{comparison.error}</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </motion.section>
-    </div>
-  );
+  return <DataTool tool={tool} settings={<SettingsPanel>
+    <p className="tool-notice">Added {result.summary.added} · Removed {result.summary.removed} · Changed {result.summary.changed}</p>
+    <Button variant="secondary" onClick={() => navigator.clipboard.writeText(output)} disabled={!output}>Copy differences</Button>
+    <Button variant="ghost" onClick={() => { setLeft(''); setRight(''); }}>Clear all</Button>
+  </SettingsPanel>}>
+    <div className="input-output-grid"><Field label="Left JSON"><TextInput value={left} onChange={(event) => setLeft(event.target.value)} /></Field><Field label="Right JSON"><TextInput value={right} onChange={(event) => setRight(event.target.value)} /></Field></div>
+    <OutputBlock label="Differences" value={output} />
+    {result.error && <p className="tool-notice" role="alert">{result.error}</p>}
+  </DataTool>;
 };
 
 export default JSONCompare;
