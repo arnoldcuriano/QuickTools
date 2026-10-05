@@ -46,10 +46,9 @@ const QuickToolsLanding = () => {
         <section className="brand-shell hero-section">
           <h1 className="hero-title">QuickTools</h1>
           <p className="hero-copy">
-            Precise utilities for developers, writers, students, and creative teams. Format data, convert files, and
-            inspect content without adding another account to your workflow.
+            Fast browser-local tools for code, data, content, and media.
           </p>
-          <div className="mt-7 flex flex-wrap gap-2">
+          <div className="mt-5 flex flex-wrap gap-2">
             <Button onClick={scrollToCatalog} className="brand-button px-4 py-2.5">
               Browse tools
             </Button>

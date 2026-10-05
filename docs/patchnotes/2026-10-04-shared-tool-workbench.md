@@ -9,6 +9,7 @@ Version intent: MINOR
 - Added a mobile navigation menu and separate light and dark theme controls.
 - Linked the header to the QuickTools GitHub repository and added a non-blocking star count with a one-hour browser cache and graceful fallback when GitHub is unavailable.
 - Aligned desktop navigation with the approved compact header: active-page underline, GitHub before theme selection, and a textual `Light / Dark` control.
+- Reduced header, hero, and catalog spacing and typography for a denser technical workbench presentation.
 - Updated responsive layouts and keyboard and accessibility checks for the shared tool pages.
 
 ## Developer Notes

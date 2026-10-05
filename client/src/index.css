@@ -91,10 +91,12 @@
     --duration-base: 120ms;
     --text-sm: 0.875rem;
     --text-md: 0.9375rem;
-    --control-sm: 2rem;
+    --text-xs: 0.75rem;
+    --control-sm: 1.75rem;
+    --icon-xs: 0.875rem;
     --icon-sm: 1rem;
     --menu-row: 3rem;
-    --header-height: 4rem;
+    --header-height: 3.5rem;
     --border-width: 1px;
     --weight-medium: 500;
     --weight-semibold: 600;
@@ -164,18 +166,18 @@
 
 @layer components {
   .header-inner { display: flex; height: var(--header-height); align-items: center; justify-content: space-between; }
-  .desktop-nav { display: flex; align-items: center; gap: var(--space-8); }
-  .gh-label, .gh-stars { display: inline-flex; align-items: center; gap: var(--space-2); }
-  .gh-label svg, .gh-stars svg { width: var(--icon-sm); height: var(--icon-sm); flex: none; }
-  .gh-stars { color: var(--text-muted); font-family: var(--font-mono); font-size: var(--text-sm); }
+  .desktop-nav { display: flex; align-items: center; gap: var(--space-4); }
+  .gh-label, .gh-stars { display: inline-flex; align-items: center; gap: var(--space-1); }
+  .gh-label svg, .gh-stars svg { width: var(--icon-xs); height: var(--icon-xs); flex: none; }
+  .gh-stars { color: var(--text-muted); font-family: var(--font-mono); font-size: var(--text-xs); }
   .gh-stars[hidden] { display: none; }
-  .desktop-nav a.gh { display: inline-flex; height: var(--control-sm); align-items: center; gap: 0; border: var(--border-width) solid var(--border); border-radius: var(--radius); color: var(--text); font-size: var(--text-sm); font-weight: var(--weight-medium); }
-  .desktop-nav a.gh .gh-label, .desktop-nav a.gh .gh-stars { padding-inline: var(--space-3); }
+  .desktop-nav a.gh { display: inline-flex; height: var(--control-sm); align-items: center; gap: 0; border: var(--border-width) solid var(--border); border-radius: var(--radius); color: var(--text); font-size: var(--text-xs); font-weight: var(--weight-medium); }
+  .desktop-nav a.gh .gh-label, .desktop-nav a.gh .gh-stars { padding-inline: var(--space-2); }
   .desktop-nav a.gh .gh-stars { align-self: stretch; border-left: var(--border-width) solid var(--border); }
   .desktop-nav a.gh:hover { border-color: var(--border-strong); }
   .desktop-nav a.gh:hover .gh-stars { color: var(--text); }
 
-  .theme { display: inline-flex; align-items: center; gap: var(--space-2); border: 0; background: transparent; color: var(--text-muted); cursor: pointer; font-size: var(--text-md); }
+  .theme { display: inline-flex; align-items: center; gap: var(--space-1); border: 0; background: transparent; color: var(--text-muted); cursor: pointer; font-size: var(--text-xs); }
   .theme [data-t] { transition: color var(--duration-fast) var(--ease-standard); }
   .theme [data-active="true"] { color: var(--text); font-weight: var(--weight-medium); }
   .theme:hover [data-active="false"] { color: var(--text); }
@@ -278,7 +280,7 @@
   .brand-wordmark {
     color: var(--text);
     font-family: var(--font-display);
-    font-size: var(--text-md);
+    font-size: var(--text-sm);
     font-weight: var(--weight-semibold);
     line-height: 1;
   }
@@ -441,29 +443,29 @@
   }
 
   .hero-section {
-    padding-block: 6rem 4rem;
+    padding-block: 3rem 2.5rem;
   }
 
   .hero-title {
     margin: 0;
-    font-size: 8rem;
+    font-size: 4rem;
     font-weight: 500;
-    line-height: 0.9;
+    line-height: 1;
   }
 
   .hero-copy {
-    max-width: 32rem;
-    margin-top: 2.25rem;
+    max-width: 36rem;
+    margin-top: 1.25rem;
     color: var(--text-muted);
-    font-size: 1rem;
-    line-height: 1.55;
+    font-size: var(--text-sm);
+    line-height: 1.5;
   }
 
   .hero-meta {
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
-    margin-top: 2.5rem;
+    margin-top: 1.5rem;
     color: var(--text-muted);
     font-size: 0.75rem;
   }
@@ -482,7 +484,7 @@
 
   .catalog-heading h2 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 500;
   }
 
@@ -702,16 +704,16 @@
   .menu-btn { display: inline-flex; }
 
   .hero-section {
-    padding-block: 4rem 3rem;
+    padding-block: 2.5rem 2rem;
   }
 
   .hero-title {
-    font-size: 4rem;
+    font-size: 2.5rem;
   }
 
   .hero-copy {
-    margin-top: 1.75rem;
-    font-size: 0.9375rem;
+    margin-top: var(--space-4);
+    font-size: var(--text-sm);
   }
 
   .hero-meta {

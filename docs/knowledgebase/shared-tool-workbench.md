@@ -43,6 +43,8 @@ If GitHub is unavailable or rate-limits the request, QuickTools uses the last ca
 
 Desktop navigation marks the active home section with an underline and uses a textual `Light / Dark` control. Theme choices remain stored under `quicktools.theme`; users who previously selected light mode continue to see light mode until they switch back to dark.
 
+The home page uses compact technical typography and spacing. Header actions remain secondary in scale, the product description stays to one concise line when space permits, and the catalog begins within the first desktop viewport.
+
 ## Design And Accessibility
 
 - The workbench supports light and dark themes through global design tokens.
