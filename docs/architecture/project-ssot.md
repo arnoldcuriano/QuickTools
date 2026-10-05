@@ -1,6 +1,6 @@
 # QuickTools Project SSOT
 
-Last reviewed: 2026-09-09
+Last reviewed: 2026-10-05
 
 This document is the canonical source of truth for QuickTools. It describes the repository as it exists today and separates current behavior from future plans.
 
