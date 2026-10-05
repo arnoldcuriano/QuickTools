@@ -16,6 +16,8 @@ test('renders QuickTools app and the GitHub repository link', () => {
   expect(headingElement).toBeInTheDocument();
 
   expect(screen.getByRole('link', { name: /github.*opens in a new tab/i })).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: 'Catalog' })).toHaveAttribute('aria-current', 'page');
+  expect(screen.getByRole('button', { name: /switch to light theme/i })).toHaveTextContent(/Light.*Dark/);
 });
 
 test('formats GitHub star counts for compact display', () => {
@@ -54,7 +56,7 @@ test('switches and persists the selected theme', () => {
   });
 
   render(<App />);
-  fireEvent.click(screen.getByRole('button', { name: /use light theme/i }));
+  fireEvent.click(screen.getByRole('button', { name: /switch to light theme/i }));
 
   expect(document.documentElement.dataset.theme).toBe('light');
   expect(window.localStorage.getItem('quicktools.theme')).toBe('light');

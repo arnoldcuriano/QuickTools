@@ -1,5 +1,4 @@
 import { Button } from '@headlessui/react';
-import { MoonIcon, SunIcon } from '@heroicons/react/24/outline';
 import { useEffect, useState } from 'react';
 
 type Theme = 'dark' | 'light';
@@ -28,10 +27,11 @@ const ThemeToggle = () => {
   }, [theme]);
 
   return (
-    <div className="theme-controls" role="group" aria-label="Color theme">
-      <Button type="button" onClick={() => setTheme('light')} className="header-icon" aria-label="Use light theme" aria-pressed={theme === 'light'} title="Light theme"><SunIcon aria-hidden="true" /></Button>
-      <Button type="button" onClick={() => setTheme('dark')} className="header-icon" aria-label="Use dark theme" aria-pressed={theme === 'dark'} title="Dark theme"><MoonIcon aria-hidden="true" /></Button>
-    </div>
+    <Button type="button" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="theme" aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}>
+      <span data-t="light" data-active={theme === 'light'}>Light</span>
+      <span aria-hidden="true">/</span>
+      <span data-t="dark" data-active={theme === 'dark'}>Dark</span>
+    </Button>
   );
 };
 

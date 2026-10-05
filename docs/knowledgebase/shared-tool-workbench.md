@@ -41,6 +41,8 @@ The shared header links to `arnoldcuriano/QuickTools` on GitHub. Its star count 
 
 If GitHub is unavailable or rate-limits the request, QuickTools uses the last cached value. When no cached value exists, the star count is hidden while the GitHub icon and repository link remain available. Mobile navigation presents the same repository information as a plain menu row.
 
+Desktop navigation marks the active home section with an underline and uses a textual `Light / Dark` control. Theme choices remain stored under `quicktools.theme`; users who previously selected light mode continue to see light mode until they switch back to dark.
+
 ## Design And Accessibility
 
 - The workbench supports light and dark themes through global design tokens.

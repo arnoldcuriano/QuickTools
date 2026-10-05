@@ -64,7 +64,7 @@ test('theme selection survives navigation and reload', async ({ page }) => {
     window.localStorage.setItem('quicktools.theme', 'dark');
   });
   await page.reload();
-  await page.getByRole('button', { name: /Use light theme/ }).click();
+  await page.getByRole('button', { name: /Switch to light theme/ }).click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
 
   await page.getByRole('link', { name: /JSON Converter/ }).first().click();

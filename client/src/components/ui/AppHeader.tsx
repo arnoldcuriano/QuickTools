@@ -1,11 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import GitHubRepoStar from './GitHubRepoStar';
 import ThemeToggle from './ThemeToggle';
 
 const AppHeader = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const catalogActive = location.pathname === '/' && location.hash !== '#principles';
+  const principlesActive = location.pathname === '/' && location.hash === '#principles';
 
   const openCatalogSearch = useCallback(() => {
     navigate('/?focus=search#catalog');
@@ -25,32 +28,29 @@ const AppHeader = () => {
   }, [openCatalogSearch]);
 
   return (
-    <header className="brand-header sticky top-0 z-50">
-      <div className="brand-shell">
-        <div className="flex items-center justify-between gap-6 py-4">
-          <Link to="/" className="flex min-w-0 items-baseline gap-2" aria-label="QuickTools home">
-            <span className="brand-wordmark">quicktools</span>
-            <span className="brand-submark">Open workbench</span>
+    <header className="brand-header">
+      <div className="brand-shell header-inner">
+        <Link to="/" className="brand" aria-label="QuickTools home">
+          <span className="brand-wordmark">quicktools</span>
+        </Link>
+        <nav className="desktop-nav" aria-label="Primary">
+          <Link to="/#catalog" className="brand-nav-link" aria-current={catalogActive ? 'page' : undefined}>
+            Catalog
           </Link>
-          <nav className="desktop-nav" aria-label="Primary">
-            <Link to="/#catalog" className="brand-nav-link">
-              Catalog
-            </Link>
-            <Link to="/#principles" className="brand-nav-link">
-              Principles
-            </Link>
-            <ThemeToggle />
-            <GitHubRepoStar />
-          </nav>
-          <button className="menu-btn" type="button" aria-expanded={menuOpen} aria-controls="mobile-menu" onClick={() => setMenuOpen((open) => !open)}>Menu</button>
-        </div>
+          <Link to="/#principles" className="brand-nav-link" aria-current={principlesActive ? 'page' : undefined}>
+            Principles
+          </Link>
+          <GitHubRepoStar />
+          <ThemeToggle />
+        </nav>
+        <button className="menu-btn" type="button" aria-expanded={menuOpen} aria-controls="mobile-menu" onClick={() => setMenuOpen((open) => !open)}>Menu</button>
       </div>
       <div className="menu" id="mobile-menu" hidden={!menuOpen}>
         <div className="brand-shell menu-inner">
-          <Link to="/#catalog" onClick={() => setMenuOpen(false)}>Catalog</Link>
-          <Link to="/#principles" onClick={() => setMenuOpen(false)}>Principles</Link>
+          <Link to="/#catalog" aria-current={catalogActive ? 'page' : undefined} onClick={() => setMenuOpen(false)}>Catalog</Link>
+          <Link to="/#principles" aria-current={principlesActive ? 'page' : undefined} onClick={() => setMenuOpen(false)}>Principles</Link>
           <GitHubRepoStar mobile />
-          <div className="menu-theme-row"><span>Theme</span><ThemeToggle /></div>
+          <ThemeToggle />
         </div>
       </div>
     </header>
