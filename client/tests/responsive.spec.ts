@@ -7,19 +7,23 @@ const viewports = [
 ];
 
 for (const viewport of viewports) {
-  test(`home remains usable at ${viewport.name} width`, async ({ page }) => {
-    await page.setViewportSize({ width: viewport.width, height: viewport.height });
-    await page.goto('/');
+  for (const theme of ['light', 'dark'] as const) {
+    test(`home remains usable at ${viewport.name} width in ${theme}`, async ({ page }) => {
+      await page.setViewportSize({ width: viewport.width, height: viewport.height });
+      await page.addInitScript((selectedTheme) => localStorage.setItem('quicktools.theme', selectedTheme), theme);
+      await page.goto('/');
 
-    await expect(page.getByRole('heading', { name: 'QuickTools', level: 1 })).toBeVisible();
-    await expect(page.getByRole('searchbox', { name: 'Search tools' })).toBeVisible();
-    await expect(page.getByRole('link', { name: /Base64 Encoder\/Decoder/ })).toBeVisible();
+      await expect(page.getByRole('heading', { name: 'QuickTools', level: 1 })).toBeVisible();
+      await expect(page.locator('.globe')).toBeVisible();
+      await expect(page.getByRole('searchbox', { name: 'Search tools' })).toBeVisible();
+      await expect(page.getByRole('link', { name: /Base64 Encoder\/Decoder/ })).toBeVisible();
 
-    const hasHorizontalOverflow = await page.evaluate(
-      () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
-    );
-    expect(hasHorizontalOverflow).toBe(false);
-  });
+      const hasHorizontalOverflow = await page.evaluate(
+        () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
+      );
+      expect(hasHorizontalOverflow).toBe(false);
+    });
+  }
 }
 
 test('command shortcut opens and focuses catalog search', async ({ page }) => {
@@ -29,6 +33,47 @@ test('command shortcut opens and focuses catalog search', async ({ page }) => {
 
   await expect(page).toHaveURL(/\?focus=search#catalog$/);
   await expect(page.getByRole('searchbox', { name: 'Search tools' })).toBeFocused();
+});
+
+const canvasSignature = async (page: import('@playwright/test').Page) =>
+  page.locator('.globe').evaluate((canvas: HTMLCanvasElement) => {
+    const context = canvas.getContext('2d');
+    if (!context) return '';
+    const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
+    let signature = 0;
+    for (let index = 0; index < pixels.length; index += 64) {
+      signature = (signature + pixels[index] * 3 + pixels[index + 1] * 5 + pixels[index + 2] * 7 + pixels[index + 3]) >>> 0;
+    }
+    return `${canvas.width}:${signature}`;
+  });
+
+test('globe animates and recolors when the theme changes', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 1000 });
+  await page.addInitScript(() => localStorage.setItem('quicktools.theme', 'dark'));
+  await page.goto('/');
+  await expect(page.locator('.globe')).toBeVisible();
+  await page.waitForTimeout(150);
+
+  const initial = await canvasSignature(page);
+  await page.waitForTimeout(500);
+  expect(await canvasSignature(page)).not.toBe(initial);
+
+  await page.getByRole('button', { name: /Switch to light theme/ }).click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+  await page.waitForTimeout(50);
+  expect(await canvasSignature(page)).not.toBe(initial);
+});
+
+test('globe remains static with reduced motion enabled', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.setViewportSize({ width: 768, height: 900 });
+  await page.goto('/');
+  await expect(page.locator('.globe')).toBeVisible();
+  await page.waitForTimeout(150);
+
+  const initial = await canvasSignature(page);
+  await page.waitForTimeout(500);
+  expect(await canvasSignature(page)).toBe(initial);
 });
 
 test('shared visual tokens remain monochrome and flat in both themes', async ({ page }) => {

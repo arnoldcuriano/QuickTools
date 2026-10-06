@@ -1,6 +1,6 @@
 # QuickTools Project SSOT
 
-Last reviewed: 2026-10-05
+Last reviewed: 2026-10-06
 
 This document is the canonical source of truth for QuickTools. It describes the repository as it exists today and separates current behavior from future plans.
 
@@ -163,7 +163,7 @@ The current client architecture uses route-level page components with local stat
 Current component boundaries:
 
 - `client/src/App.tsx`: routing.
-- `client/src/pages/Home.tsx`: landing page and tool discovery.
+- `client/src/pages/Home.tsx`: landing page, tool discovery, and homepage-only dotted globe lifecycle.
 - `client/src/data/toolCatalog.ts`: canonical implemented-tool metadata used by catalog discovery.
 - `client/src/pages/tools/*.tsx`: individual tool screens and workflow state.
 - `client/src/components/ui/AppHeader.tsx`: shared responsive header shell.
@@ -217,6 +217,7 @@ QuickTools currently uses a professional workbench design language:
 - Neutral graphite and cool-gray surfaces with restrained amber accents.
 - Inter for interface text and JetBrains Mono for structured technical content.
 - A searchable, category-filtered home catalog generated from centralized route metadata.
+- A responsive decorative dotted globe that follows theme tokens and reduced-motion preferences.
 - Restrained 4 px radii and spacious responsive layouts.
 - Heroicons for action icons.
 - Framer Motion only where an existing tool benefits from restrained interaction feedback.

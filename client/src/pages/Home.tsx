@@ -15,6 +15,7 @@ const principles = [
 const QuickToolsLanding = () => {
   const location = useLocation();
   const catalogRef = useRef<HTMLElement>(null);
+  const globeRef = useRef<HTMLCanvasElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState<CategoryFilter>('All');
@@ -38,38 +39,51 @@ const QuickToolsLanding = () => {
     }
   }, [location.search]);
 
+  useEffect(() => {
+    const canvas = globeRef.current;
+    if (!canvas || !window.createDotGlobe) return;
+
+    const globe = window.createDotGlobe(canvas);
+    return () => globe.destroy();
+  }, []);
+
   return (
     <div className="brand-page">
       <AppHeader />
 
       <main>
         <section className="brand-shell hero-section">
-          <h1 className="hero-title">QuickTools</h1>
-          <p className="hero-copy">
-            Fast browser-local tools for code, data, content, and media.
-          </p>
-          <div className="mt-5 flex flex-wrap gap-2">
-            <Button onClick={scrollToCatalog} className="brand-button px-4 py-2.5">
-              Browse tools
-            </Button>
-            <Link to="/tools/json-converter" className="brand-button-secondary px-4 py-2.5">
-              Open JSON converter
-            </Link>
+          <div className="hero-content">
+            <h1 className="hero-title">QuickTools</h1>
+            <p className="hero-copy">
+              Fast browser-local tools for code, data, content, and media.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              <Button onClick={scrollToCatalog} className="brand-button px-4 py-2.5">
+                Browse tools
+              </Button>
+              <Link to="/tools/json-converter" className="brand-button-secondary px-4 py-2.5">
+                Open JSON converter
+              </Link>
+            </div>
+            <dl className="hero-meta">
+              <div>
+                <dt className="sr-only">Available tools</dt>
+                <dd className="font-medium text-brand">{toolCatalog.length} working tools</dd>
+              </div>
+              <div>
+                <dt className="sr-only">Processing model</dt>
+                <dd>Browser-local processing</dd>
+              </div>
+              <div>
+                <dt className="sr-only">License</dt>
+                <dd>MIT licensed</dd>
+              </div>
+            </dl>
           </div>
-          <dl className="hero-meta">
-            <div>
-              <dt className="sr-only">Available tools</dt>
-              <dd className="font-medium text-brand">{toolCatalog.length} working tools</dd>
-            </div>
-            <div>
-              <dt className="sr-only">Processing model</dt>
-              <dd>Browser-local processing</dd>
-            </div>
-            <div>
-              <dt className="sr-only">License</dt>
-              <dd>MIT licensed</dd>
-            </div>
-          </dl>
+          <div className="globe-wrap">
+            <canvas ref={globeRef} className="globe" aria-hidden="true"></canvas>
+          </div>
         </section>
 
         <section ref={catalogRef} id="catalog" className="brand-shell catalog-section scroll-mt-20">

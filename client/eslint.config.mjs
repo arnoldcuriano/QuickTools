@@ -19,7 +19,7 @@ const hardcodedDesignRule = {
 };
 
 export default tseslint.config(
-  { ignores: ['build/**', 'coverage/**'] },
+  { ignores: ['build/**', 'coverage/**', 'public/dot-globe.js'] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {

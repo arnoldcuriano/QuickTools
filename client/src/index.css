@@ -83,15 +83,17 @@
     --space-4: 1rem;
     --space-6: 1.5rem;
     --space-8: 2rem;
+    --space-12: 3rem;
     --page-gutter: clamp(1.25rem, 4vw, 4rem);
     --section-space: clamp(4rem, 8vw, 8rem);
-    --content-width: 55rem;
+    --content-width: 68.75rem;
     --ease-standard: ease;
     --duration-fast: 120ms;
     --duration-base: 120ms;
     --text-sm: 0.875rem;
     --text-md: 0.9375rem;
     --text-xs: 0.75rem;
+    --text-display: clamp(48px, 9vw, 96px);
     --control-sm: 1.75rem;
     --icon-xs: 0.875rem;
     --icon-sm: 1rem;
@@ -443,12 +445,20 @@
   }
 
   .hero-section {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+    align-items: center;
+    gap: var(--space-12);
     padding-block: 3rem 2.5rem;
+  }
+
+  .hero-content {
+    min-width: 0;
   }
 
   .hero-title {
     margin: 0;
-    font-size: 4rem;
+    font-size: var(--text-display);
     font-weight: 500;
     line-height: 1;
   }
@@ -468,6 +478,18 @@
     margin-top: 1.5rem;
     color: var(--text-muted);
     font-size: 0.75rem;
+  }
+
+  .globe-wrap {
+    width: 100%;
+    max-width: 420px;
+    justify-self: end;
+  }
+
+  .globe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
   }
 
   .catalog-section {
@@ -707,10 +729,6 @@
     padding-block: 2.5rem 2rem;
   }
 
-  .hero-title {
-    font-size: 2.5rem;
-  }
-
   .hero-copy {
     margin-top: var(--space-4);
     font-size: var(--text-sm);
@@ -764,6 +782,18 @@
   .github-label,
   .github-stars {
     display: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .hero-section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-8);
+  }
+
+  .globe-wrap {
+    max-width: 340px;
+    justify-self: start;
   }
 }
 
