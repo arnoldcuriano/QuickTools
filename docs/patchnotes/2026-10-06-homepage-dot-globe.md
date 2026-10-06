@@ -14,6 +14,7 @@ Version intent: MINOR
 
 - Expanded the shared homepage content width so the heading and globe remain clearly separated on desktop.
 - Added browser checks for globe rendering, animation, theme changes, reduced motion, and responsive overflow.
+- Refreshed the inactive server scaffold lockfile to clear production dependency audit failures without enabling a server runtime.
 
 ## Developer Notes
 
