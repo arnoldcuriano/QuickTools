@@ -4,7 +4,10 @@ export const toolCategories = [
   "Developer",
   "Data",
   "Text",
-  "Image & Media"
+  "Image & Media",
+  "Design",
+  "Math & Units",
+  "Security"
 ] as const;
 export const toolTemplates = ['T', 'D', 'F', 'C', 'G', 'R'] as const;
 export const toolStatuses = ['existing', 'planned', 'live'] as const;
@@ -177,6 +180,189 @@ export const toolRegistry = [
     ],
     "provider": "the selected API provider",
     "path": "/tools/free-api-explorer"
+  },
+  {
+    "id": "url-encoder-decoder",
+    "name": "URL Encoder/Decoder",
+    "category": "Developer",
+    "template": "T",
+    "description": "Encode or decode URLs and query strings.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "url",
+      "encoder",
+      "decoder",
+      "developer"
+    ],
+    "path": "/tools/url-encoder-decoder"
+  },
+  {
+    "id": "uuid-generator",
+    "name": "UUID Generator",
+    "category": "Developer",
+    "template": "G",
+    "description": "Generate v4 and v7 UUIDs in bulk.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "uuid",
+      "generator",
+      "developer"
+    ],
+    "path": "/tools/uuid-generator"
+  },
+  {
+    "id": "unix-timestamp-converter",
+    "name": "Unix Timestamp Converter",
+    "category": "Developer",
+    "template": "C",
+    "description": "Convert between Unix timestamps and dates.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "unix",
+      "timestamp",
+      "converter",
+      "developer"
+    ],
+    "path": "/tools/unix-timestamp-converter"
+  },
+  {
+    "id": "http-status-codes",
+    "name": "HTTP Status Codes",
+    "category": "Developer",
+    "template": "R",
+    "description": "Searchable list of HTTP status codes.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "http",
+      "status",
+      "codes",
+      "developer"
+    ],
+    "path": "/tools/http-status-codes"
+  },
+  {
+    "id": "query-string-parser",
+    "name": "Query String Parser",
+    "category": "Developer",
+    "template": "D",
+    "description": "Parse a query string into readable key/value pairs.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "query",
+      "string",
+      "parser",
+      "developer"
+    ],
+    "path": "/tools/query-string-parser"
+  },
+  {
+    "id": "word-counter",
+    "name": "Word Counter",
+    "category": "Text",
+    "template": "T",
+    "description": "Count words, characters, sentences and paragraphs.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "word",
+      "counter",
+      "text"
+    ],
+    "path": "/tools/word-counter"
+  },
+  {
+    "id": "case-converter",
+    "name": "Case Converter",
+    "category": "Text",
+    "template": "T",
+    "description": "UPPER, lower, Title, camelCase, snake_case and more.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "case",
+      "converter",
+      "text"
+    ],
+    "path": "/tools/case-converter"
+  },
+  {
+    "id": "jpg-to-png",
+    "name": "JPG to PNG",
+    "category": "Image & Media",
+    "template": "F",
+    "description": "Convert JPG images to PNG.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "jpg",
+      "to",
+      "png",
+      "image",
+      "media"
+    ],
+    "path": "/tools/jpg-to-png"
+  },
+  {
+    "id": "color-converter",
+    "name": "Color Converter",
+    "category": "Design",
+    "template": "C",
+    "description": "HEX, RGB, HSL and OKLCH.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "color",
+      "converter",
+      "design"
+    ],
+    "path": "/tools/color-converter"
+  },
+  {
+    "id": "percentage-calculator",
+    "name": "Percentage Calculator",
+    "category": "Math & Units",
+    "template": "C",
+    "description": "Percent of, change and difference.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "percentage",
+      "calculator",
+      "math",
+      "units"
+    ],
+    "path": "/tools/percentage-calculator"
+  },
+  {
+    "id": "password-generator",
+    "name": "Password Generator",
+    "category": "Security",
+    "template": "G",
+    "description": "Strong random passwords.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "password",
+      "generator",
+      "security"
+    ],
+    "path": "/tools/password-generator"
   }
 ] as const satisfies readonly ToolMeta[];
 

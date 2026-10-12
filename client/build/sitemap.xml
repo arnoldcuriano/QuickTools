@@ -11,4 +11,15 @@
   <url><loc>https://quick-tools-mu-sable.vercel.app/tools/csv-tsv-converter</loc></url>
   <url><loc>https://quick-tools-mu-sable.vercel.app/tools/regex-tester</loc></url>
   <url><loc>https://quick-tools-mu-sable.vercel.app/tools/free-api-explorer</loc></url>
+  <url><loc>https://quick-tools-mu-sable.vercel.app/tools/url-encoder-decoder</loc></url>
+  <url><loc>https://quick-tools-mu-sable.vercel.app/tools/uuid-generator</loc></url>
+  <url><loc>https://quick-tools-mu-sable.vercel.app/tools/unix-timestamp-converter</loc></url>
+  <url><loc>https://quick-tools-mu-sable.vercel.app/tools/http-status-codes</loc></url>
+  <url><loc>https://quick-tools-mu-sable.vercel.app/tools/query-string-parser</loc></url>
+  <url><loc>https://quick-tools-mu-sable.vercel.app/tools/word-counter</loc></url>
+  <url><loc>https://quick-tools-mu-sable.vercel.app/tools/case-converter</loc></url>
+  <url><loc>https://quick-tools-mu-sable.vercel.app/tools/jpg-to-png</loc></url>
+  <url><loc>https://quick-tools-mu-sable.vercel.app/tools/color-converter</loc></url>
+  <url><loc>https://quick-tools-mu-sable.vercel.app/tools/percentage-calculator</loc></url>
+  <url><loc>https://quick-tools-mu-sable.vercel.app/tools/password-generator</loc></url>
 </urlset>

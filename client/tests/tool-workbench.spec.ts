@@ -1,25 +1,16 @@
 import { expect, test } from '@playwright/test';
+import { publishedTools } from '../src/generated/toolRegistry';
 
-const tools = [
-  ['/tools/base64-encoder-decoder', 'Base64 Encoder/Decoder'],
-  ['/tools/text-formatter', 'Text Formatter'],
-  ['/tools/webp-converter', 'WebP Converter'],
-  ['/tools/json-converter', 'JSON Converter'],
-  ['/tools/qr-code-generator', 'QR Code Generator'],
-  ['/tools/json-compare', 'JSON Compare'],
-  ['/tools/csv-tsv-converter', 'CSV / TSV Converter'],
-  ['/tools/regex-tester', 'Regex Tester'],
-  ['/tools/free-api-explorer', 'Free API Explorer'],
-] as const;
+const tools = publishedTools.map((tool) => [tool.path, tool.name, tool.runsLocally ? 'Runs locally in your browser' : 'Sends requests to', tool.template] as const);
 
-for (const [route, title] of tools) {
+for (const [route, title, activity, template] of tools) {
   test(`${title} uses the shared tool layout`, async ({ page }) => {
     await page.goto(route);
     await expect(page.getByRole('heading', { level: 1, name: title })).toHaveCount(1);
     await expect(page.getByRole('link', { name: 'Back to tools' })).toHaveCount(1);
-    const activity = route === '/tools/free-api-explorer' ? 'Sends requests to JSONPlaceholder' : 'Runs locally in your browser';
-    await expect(page.getByText(activity, { exact: true })).toHaveCount(1);
+    await expect(page.locator('.tool-kicker > span')).toContainText(activity);
     await expect(page.locator('.tool-layout')).toHaveCount(1);
+    await expect(page.locator('.tool-page')).toHaveAttribute('data-template', template);
     await expect(page.getByRole('complementary', { name: 'Settings' })).toHaveCount(1);
   });
 }
@@ -35,7 +26,12 @@ for (const width of [360, 768, 1280]) {
         expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth), route).toBeLessThanOrEqual(1);
         const [settingsBox, mainBox] = await Promise.all([page.getByRole('complementary', { name: 'Settings' }).boundingBox(), page.locator('.tool-main').boundingBox()]);
         if (width < 900) expect(settingsBox!.y, route).toBeGreaterThan(mainBox!.y);
-        else expect(settingsBox!.x, route).toBeGreaterThan(mainBox!.x);
+        else {
+          expect(settingsBox!.x, route).toBeGreaterThan(mainBox!.x);
+          expect(settingsBox!.width, route).toBe(320);
+        }
+        const heights = await page.locator('.ui-button').evaluateAll((buttons) => buttons.map((button) => ({ ghost: button.classList.contains('ui-button-ghost'), height: button.getBoundingClientRect().height })));
+        for (const button of heights) expect(button.height, route).toBe(button.ghost ? 32 : 40);
       }
     });
   }
