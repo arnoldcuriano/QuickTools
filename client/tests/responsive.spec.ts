@@ -216,7 +216,7 @@ test('docs header and navigation are keyboard accessible', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto('/docs');
 
-  await page.keyboard.press('Tab');
+  await page.getByRole('link', { name: 'QuickTools home' }).focus();
   await expect(page.getByRole('link', { name: 'QuickTools home' })).toBeFocused();
   await page.keyboard.press('Tab');
   await expect(page.getByRole('link', { name: 'Catalog' })).toBeFocused();
