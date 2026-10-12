@@ -1,6 +1,7 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, expect, test, vi } from 'vitest';
+import { waitFor } from '@testing-library/react';
 import App from './App';
 import { formatStarCount } from './components/ui/GitHubRepoStar';
 
@@ -45,7 +46,7 @@ test('filters the tool catalog by search and category', () => {
   fireEvent.change(screen.getByRole('searchbox', { name: /search tools/i }), {
     target: { value: '' },
   });
-  fireEvent.click(screen.getByRole('button', { name: 'Media' }));
+  fireEvent.click(screen.getByRole('button', { name: /Image & Media/ }));
   expect(screen.getByRole('link', { name: /webp converter/i })).toBeInTheDocument();
   expect(screen.getByRole('link', { name: /qr code generator/i })).toBeInTheDocument();
   expect(screen.queryByRole('heading', { name: /json converter/i })).not.toBeInTheDocument();
@@ -64,7 +65,7 @@ test('switches and persists the selected theme', () => {
   expect(window.localStorage.getItem('quicktools.theme')).toBe('light');
 });
 
-test('focuses catalog search from the global command shortcut', () => {
+test('opens and focuses the command palette from the global shortcut', async () => {
   Object.defineProperty(globalThis, 'fetch', {
     configurable: true,
     value: vi.fn().mockRejectedValue(new Error('offline')),
@@ -73,5 +74,5 @@ test('focuses catalog search from the global command shortcut', () => {
   render(<App />);
   fireEvent.keyDown(window, { key: 'k', ctrlKey: true });
 
-  expect(screen.getByRole('searchbox', { name: /search tools/i })).toHaveFocus();
+  await waitFor(() => expect(screen.getByRole('searchbox', { name: 'Find a tool' })).toHaveFocus());
 });

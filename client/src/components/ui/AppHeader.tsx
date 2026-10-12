@@ -1,32 +1,23 @@
-import { useCallback, useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import GitHubRepoStar from './GitHubRepoStar';
 import SoundToggle from './SoundToggle';
 import ThemeToggle from './ThemeToggle';
 
 const AppHeader = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const catalogActive = location.pathname === '/';
   const docsActive = location.pathname === '/docs';
 
-  const openCatalogSearch = useCallback(() => {
-    navigate('/?focus=search#catalog');
-  }, [navigate]);
-
   useEffect(() => {
     const handleShortcut = (event: KeyboardEvent) => {
-      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
-        event.preventDefault();
-        openCatalogSearch();
-      }
       if (event.key === 'Escape') setMenuOpen(false);
     };
 
     window.addEventListener('keydown', handleShortcut);
     return () => window.removeEventListener('keydown', handleShortcut);
-  }, [openCatalogSearch]);
+  }, []);
 
   return (
     <header className="brand-header">

@@ -1,0 +1,4596 @@
+[
+    {
+        "id":  "base64-encoder-decoder",
+        "name":  "Base64 Encoder/Decoder",
+        "category":  "Developer",
+        "template":  "T",
+        "description":  "Encode readable text or decode valid Base64 strings directly in the browser.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  0,
+        "status":  "existing",
+        "keywords":  [
+                         "base64",
+                         "encoder",
+                         "decoder",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "json-converter",
+        "name":  "JSON Converter",
+        "category":  "Data",
+        "template":  "D",
+        "description":  "Beautify or minify JSON with immediate validation feedback.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  0,
+        "status":  "existing",
+        "keywords":  [
+                         "json",
+                         "converter",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "text-formatter",
+        "name":  "Text Formatter",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Clean JSON, XML, HTML, and plain text into readable output.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  0,
+        "status":  "existing",
+        "keywords":  [
+                         "text",
+                         "formatter"
+                     ]
+    },
+    {
+        "id":  "webp-converter",
+        "name":  "WebP Converter",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Convert JPG and PNG images to WebP for smaller files and faster pages. Up to 20 images at a time, downloaded together as a ZIP.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  0,
+        "status":  "existing",
+        "keywords":  [
+                         "webp",
+                         "converter",
+                         "image",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "qr-code-generator",
+        "name":  "QR Code Generator",
+        "category":  "Image \u0026 Media",
+        "template":  "G",
+        "description":  "Generate browser-only QR codes with styling, logo overlays, and download support.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  0,
+        "status":  "existing",
+        "keywords":  [
+                         "qr",
+                         "code",
+                         "generator",
+                         "image",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "json-compare",
+        "name":  "JSON Compare",
+        "category":  "Data",
+        "template":  "D",
+        "description":  "Compare two JSON documents and inspect nested additions, removals, and changes.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  0,
+        "status":  "existing",
+        "keywords":  [
+                         "json",
+                         "compare",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "csv-tsv-converter",
+        "name":  "CSV / TSV Converter",
+        "category":  "Data",
+        "template":  "D",
+        "description":  "Convert quoted delimited data locally between CSV and TSV with table previews.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  0,
+        "status":  "existing",
+        "keywords":  [
+                         "csv",
+                         "tsv",
+                         "converter",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "regex-tester",
+        "name":  "Regex Tester",
+        "category":  "Developer",
+        "template":  "T",
+        "description":  "Test expressions, view captured groups, and highlight matches in place.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  0,
+        "status":  "existing",
+        "keywords":  [
+                         "regex",
+                         "tester",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "free-api-explorer",
+        "name":  "Free API Explorer",
+        "category":  "Developer",
+        "template":  "C",
+        "description":  "Build and send no-key requests to curated third-party APIs with honest CORS and rate-limit guidance.",
+        "runsLocally":  false,
+        "library":  null,
+        "batch":  0,
+        "status":  "existing",
+        "keywords":  [
+                         "free",
+                         "api",
+                         "explorer",
+                         "developer"
+                     ],
+        "provider":  "the selected API provider"
+    },
+    {
+        "id":  "url-encoder-decoder",
+        "name":  "URL Encoder/Decoder",
+        "category":  "Developer",
+        "template":  "T",
+        "description":  "Encode or decode URLs and query strings.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "url",
+                         "encoder",
+                         "decoder",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "html-entity-encoder-decoder",
+        "name":  "HTML Entity Encoder/Decoder",
+        "category":  "Developer",
+        "template":  "T",
+        "description":  "Escape or unescape HTML entities.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "html",
+                         "entity",
+                         "encoder",
+                         "decoder",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "jwt-decoder",
+        "name":  "JWT Decoder",
+        "category":  "Developer",
+        "template":  "T",
+        "description":  "Read the header and payload of a JSON Web Token.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "jwt",
+                         "decoder",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "uuid-generator",
+        "name":  "UUID Generator",
+        "category":  "Developer",
+        "template":  "G",
+        "description":  "Generate v4 and v7 UUIDs in bulk.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "uuid",
+                         "generator",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "hash-generator",
+        "name":  "Hash Generator",
+        "category":  "Developer",
+        "template":  "T",
+        "description":  "MD5, SHA-1, SHA-256 and SHA-512 of any text.",
+        "runsLocally":  true,
+        "library":  "md5",
+        "batch":  3,
+        "status":  "planned",
+        "keywords":  [
+                         "hash",
+                         "generator",
+                         "developer",
+                         "md5"
+                     ]
+    },
+    {
+        "id":  "hmac-generator",
+        "name":  "HMAC Generator",
+        "category":  "Developer",
+        "template":  "T",
+        "description":  "Sign text with a secret key using SHA-256 or SHA-512.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "hmac",
+                         "generator",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "cron-expression-explainer",
+        "name":  "Cron Expression Explainer",
+        "category":  "Developer",
+        "template":  "T",
+        "description":  "Turn a cron expression into plain language.",
+        "runsLocally":  true,
+        "library":  "cronstrue",
+        "batch":  3,
+        "status":  "planned",
+        "keywords":  [
+                         "cron",
+                         "expression",
+                         "explainer",
+                         "developer",
+                         "cronstrue"
+                     ]
+    },
+    {
+        "id":  "unix-timestamp-converter",
+        "name":  "Unix Timestamp Converter",
+        "category":  "Developer",
+        "template":  "C",
+        "description":  "Convert between Unix timestamps and dates.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "unix",
+                         "timestamp",
+                         "converter",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "json-to-typescript",
+        "name":  "JSON to TypeScript",
+        "category":  "Developer",
+        "template":  "D",
+        "description":  "Generate TypeScript types from a JSON sample.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "json",
+                         "to",
+                         "typescript",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "json-to-yaml",
+        "name":  "JSON to YAML",
+        "category":  "Developer",
+        "template":  "D",
+        "description":  "Convert JSON into YAML.",
+        "runsLocally":  true,
+        "library":  "js-yaml",
+        "batch":  3,
+        "status":  "planned",
+        "keywords":  [
+                         "json",
+                         "to",
+                         "yaml",
+                         "developer",
+                         "js"
+                     ]
+    },
+    {
+        "id":  "yaml-to-json",
+        "name":  "YAML to JSON",
+        "category":  "Developer",
+        "template":  "D",
+        "description":  "Convert YAML into JSON.",
+        "runsLocally":  true,
+        "library":  "js-yaml",
+        "batch":  3,
+        "status":  "planned",
+        "keywords":  [
+                         "yaml",
+                         "to",
+                         "json",
+                         "developer",
+                         "js"
+                     ]
+    },
+    {
+        "id":  "jsonpath-tester",
+        "name":  "JSONPath Tester",
+        "category":  "Developer",
+        "template":  "D",
+        "description":  "Query JSON with JSONPath expressions.",
+        "runsLocally":  true,
+        "library":  "jsonpath-plus",
+        "batch":  3,
+        "status":  "planned",
+        "keywords":  [
+                         "jsonpath",
+                         "tester",
+                         "developer",
+                         "plus"
+                     ]
+    },
+    {
+        "id":  "json-schema-validator",
+        "name":  "JSON Schema Validator",
+        "category":  "Developer",
+        "template":  "D",
+        "description":  "Validate JSON against a JSON Schema.",
+        "runsLocally":  true,
+        "library":  "ajv",
+        "batch":  3,
+        "status":  "planned",
+        "keywords":  [
+                         "json",
+                         "schema",
+                         "validator",
+                         "developer",
+                         "ajv"
+                     ]
+    },
+    {
+        "id":  "sql-formatter",
+        "name":  "SQL Formatter",
+        "category":  "Developer",
+        "template":  "T",
+        "description":  "Format SQL with consistent indentation.",
+        "runsLocally":  true,
+        "library":  "sql-formatter",
+        "batch":  3,
+        "status":  "planned",
+        "keywords":  [
+                         "sql",
+                         "formatter",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "html-formatter",
+        "name":  "HTML Formatter",
+        "category":  "Developer",
+        "template":  "T",
+        "description":  "Beautify or minify HTML.",
+        "runsLocally":  true,
+        "library":  "js-beautify",
+        "batch":  3,
+        "status":  "planned",
+        "keywords":  [
+                         "html",
+                         "formatter",
+                         "developer",
+                         "js",
+                         "beautify"
+                     ]
+    },
+    {
+        "id":  "css-formatter-and-minifier",
+        "name":  "CSS Formatter and Minifier",
+        "category":  "Developer",
+        "template":  "T",
+        "description":  "Beautify or minify CSS.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "css",
+                         "formatter",
+                         "and",
+                         "minifier",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "javascript-minifier",
+        "name":  "JavaScript Minifier",
+        "category":  "Developer",
+        "template":  "T",
+        "description":  "Minify JavaScript in the browser.",
+        "runsLocally":  true,
+        "library":  "terser",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "javascript",
+                         "minifier",
+                         "developer",
+                         "terser"
+                     ]
+    },
+    {
+        "id":  "xml-formatter",
+        "name":  "XML Formatter",
+        "category":  "Developer",
+        "template":  "T",
+        "description":  "Format and validate XML.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "xml",
+                         "formatter",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "markdown-previewer",
+        "name":  "Markdown Previewer",
+        "category":  "Developer",
+        "template":  "T",
+        "description":  "Write Markdown and see the rendered result.",
+        "runsLocally":  true,
+        "library":  "marked",
+        "batch":  3,
+        "status":  "planned",
+        "keywords":  [
+                         "markdown",
+                         "previewer",
+                         "developer",
+                         "marked"
+                     ]
+    },
+    {
+        "id":  "text-diff-checker",
+        "name":  "Text Diff Checker",
+        "category":  "Developer",
+        "template":  "D",
+        "description":  "Compare two texts line by line.",
+        "runsLocally":  true,
+        "library":  "diff",
+        "batch":  3,
+        "status":  "planned",
+        "keywords":  [
+                         "text",
+                         "diff",
+                         "checker",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "user-agent-parser",
+        "name":  "User Agent Parser",
+        "category":  "Developer",
+        "template":  "T",
+        "description":  "Read browser, OS and device from a user agent string.",
+        "runsLocally":  true,
+        "library":  "ua-parser-js",
+        "batch":  3,
+        "status":  "planned",
+        "keywords":  [
+                         "user",
+                         "agent",
+                         "parser",
+                         "developer",
+                         "ua",
+                         "js"
+                     ]
+    },
+    {
+        "id":  "http-status-codes",
+        "name":  "HTTP Status Codes",
+        "category":  "Developer",
+        "template":  "R",
+        "description":  "Searchable list of HTTP status codes.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "http",
+                         "status",
+                         "codes",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "mime-types-lookup",
+        "name":  "MIME Types Lookup",
+        "category":  "Developer",
+        "template":  "R",
+        "description":  "Find the MIME type for a file extension.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "mime",
+                         "types",
+                         "lookup",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "chmod-calculator",
+        "name":  "Chmod Calculator",
+        "category":  "Developer",
+        "template":  "C",
+        "description":  "Convert between permission checkboxes and octal.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "chmod",
+                         "calculator",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "gitignore-generator",
+        "name":  ".gitignore Generator",
+        "category":  "Developer",
+        "template":  "G",
+        "description":  "Build a .gitignore for your languages and tools.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "gitignore",
+                         "generator",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "curl-to-fetch-converter",
+        "name":  "cURL to Fetch Converter",
+        "category":  "Developer",
+        "template":  "T",
+        "description":  "Turn a cURL command into fetch code.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "curl",
+                         "to",
+                         "fetch",
+                         "converter",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "query-string-parser",
+        "name":  "Query String Parser",
+        "category":  "Developer",
+        "template":  "D",
+        "description":  "Parse a query string into readable key/value pairs.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "query",
+                         "string",
+                         "parser",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "cookie-parser",
+        "name":  "Cookie Parser",
+        "category":  "Developer",
+        "template":  "T",
+        "description":  "Break a cookie header into its parts.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "cookie",
+                         "parser",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "number-base-converter",
+        "name":  "Number Base Converter",
+        "category":  "Developer",
+        "template":  "C",
+        "description":  "Convert between binary, octal, decimal and hex.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "number",
+                         "base",
+                         "converter",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "ascii-table",
+        "name":  "ASCII Table",
+        "category":  "Developer",
+        "template":  "R",
+        "description":  "Searchable ASCII and extended character table.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "ascii",
+                         "table",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "unicode-character-lookup",
+        "name":  "Unicode Character Lookup",
+        "category":  "Developer",
+        "template":  "R",
+        "description":  "Find characters by name or code point.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "unicode",
+                         "character",
+                         "lookup",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "string-escape-unescape",
+        "name":  "String Escape/Unescape",
+        "category":  "Developer",
+        "template":  "T",
+        "description":  "Escape or unescape strings for JSON, JS and more.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "string",
+                         "escape",
+                         "unescape",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "slug-generator",
+        "name":  "Slug Generator",
+        "category":  "Developer",
+        "template":  "T",
+        "description":  "Turn titles into URL-friendly slugs.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "slug",
+                         "generator",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "semantic-version-compare",
+        "name":  "Semantic Version Compare",
+        "category":  "Developer",
+        "template":  "C",
+        "description":  "Compare versions and check ranges.",
+        "runsLocally":  true,
+        "library":  "semver",
+        "batch":  3,
+        "status":  "planned",
+        "keywords":  [
+                         "semantic",
+                         "version",
+                         "compare",
+                         "developer",
+                         "semver"
+                     ]
+    },
+    {
+        "id":  "git-command-cheat-sheet",
+        "name":  "Git Command Cheat Sheet",
+        "category":  "Developer",
+        "template":  "R",
+        "description":  "Searchable list of common Git commands.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "git",
+                         "command",
+                         "cheat",
+                         "sheet",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "http-headers-reference",
+        "name":  "HTTP Headers Reference",
+        "category":  "Developer",
+        "template":  "R",
+        "description":  "Searchable reference of HTTP headers.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "http",
+                         "headers",
+                         "reference",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "base32-encoder-decoder",
+        "name":  "Base32 Encoder/Decoder",
+        "category":  "Developer",
+        "template":  "T",
+        "description":  "Encode or decode Base32 text.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "base32",
+                         "encoder",
+                         "decoder",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "hex-encoder-decoder",
+        "name":  "Hex Encoder/Decoder",
+        "category":  "Developer",
+        "template":  "T",
+        "description":  "Convert text to hex and back.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "hex",
+                         "encoder",
+                         "decoder",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "regex-cheat-sheet",
+        "name":  "Regex Cheat Sheet",
+        "category":  "Developer",
+        "template":  "R",
+        "description":  "Searchable regex syntax reference.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "regex",
+                         "cheat",
+                         "sheet",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "iso-8601-duration-parser",
+        "name":  "ISO 8601 Duration Parser",
+        "category":  "Developer",
+        "template":  "C",
+        "description":  "Parse and build ISO 8601 durations and dates.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "iso",
+                         "8601",
+                         "duration",
+                         "parser",
+                         "developer"
+                     ]
+    },
+    {
+        "id":  "csv-to-json",
+        "name":  "CSV to JSON",
+        "category":  "Data",
+        "template":  "D",
+        "description":  "Convert CSV rows into JSON.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "csv",
+                         "to",
+                         "json",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "json-to-csv",
+        "name":  "JSON to CSV",
+        "category":  "Data",
+        "template":  "D",
+        "description":  "Flatten JSON into CSV.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "json",
+                         "to",
+                         "csv",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "xml-to-json",
+        "name":  "XML to JSON",
+        "category":  "Data",
+        "template":  "D",
+        "description":  "Convert XML into JSON.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "xml",
+                         "to",
+                         "json",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "json-to-xml",
+        "name":  "JSON to XML",
+        "category":  "Data",
+        "template":  "D",
+        "description":  "Convert JSON into XML.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "json",
+                         "to",
+                         "xml",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "toml-to-json",
+        "name":  "TOML to JSON",
+        "category":  "Data",
+        "template":  "D",
+        "description":  "Convert TOML into JSON.",
+        "runsLocally":  true,
+        "library":  "smol-toml",
+        "batch":  3,
+        "status":  "planned",
+        "keywords":  [
+                         "toml",
+                         "to",
+                         "json",
+                         "data",
+                         "smol"
+                     ]
+    },
+    {
+        "id":  "ini-to-json",
+        "name":  "INI to JSON",
+        "category":  "Data",
+        "template":  "D",
+        "description":  "Convert INI config into JSON.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "ini",
+                         "to",
+                         "json",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "ndjson-converter",
+        "name":  "NDJSON Converter",
+        "category":  "Data",
+        "template":  "D",
+        "description":  "Convert between JSON arrays and JSON Lines.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "ndjson",
+                         "converter",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "csv-viewer-and-sorter",
+        "name":  "CSV Viewer and Sorter",
+        "category":  "Data",
+        "template":  "D",
+        "description":  "Open a CSV as a table, sort and filter columns.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "csv",
+                         "viewer",
+                         "and",
+                         "sorter",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "csv-deduplicator",
+        "name":  "CSV Deduplicator",
+        "category":  "Data",
+        "template":  "D",
+        "description":  "Remove duplicate rows from a CSV.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "csv",
+                         "deduplicator",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "csv-column-picker",
+        "name":  "CSV Column Picker",
+        "category":  "Data",
+        "template":  "D",
+        "description":  "Keep, reorder or drop CSV columns.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "csv",
+                         "column",
+                         "picker",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "csv-merge",
+        "name":  "CSV Merge",
+        "category":  "Data",
+        "template":  "F",
+        "description":  "Combine several CSV files with matching columns.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "csv",
+                         "merge",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "csv-to-markdown-table",
+        "name":  "CSV to Markdown Table",
+        "category":  "Data",
+        "template":  "D",
+        "description":  "Turn CSV into a Markdown table.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "csv",
+                         "to",
+                         "markdown",
+                         "table",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "markdown-table-generator",
+        "name":  "Markdown Table Generator",
+        "category":  "Data",
+        "template":  "G",
+        "description":  "Build a Markdown table in a grid editor.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "markdown",
+                         "table",
+                         "generator",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "html-table-to-csv",
+        "name":  "HTML Table to CSV",
+        "category":  "Data",
+        "template":  "D",
+        "description":  "Paste an HTML table and get CSV.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "html",
+                         "table",
+                         "to",
+                         "csv",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "excel-to-csv",
+        "name":  "Excel to CSV",
+        "category":  "Data",
+        "template":  "F",
+        "description":  "Convert XLSX sheets to CSV.",
+        "runsLocally":  true,
+        "library":  "xlsx",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "excel",
+                         "to",
+                         "csv",
+                         "data",
+                         "xlsx"
+                     ]
+    },
+    {
+        "id":  "csv-to-excel",
+        "name":  "CSV to Excel",
+        "category":  "Data",
+        "template":  "F",
+        "description":  "Convert CSV into an XLSX file.",
+        "runsLocally":  true,
+        "library":  "xlsx",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "csv",
+                         "to",
+                         "excel",
+                         "data",
+                         "xlsx"
+                     ]
+    },
+    {
+        "id":  "json-flatten-unflatten",
+        "name":  "JSON Flatten/Unflatten",
+        "category":  "Data",
+        "template":  "D",
+        "description":  "Flatten nested JSON to dot paths and back.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "json",
+                         "flatten",
+                         "unflatten",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "json-key-sorter",
+        "name":  "JSON Key Sorter",
+        "category":  "Data",
+        "template":  "D",
+        "description":  "Sort JSON keys alphabetically.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "json",
+                         "key",
+                         "sorter",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "json-to-sql-insert",
+        "name":  "JSON to SQL Insert",
+        "category":  "Data",
+        "template":  "D",
+        "description":  "Generate INSERT statements from JSON.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "json",
+                         "to",
+                         "sql",
+                         "insert",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "csv-to-sql-insert",
+        "name":  "CSV to SQL Insert",
+        "category":  "Data",
+        "template":  "D",
+        "description":  "Generate INSERT statements from CSV.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "csv",
+                         "to",
+                         "sql",
+                         "insert",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "sort-lines",
+        "name":  "Sort Lines",
+        "category":  "Data",
+        "template":  "T",
+        "description":  "Sort lines alphabetically, numerically or by length.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "sort",
+                         "lines",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "remove-duplicate-lines",
+        "name":  "Remove Duplicate Lines",
+        "category":  "Data",
+        "template":  "T",
+        "description":  "Keep only unique lines.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "remove",
+                         "duplicate",
+                         "lines",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "shuffle-lines",
+        "name":  "Shuffle Lines",
+        "category":  "Data",
+        "template":  "T",
+        "description":  "Randomize the order of lines.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "shuffle",
+                         "lines",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "extract-emails",
+        "name":  "Extract Emails",
+        "category":  "Data",
+        "template":  "T",
+        "description":  "Pull email addresses out of any text.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "extract",
+                         "emails",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "extract-urls",
+        "name":  "Extract URLs",
+        "category":  "Data",
+        "template":  "T",
+        "description":  "Pull links out of any text.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "extract",
+                         "urls",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "extract-numbers",
+        "name":  "Extract Numbers",
+        "category":  "Data",
+        "template":  "T",
+        "description":  "Pull numbers out of any text.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "extract",
+                         "numbers",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "find-and-replace",
+        "name":  "Find and Replace",
+        "category":  "Data",
+        "template":  "T",
+        "description":  "Find and replace text, with optional regex.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "find",
+                         "and",
+                         "replace",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "fake-data-generator",
+        "name":  "Fake Data Generator",
+        "category":  "Data",
+        "template":  "G",
+        "description":  "Generate sample names, emails, addresses and dates.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "fake",
+                         "data",
+                         "generator"
+                     ]
+    },
+    {
+        "id":  "column-statistics",
+        "name":  "Column Statistics",
+        "category":  "Data",
+        "template":  "D",
+        "description":  "Min, max, mean and median for CSV columns.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "column",
+                         "statistics",
+                         "data"
+                     ]
+    },
+    {
+        "id":  "word-counter",
+        "name":  "Word Counter",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Count words, characters, sentences and paragraphs.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "word",
+                         "counter",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "character-counter",
+        "name":  "Character Counter",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Count characters with and without spaces.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "character",
+                         "counter",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "case-converter",
+        "name":  "Case Converter",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "UPPER, lower, Title, camelCase, snake_case and more.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "case",
+                         "converter",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "remove-extra-spaces",
+        "name":  "Remove Extra Spaces",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Collapse repeated spaces and trim lines.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "remove",
+                         "extra",
+                         "spaces",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "remove-line-breaks",
+        "name":  "Remove Line Breaks",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Join lines into a single paragraph.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "remove",
+                         "line",
+                         "breaks",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "add-line-numbers",
+        "name":  "Add Line Numbers",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Prefix each line with a number.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "add",
+                         "line",
+                         "numbers",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "reverse-text",
+        "name":  "Reverse Text",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Reverse characters, words or lines.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "reverse",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "text-repeater",
+        "name":  "Text Repeater",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Repeat text with a separator.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "text",
+                         "repeater"
+                     ]
+    },
+    {
+        "id":  "readability-score",
+        "name":  "Readability Score",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Flesch reading ease and grade level.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "readability",
+                         "score",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "reading-time-estimator",
+        "name":  "Reading Time Estimator",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Estimate reading and speaking time.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "reading",
+                         "time",
+                         "estimator",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "keyword-density",
+        "name":  "Keyword Density",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Count how often each word appears.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "keyword",
+                         "density",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "word-frequency-counter",
+        "name":  "Word Frequency Counter",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Rank the most used words in a text.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "word",
+                         "frequency",
+                         "counter",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "lorem-ipsum-generator",
+        "name":  "Lorem Ipsum Generator",
+        "category":  "Text",
+        "template":  "G",
+        "description":  "Generate placeholder paragraphs.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "lorem",
+                         "ipsum",
+                         "generator",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "fancy-text-generator",
+        "name":  "Fancy Text Generator",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Convert text into Unicode styles.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "fancy",
+                         "text",
+                         "generator"
+                     ]
+    },
+    {
+        "id":  "morse-code-translator",
+        "name":  "Morse Code Translator",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Translate text to Morse and back, with audio.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "morse",
+                         "code",
+                         "translator",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "binary-text-converter",
+        "name":  "Binary Text Converter",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Convert text to binary and back.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "binary",
+                         "text",
+                         "converter"
+                     ]
+    },
+    {
+        "id":  "rot13-and-caesar-cipher",
+        "name":  "ROT13 and Caesar Cipher",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Shift letters by any amount.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "rot13",
+                         "and",
+                         "caesar",
+                         "cipher",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "vigenere-cipher",
+        "name":  "Vigenere Cipher",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Encrypt or decrypt with a keyword.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "vigenere",
+                         "cipher",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "number-to-words",
+        "name":  "Number to Words",
+        "category":  "Text",
+        "template":  "C",
+        "description":  "Write numbers out as words.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "number",
+                         "to",
+                         "words",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "roman-numeral-converter",
+        "name":  "Roman Numeral Converter",
+        "category":  "Text",
+        "template":  "C",
+        "description":  "Convert between numbers and Roman numerals.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "roman",
+                         "numeral",
+                         "converter",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "nato-phonetic-alphabet",
+        "name":  "NATO Phonetic Alphabet",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Spell text using the NATO alphabet.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "nato",
+                         "phonetic",
+                         "alphabet",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "markdown-to-html",
+        "name":  "Markdown to HTML",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Convert Markdown into HTML.",
+        "runsLocally":  true,
+        "library":  "marked",
+        "batch":  3,
+        "status":  "planned",
+        "keywords":  [
+                         "markdown",
+                         "to",
+                         "html",
+                         "text",
+                         "marked"
+                     ]
+    },
+    {
+        "id":  "html-to-markdown",
+        "name":  "HTML to Markdown",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Convert HTML into Markdown.",
+        "runsLocally":  true,
+        "library":  "turndown",
+        "batch":  3,
+        "status":  "planned",
+        "keywords":  [
+                         "html",
+                         "to",
+                         "markdown",
+                         "text",
+                         "turndown"
+                     ]
+    },
+    {
+        "id":  "html-to-text",
+        "name":  "HTML to Text",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Strip tags and keep the readable text.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "html",
+                         "to",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "text-to-speech",
+        "name":  "Text to Speech",
+        "category":  "Text",
+        "template":  "G",
+        "description":  "Read text aloud with browser voices.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "text",
+                         "to",
+                         "speech"
+                     ]
+    },
+    {
+        "id":  "palindrome-checker",
+        "name":  "Palindrome Checker",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Check if text reads the same backwards.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "palindrome",
+                         "checker",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "anagram-checker",
+        "name":  "Anagram Checker",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Check if two words are anagrams.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "anagram",
+                         "checker",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "special-characters",
+        "name":  "Special Characters",
+        "category":  "Text",
+        "template":  "R",
+        "description":  "Click to copy symbols and punctuation.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "special",
+                         "characters",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "emoji-picker",
+        "name":  "Emoji Picker",
+        "category":  "Text",
+        "template":  "R",
+        "description":  "Search and copy emoji.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "emoji",
+                         "picker",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "text-to-ascii-art",
+        "name":  "Text to ASCII Art",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Turn text into ASCII banners.",
+        "runsLocally":  true,
+        "library":  "figlet",
+        "batch":  3,
+        "status":  "planned",
+        "keywords":  [
+                         "text",
+                         "to",
+                         "ascii",
+                         "art",
+                         "figlet"
+                     ]
+    },
+    {
+        "id":  "social-character-limits",
+        "name":  "Social Character Limits",
+        "category":  "Text",
+        "template":  "C",
+        "description":  "Check text against platform character limits.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "social",
+                         "character",
+                         "limits",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "bionic-reading-converter",
+        "name":  "Bionic Reading Converter",
+        "category":  "Text",
+        "template":  "T",
+        "description":  "Bold the first letters of words for faster reading.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "bionic",
+                         "reading",
+                         "converter",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "peso-amount-in-words",
+        "name":  "Peso Amount in Words",
+        "category":  "Text",
+        "template":  "C",
+        "description":  "Write a peso amount in words for checks and invoices.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "peso",
+                         "amount",
+                         "in",
+                         "words",
+                         "text"
+                     ]
+    },
+    {
+        "id":  "image-resizer",
+        "name":  "Image Resizer",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Resize images by pixels or percentage.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "image",
+                         "resizer",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "image-compressor",
+        "name":  "Image Compressor",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Reduce JPG and PNG file size.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "image",
+                         "compressor",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "jpg-to-png",
+        "name":  "JPG to PNG",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Convert JPG images to PNG.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "jpg",
+                         "to",
+                         "png",
+                         "image",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "png-to-jpg",
+        "name":  "PNG to JPG",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Convert PNG images to JPG.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "png",
+                         "to",
+                         "jpg",
+                         "image",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "image-to-base64",
+        "name":  "Image to Base64",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Turn an image into a data URI.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "image",
+                         "to",
+                         "base64",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "base64-to-image",
+        "name":  "Base64 to Image",
+        "category":  "Image \u0026 Media",
+        "template":  "T",
+        "description":  "Preview and download an image from Base64.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "base64",
+                         "to",
+                         "image",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "svg-optimizer",
+        "name":  "SVG Optimizer",
+        "category":  "Image \u0026 Media",
+        "template":  "T",
+        "description":  "Shrink SVG files.",
+        "runsLocally":  true,
+        "library":  "svgo",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "svg",
+                         "optimizer",
+                         "image",
+                         "media",
+                         "svgo"
+                     ]
+    },
+    {
+        "id":  "svg-to-png",
+        "name":  "SVG to PNG",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Render an SVG as a PNG.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "svg",
+                         "to",
+                         "png",
+                         "image",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "favicon-generator",
+        "name":  "Favicon Generator",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Create favicons in every size.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "favicon",
+                         "generator",
+                         "image",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "image-cropper",
+        "name":  "Image Cropper",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Crop to a box or a fixed ratio.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "image",
+                         "cropper",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "image-rotate-and-flip",
+        "name":  "Image Rotate and Flip",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Rotate or mirror images.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "image",
+                         "rotate",
+                         "and",
+                         "flip",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "image-filters",
+        "name":  "Image Filters",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Grayscale, sepia, blur and contrast.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "image",
+                         "filters",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "image-color-picker",
+        "name":  "Image Color Picker",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Click an image to read a color.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "image",
+                         "color",
+                         "picker",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "dominant-colors-extractor",
+        "name":  "Dominant Colors Extractor",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Get the main colors of an image.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "dominant",
+                         "colors",
+                         "extractor",
+                         "image",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "exif-viewer",
+        "name":  "EXIF Viewer",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Read photo metadata.",
+        "runsLocally":  true,
+        "library":  "exifr",
+        "batch":  3,
+        "status":  "planned",
+        "keywords":  [
+                         "exif",
+                         "viewer",
+                         "image",
+                         "media",
+                         "exifr"
+                     ]
+    },
+    {
+        "id":  "exif-remover",
+        "name":  "EXIF Remover",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Strip location and camera data.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "exif",
+                         "remover",
+                         "image",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "png-to-ico",
+        "name":  "PNG to ICO",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Convert PNG to .ico.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "png",
+                         "to",
+                         "ico",
+                         "image",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "image-to-ascii",
+        "name":  "Image to ASCII",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Turn a picture into text art.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "image",
+                         "to",
+                         "ascii",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "image-watermark",
+        "name":  "Image Watermark",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Add text or logo watermarks.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "image",
+                         "watermark",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "placeholder-image-generator",
+        "name":  "Placeholder Image Generator",
+        "category":  "Image \u0026 Media",
+        "template":  "G",
+        "description":  "Create sized placeholder images.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "placeholder",
+                         "image",
+                         "generator",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "social-image-sizes",
+        "name":  "Social Image Sizes",
+        "category":  "Image \u0026 Media",
+        "template":  "R",
+        "description":  "Searchable sizes for every platform.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "social",
+                         "image",
+                         "sizes",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "aspect-ratio-calculator",
+        "name":  "Aspect Ratio Calculator",
+        "category":  "Image \u0026 Media",
+        "template":  "C",
+        "description":  "Scale dimensions while keeping ratio.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "aspect",
+                         "ratio",
+                         "calculator",
+                         "image",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "avif-converter",
+        "name":  "AVIF Converter",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Convert images to AVIF.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "avif",
+                         "converter",
+                         "image",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "heic-to-jpg",
+        "name":  "HEIC to JPG",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Convert iPhone HEIC photos.",
+        "runsLocally":  true,
+        "library":  "heic2any",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "heic",
+                         "to",
+                         "jpg",
+                         "image",
+                         "media",
+                         "heic2any"
+                     ]
+    },
+    {
+        "id":  "image-collage-maker",
+        "name":  "Image Collage Maker",
+        "category":  "Image \u0026 Media",
+        "template":  "G",
+        "description":  "Combine images into a grid.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "image",
+                         "collage",
+                         "maker",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "sprite-sheet-generator",
+        "name":  "Sprite Sheet Generator",
+        "category":  "Image \u0026 Media",
+        "template":  "G",
+        "description":  "Pack images into a sprite sheet and CSS.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "sprite",
+                         "sheet",
+                         "generator",
+                         "image",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "gif-frame-extractor",
+        "name":  "GIF Frame Extractor",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Split a GIF into frames.",
+        "runsLocally":  true,
+        "library":  "gifuct-js",
+        "batch":  3,
+        "status":  "planned",
+        "keywords":  [
+                         "gif",
+                         "frame",
+                         "extractor",
+                         "image",
+                         "media",
+                         "gifuct",
+                         "js"
+                     ]
+    },
+    {
+        "id":  "gif-maker",
+        "name":  "GIF Maker",
+        "category":  "Image \u0026 Media",
+        "template":  "G",
+        "description":  "Build a GIF from images.",
+        "runsLocally":  true,
+        "library":  "gif.js",
+        "batch":  3,
+        "status":  "planned",
+        "keywords":  [
+                         "gif",
+                         "maker",
+                         "image",
+                         "media",
+                         "js"
+                     ]
+    },
+    {
+        "id":  "screen-recorder",
+        "name":  "Screen Recorder",
+        "category":  "Image \u0026 Media",
+        "template":  "G",
+        "description":  "Record your screen in the browser.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "screen",
+                         "recorder",
+                         "image",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "webcam-test",
+        "name":  "Webcam Test",
+        "category":  "Image \u0026 Media",
+        "template":  "G",
+        "description":  "Check your camera.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "webcam",
+                         "test",
+                         "image",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "microphone-test",
+        "name":  "Microphone Test",
+        "category":  "Image \u0026 Media",
+        "template":  "G",
+        "description":  "Check your microphone level.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "microphone",
+                         "test",
+                         "image",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "audio-recorder",
+        "name":  "Audio Recorder",
+        "category":  "Image \u0026 Media",
+        "template":  "G",
+        "description":  "Record audio and download it.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "audio",
+                         "recorder",
+                         "image",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "video-to-gif",
+        "name":  "Video to GIF",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Convert a short video to a GIF.",
+        "runsLocally":  true,
+        "library":  "ffmpeg.wasm",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "video",
+                         "to",
+                         "gif",
+                         "image",
+                         "media",
+                         "ffmpeg",
+                         "wasm"
+                     ]
+    },
+    {
+        "id":  "video-trimmer",
+        "name":  "Video Trimmer",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Cut a section out of a video.",
+        "runsLocally":  true,
+        "library":  "ffmpeg.wasm",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "video",
+                         "trimmer",
+                         "image",
+                         "media",
+                         "ffmpeg",
+                         "wasm"
+                     ]
+    },
+    {
+        "id":  "audio-converter",
+        "name":  "Audio Converter",
+        "category":  "Image \u0026 Media",
+        "template":  "F",
+        "description":  "Convert between MP3, WAV and more.",
+        "runsLocally":  true,
+        "library":  "ffmpeg.wasm",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "audio",
+                         "converter",
+                         "image",
+                         "media",
+                         "ffmpeg",
+                         "wasm"
+                     ]
+    },
+    {
+        "id":  "merge-pdf",
+        "name":  "Merge PDF",
+        "category":  "Documents",
+        "template":  "F",
+        "description":  "Combine PDFs into one.",
+        "runsLocally":  true,
+        "library":  "pdf-lib",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "merge",
+                         "pdf",
+                         "documents",
+                         "lib"
+                     ]
+    },
+    {
+        "id":  "split-pdf",
+        "name":  "Split PDF",
+        "category":  "Documents",
+        "template":  "F",
+        "description":  "Extract pages or ranges.",
+        "runsLocally":  true,
+        "library":  "pdf-lib",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "split",
+                         "pdf",
+                         "documents",
+                         "lib"
+                     ]
+    },
+    {
+        "id":  "rotate-pdf",
+        "name":  "Rotate PDF",
+        "category":  "Documents",
+        "template":  "F",
+        "description":  "Rotate pages.",
+        "runsLocally":  true,
+        "library":  "pdf-lib",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "rotate",
+                         "pdf",
+                         "documents",
+                         "lib"
+                     ]
+    },
+    {
+        "id":  "reorder-pdf-pages",
+        "name":  "Reorder PDF Pages",
+        "category":  "Documents",
+        "template":  "F",
+        "description":  "Drag pages into a new order.",
+        "runsLocally":  true,
+        "library":  "pdf-lib",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "reorder",
+                         "pdf",
+                         "pages",
+                         "documents",
+                         "lib"
+                     ]
+    },
+    {
+        "id":  "delete-pdf-pages",
+        "name":  "Delete PDF Pages",
+        "category":  "Documents",
+        "template":  "F",
+        "description":  "Remove pages from a PDF.",
+        "runsLocally":  true,
+        "library":  "pdf-lib",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "delete",
+                         "pdf",
+                         "pages",
+                         "documents",
+                         "lib"
+                     ]
+    },
+    {
+        "id":  "pdf-to-images",
+        "name":  "PDF to Images",
+        "category":  "Documents",
+        "template":  "F",
+        "description":  "Export PDF pages as images.",
+        "runsLocally":  true,
+        "library":  "pdf.js",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "pdf",
+                         "to",
+                         "images",
+                         "documents",
+                         "js"
+                     ]
+    },
+    {
+        "id":  "images-to-pdf",
+        "name":  "Images to PDF",
+        "category":  "Documents",
+        "template":  "F",
+        "description":  "Combine images into a PDF.",
+        "runsLocally":  true,
+        "library":  "pdf-lib",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "images",
+                         "to",
+                         "pdf",
+                         "documents",
+                         "lib"
+                     ]
+    },
+    {
+        "id":  "extract-pdf-text",
+        "name":  "Extract PDF Text",
+        "category":  "Documents",
+        "template":  "F",
+        "description":  "Copy the text out of a PDF.",
+        "runsLocally":  true,
+        "library":  "pdf.js",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "extract",
+                         "pdf",
+                         "text",
+                         "documents",
+                         "js"
+                     ]
+    },
+    {
+        "id":  "add-pdf-watermark",
+        "name":  "Add PDF Watermark",
+        "category":  "Documents",
+        "template":  "F",
+        "description":  "Stamp text on every page.",
+        "runsLocally":  true,
+        "library":  "pdf-lib",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "add",
+                         "pdf",
+                         "watermark",
+                         "documents",
+                         "lib"
+                     ]
+    },
+    {
+        "id":  "pdf-metadata-editor",
+        "name":  "PDF Metadata Editor",
+        "category":  "Documents",
+        "template":  "F",
+        "description":  "Edit title, author and keywords.",
+        "runsLocally":  true,
+        "library":  "pdf-lib",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "pdf",
+                         "metadata",
+                         "editor",
+                         "documents",
+                         "lib"
+                     ]
+    },
+    {
+        "id":  "text-to-pdf",
+        "name":  "Text to PDF",
+        "category":  "Documents",
+        "template":  "G",
+        "description":  "Turn plain text into a PDF.",
+        "runsLocally":  true,
+        "library":  "pdf-lib",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "text",
+                         "to",
+                         "pdf",
+                         "documents",
+                         "lib"
+                     ]
+    },
+    {
+        "id":  "invoice-generator",
+        "name":  "Invoice Generator",
+        "category":  "Documents",
+        "template":  "G",
+        "description":  "Create a simple invoice PDF.",
+        "runsLocally":  true,
+        "library":  "pdf-lib",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "invoice",
+                         "generator",
+                         "documents",
+                         "pdf",
+                         "lib"
+                     ]
+    },
+    {
+        "id":  "docx-to-text",
+        "name":  "DOCX to Text",
+        "category":  "Documents",
+        "template":  "F",
+        "description":  "Extract text from Word files.",
+        "runsLocally":  true,
+        "library":  "mammoth",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "docx",
+                         "to",
+                         "text",
+                         "documents",
+                         "mammoth"
+                     ]
+    },
+    {
+        "id":  "docx-to-html",
+        "name":  "DOCX to HTML",
+        "category":  "Documents",
+        "template":  "F",
+        "description":  "Convert Word files to clean HTML.",
+        "runsLocally":  true,
+        "library":  "mammoth",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "docx",
+                         "to",
+                         "html",
+                         "documents",
+                         "mammoth"
+                     ]
+    },
+    {
+        "id":  "color-converter",
+        "name":  "Color Converter",
+        "category":  "Design",
+        "template":  "C",
+        "description":  "HEX, RGB, HSL and OKLCH.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "color",
+                         "converter",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "color-picker",
+        "name":  "Color Picker",
+        "category":  "Design",
+        "template":  "G",
+        "description":  "Pick colors and copy any format.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "color",
+                         "picker",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "palette-generator",
+        "name":  "Palette Generator",
+        "category":  "Design",
+        "template":  "G",
+        "description":  "Build palettes from one color.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "palette",
+                         "generator",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "contrast-checker",
+        "name":  "Contrast Checker",
+        "category":  "Design",
+        "template":  "C",
+        "description":  "WCAG contrast ratios and pass/fail.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "contrast",
+                         "checker",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "gradient-generator",
+        "name":  "Gradient Generator",
+        "category":  "Design",
+        "template":  "G",
+        "description":  "Build CSS gradients visually.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "gradient",
+                         "generator",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "box-shadow-generator",
+        "name":  "Box Shadow Generator",
+        "category":  "Design",
+        "template":  "G",
+        "description":  "Layered CSS shadows with live preview.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "box",
+                         "shadow",
+                         "generator",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "border-radius-generator",
+        "name":  "Border Radius Generator",
+        "category":  "Design",
+        "template":  "G",
+        "description":  "Per-corner radius with CSS output.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "border",
+                         "radius",
+                         "generator",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "css-clamp-calculator",
+        "name":  "CSS Clamp Calculator",
+        "category":  "Design",
+        "template":  "C",
+        "description":  "Fluid type and spacing with clamp().",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "css",
+                         "clamp",
+                         "calculator",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "px-to-rem-converter",
+        "name":  "PX to REM Converter",
+        "category":  "Design",
+        "template":  "C",
+        "description":  "Convert between px, rem and em.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "px",
+                         "to",
+                         "rem",
+                         "converter",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "flexbox-playground",
+        "name":  "Flexbox Playground",
+        "category":  "Design",
+        "template":  "G",
+        "description":  "Try flex properties and copy CSS.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "flexbox",
+                         "playground",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "css-grid-generator",
+        "name":  "CSS Grid Generator",
+        "category":  "Design",
+        "template":  "G",
+        "description":  "Lay out a grid and copy CSS.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "css",
+                         "grid",
+                         "generator",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "color-shades-generator",
+        "name":  "Color Shades Generator",
+        "category":  "Design",
+        "template":  "G",
+        "description":  "Tints and shades of any color.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "color",
+                         "shades",
+                         "generator",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "color-blindness-simulator",
+        "name":  "Color Blindness Simulator",
+        "category":  "Design",
+        "template":  "F",
+        "description":  "Preview colors or images as seen with CVD.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "color",
+                         "blindness",
+                         "simulator",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "svg-wave-generator",
+        "name":  "SVG Wave Generator",
+        "category":  "Design",
+        "template":  "G",
+        "description":  "Section dividers as SVG.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "svg",
+                         "wave",
+                         "generator",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "blob-generator",
+        "name":  "Blob Generator",
+        "category":  "Design",
+        "template":  "G",
+        "description":  "Organic SVG blobs.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "blob",
+                         "generator",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "pattern-generator",
+        "name":  "Pattern Generator",
+        "category":  "Design",
+        "template":  "G",
+        "description":  "Repeating SVG and CSS patterns.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "pattern",
+                         "generator",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "css-filter-generator",
+        "name":  "CSS Filter Generator",
+        "category":  "Design",
+        "template":  "G",
+        "description":  "Blur, brightness and more with live preview.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "css",
+                         "filter",
+                         "generator",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "clip-path-generator",
+        "name":  "Clip-path Generator",
+        "category":  "Design",
+        "template":  "G",
+        "description":  "Draw shapes and copy clip-path.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "clip",
+                         "path",
+                         "generator",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "type-scale-generator",
+        "name":  "Type Scale Generator",
+        "category":  "Design",
+        "template":  "G",
+        "description":  "Modular scales with CSS variables.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "type",
+                         "scale",
+                         "generator",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "spacing-scale-generator",
+        "name":  "Spacing Scale Generator",
+        "category":  "Design",
+        "template":  "G",
+        "description":  "Spacing tokens from a base unit.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "spacing",
+                         "scale",
+                         "generator",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "design-token-generator",
+        "name":  "Design Token Generator",
+        "category":  "Design",
+        "template":  "G",
+        "description":  "Export colors, type and spacing as CSS and JSON.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "design",
+                         "token",
+                         "generator"
+                     ]
+    },
+    {
+        "id":  "glassmorphism-generator",
+        "name":  "Glassmorphism Generator",
+        "category":  "Design",
+        "template":  "G",
+        "description":  "Frosted glass CSS.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "glassmorphism",
+                         "generator",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "text-shadow-generator",
+        "name":  "Text Shadow Generator",
+        "category":  "Design",
+        "template":  "G",
+        "description":  "Layered text shadows.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "text",
+                         "shadow",
+                         "generator",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "keyframes-generator",
+        "name":  "Keyframes Generator",
+        "category":  "Design",
+        "template":  "G",
+        "description":  "Build CSS animations.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "keyframes",
+                         "generator",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "cubic-bezier-editor",
+        "name":  "Cubic-bezier Editor",
+        "category":  "Design",
+        "template":  "G",
+        "description":  "Edit easing curves.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "cubic",
+                         "bezier",
+                         "editor",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "css-shape-generator",
+        "name":  "CSS Shape Generator",
+        "category":  "Design",
+        "template":  "G",
+        "description":  "Triangles, arrows and tooltips in pure CSS.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "css",
+                         "shape",
+                         "generator",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "tailwind-color-finder",
+        "name":  "Tailwind Color Finder",
+        "category":  "Design",
+        "template":  "R",
+        "description":  "Find the nearest Tailwind color.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "tailwind",
+                         "color",
+                         "finder",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "named-colors",
+        "name":  "Named Colors",
+        "category":  "Design",
+        "template":  "R",
+        "description":  "All CSS named colors.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "named",
+                         "colors",
+                         "design"
+                     ]
+    },
+    {
+        "id":  "length-converter",
+        "name":  "Length Converter",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Meters, feet, inches, miles and more.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "length",
+                         "converter",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "weight-converter",
+        "name":  "Weight Converter",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Kilograms, pounds, ounces and more.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "weight",
+                         "converter",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "temperature-converter",
+        "name":  "Temperature Converter",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Celsius, Fahrenheit and Kelvin.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "temperature",
+                         "converter",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "area-converter",
+        "name":  "Area Converter",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Square meters, acres, hectares and more.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "area",
+                         "converter",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "volume-converter",
+        "name":  "Volume Converter",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Liters, gallons, cups and more.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "volume",
+                         "converter",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "speed-converter",
+        "name":  "Speed Converter",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "km/h, mph, m/s and knots.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "speed",
+                         "converter",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "data-size-converter",
+        "name":  "Data Size Converter",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Bytes, KB, MB, GB, KiB and MiB.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "data",
+                         "size",
+                         "converter",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "percentage-calculator",
+        "name":  "Percentage Calculator",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Percent of, change and difference.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "percentage",
+                         "calculator",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "tip-calculator",
+        "name":  "Tip Calculator",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Split a bill and add a tip.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "tip",
+                         "calculator",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "discount-calculator",
+        "name":  "Discount Calculator",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Sale prices and savings.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "discount",
+                         "calculator",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "vat-and-sales-tax-calculator",
+        "name":  "VAT and Sales Tax Calculator",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Add or remove tax from a price.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "vat",
+                         "and",
+                         "sales",
+                         "tax",
+                         "calculator",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "loan-calculator",
+        "name":  "Loan Calculator",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Monthly payment and total interest.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "loan",
+                         "calculator",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "compound-interest-calculator",
+        "name":  "Compound Interest Calculator",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Growth with regular deposits.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "compound",
+                         "interest",
+                         "calculator",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "simple-interest-calculator",
+        "name":  "Simple Interest Calculator",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Interest over time.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "simple",
+                         "interest",
+                         "calculator",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "bmi-calculator",
+        "name":  "BMI Calculator",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Body mass index with ranges.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "bmi",
+                         "calculator",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "scientific-calculator",
+        "name":  "Scientific Calculator",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Trig, logs, powers and memory.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "scientific",
+                         "calculator",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "fraction-calculator",
+        "name":  "Fraction Calculator",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Add, subtract, multiply, divide and simplify.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "fraction",
+                         "calculator",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "ratio-calculator",
+        "name":  "Ratio Calculator",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Solve and scale ratios.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "ratio",
+                         "calculator",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "average-median-and-mode",
+        "name":  "Average, Median and Mode",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Statistics for a list of numbers.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "average",
+                         "median",
+                         "and",
+                         "mode",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "standard-deviation-calculator",
+        "name":  "Standard Deviation Calculator",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Mean, variance and deviation.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "standard",
+                         "deviation",
+                         "calculator",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "random-number-generator",
+        "name":  "Random Number Generator",
+        "category":  "Math \u0026 Units",
+        "template":  "G",
+        "description":  "Random numbers in a range.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "random",
+                         "number",
+                         "generator",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "dice-roller",
+        "name":  "Dice Roller",
+        "category":  "Math \u0026 Units",
+        "template":  "G",
+        "description":  "Roll any dice with modifiers.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "dice",
+                         "roller",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "coin-flip",
+        "name":  "Coin Flip",
+        "category":  "Math \u0026 Units",
+        "template":  "G",
+        "description":  "Flip a coin, with history.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "coin",
+                         "flip",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "random-picker-wheel",
+        "name":  "Random Picker Wheel",
+        "category":  "Math \u0026 Units",
+        "template":  "G",
+        "description":  "Spin a wheel to choose.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "random",
+                         "picker",
+                         "wheel",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "gpa-calculator",
+        "name":  "GPA Calculator",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Weighted GPA from grades and credits.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "gpa",
+                         "calculator",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "download-time-calculator",
+        "name":  "Download Time Calculator",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "File size and speed to time.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "download",
+                         "time",
+                         "calculator",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "prime-number-checker",
+        "name":  "Prime Number Checker",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Test primes and factor numbers.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "prime",
+                         "number",
+                         "checker",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "gcd-and-lcm-calculator",
+        "name":  "GCD and LCM Calculator",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Greatest divisor and least multiple.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "gcd",
+                         "and",
+                         "lcm",
+                         "calculator",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "quadratic-equation-solver",
+        "name":  "Quadratic Equation Solver",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Roots with steps.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "quadratic",
+                         "equation",
+                         "solver",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "percentage-increase-calculator",
+        "name":  "Percentage Increase Calculator",
+        "category":  "Math \u0026 Units",
+        "template":  "C",
+        "description":  "Raise or lower a value by a percent.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "percentage",
+                         "increase",
+                         "calculator",
+                         "math",
+                         "units"
+                     ]
+    },
+    {
+        "id":  "date-difference-calculator",
+        "name":  "Date Difference Calculator",
+        "category":  "Time \u0026 Dates",
+        "template":  "C",
+        "description":  "Days, weeks and months between dates.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "date",
+                         "difference",
+                         "calculator",
+                         "time",
+                         "dates"
+                     ]
+    },
+    {
+        "id":  "add-or-subtract-dates",
+        "name":  "Add or Subtract Dates",
+        "category":  "Time \u0026 Dates",
+        "template":  "C",
+        "description":  "Add days, months or years to a date.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "add",
+                         "or",
+                         "subtract",
+                         "dates",
+                         "time"
+                     ]
+    },
+    {
+        "id":  "business-days-calculator",
+        "name":  "Business Days Calculator",
+        "category":  "Time \u0026 Dates",
+        "template":  "C",
+        "description":  "Working days between two dates.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "business",
+                         "days",
+                         "calculator",
+                         "time",
+                         "dates"
+                     ]
+    },
+    {
+        "id":  "age-calculator",
+        "name":  "Age Calculator",
+        "category":  "Time \u0026 Dates",
+        "template":  "C",
+        "description":  "Exact age in years, months and days.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "age",
+                         "calculator",
+                         "time",
+                         "dates"
+                     ]
+    },
+    {
+        "id":  "time-zone-converter",
+        "name":  "Time Zone Converter",
+        "category":  "Time \u0026 Dates",
+        "template":  "C",
+        "description":  "Convert times across zones.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "time",
+                         "zone",
+                         "converter",
+                         "dates"
+                     ]
+    },
+    {
+        "id":  "world-clock",
+        "name":  "World Clock",
+        "category":  "Time \u0026 Dates",
+        "template":  "G",
+        "description":  "Current time in many cities.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "world",
+                         "clock",
+                         "time",
+                         "dates"
+                     ]
+    },
+    {
+        "id":  "countdown-timer",
+        "name":  "Countdown Timer",
+        "category":  "Time \u0026 Dates",
+        "template":  "G",
+        "description":  "Count down to a time or date.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "countdown",
+                         "timer",
+                         "time",
+                         "dates"
+                     ]
+    },
+    {
+        "id":  "stopwatch",
+        "name":  "Stopwatch",
+        "category":  "Time \u0026 Dates",
+        "template":  "G",
+        "description":  "Lap timer.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "stopwatch",
+                         "time",
+                         "dates"
+                     ]
+    },
+    {
+        "id":  "pomodoro-timer",
+        "name":  "Pomodoro Timer",
+        "category":  "Time \u0026 Dates",
+        "template":  "G",
+        "description":  "Focus and break cycles.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "pomodoro",
+                         "timer",
+                         "time",
+                         "dates"
+                     ]
+    },
+    {
+        "id":  "calendar-event-ics-generator",
+        "name":  "Calendar Event (.ics) Generator",
+        "category":  "Time \u0026 Dates",
+        "template":  "G",
+        "description":  "Create an event file for any calendar app.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "calendar",
+                         "event",
+                         "ics",
+                         "generator",
+                         "time",
+                         "dates"
+                     ]
+    },
+    {
+        "id":  "week-number-calculator",
+        "name":  "Week Number Calculator",
+        "category":  "Time \u0026 Dates",
+        "template":  "C",
+        "description":  "ISO week number for any date.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "week",
+                         "number",
+                         "calculator",
+                         "time",
+                         "dates"
+                     ]
+    },
+    {
+        "id":  "days-until-calculator",
+        "name":  "Days Until Calculator",
+        "category":  "Time \u0026 Dates",
+        "template":  "C",
+        "description":  "Days left until a date.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "days",
+                         "until",
+                         "calculator",
+                         "time",
+                         "dates"
+                     ]
+    },
+    {
+        "id":  "meeting-time-planner",
+        "name":  "Meeting Time Planner",
+        "category":  "Time \u0026 Dates",
+        "template":  "C",
+        "description":  "Find overlapping hours across time zones.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "meeting",
+                         "time",
+                         "planner",
+                         "dates"
+                     ]
+    },
+    {
+        "id":  "password-generator",
+        "name":  "Password Generator",
+        "category":  "Security",
+        "template":  "G",
+        "description":  "Strong random passwords.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "password",
+                         "generator",
+                         "security"
+                     ]
+    },
+    {
+        "id":  "password-strength-checker",
+        "name":  "Password Strength Checker",
+        "category":  "Security",
+        "template":  "T",
+        "description":  "Estimate how guessable a password is.",
+        "runsLocally":  true,
+        "library":  "zxcvbn",
+        "batch":  3,
+        "status":  "planned",
+        "keywords":  [
+                         "password",
+                         "strength",
+                         "checker",
+                         "security",
+                         "zxcvbn"
+                     ]
+    },
+    {
+        "id":  "passphrase-generator",
+        "name":  "Passphrase Generator",
+        "category":  "Security",
+        "template":  "G",
+        "description":  "Memorable multi-word passphrases.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "passphrase",
+                         "generator",
+                         "security"
+                     ]
+    },
+    {
+        "id":  "random-token-generator",
+        "name":  "Random Token Generator",
+        "category":  "Security",
+        "template":  "G",
+        "description":  "Secure random strings and API keys.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "random",
+                         "token",
+                         "generator",
+                         "security"
+                     ]
+    },
+    {
+        "id":  "file-hash-checker",
+        "name":  "File Hash Checker",
+        "category":  "Security",
+        "template":  "F",
+        "description":  "SHA-256 and SHA-512 of a file.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "file",
+                         "hash",
+                         "checker",
+                         "security"
+                     ]
+    },
+    {
+        "id":  "aes-text-encrypt-decrypt",
+        "name":  "AES Text Encrypt/Decrypt",
+        "category":  "Security",
+        "template":  "T",
+        "description":  "Encrypt text with a password.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "aes",
+                         "text",
+                         "encrypt",
+                         "decrypt",
+                         "security"
+                     ]
+    },
+    {
+        "id":  "rsa-key-pair-generator",
+        "name":  "RSA Key Pair Generator",
+        "category":  "Security",
+        "template":  "G",
+        "description":  "Generate RSA keys in the browser.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "rsa",
+                         "key",
+                         "pair",
+                         "generator",
+                         "security"
+                     ]
+    },
+    {
+        "id":  "bcrypt-generator",
+        "name":  "Bcrypt Generator",
+        "category":  "Security",
+        "template":  "T",
+        "description":  "Hash and verify with bcrypt.",
+        "runsLocally":  true,
+        "library":  "bcryptjs",
+        "batch":  3,
+        "status":  "planned",
+        "keywords":  [
+                         "bcrypt",
+                         "generator",
+                         "security",
+                         "bcryptjs"
+                     ]
+    },
+    {
+        "id":  "totp-code-generator",
+        "name":  "TOTP Code Generator",
+        "category":  "Security",
+        "template":  "G",
+        "description":  "Generate one-time codes from a secret.",
+        "runsLocally":  true,
+        "library":  "otpauth",
+        "batch":  3,
+        "status":  "planned",
+        "keywords":  [
+                         "totp",
+                         "code",
+                         "generator",
+                         "security",
+                         "otpauth"
+                     ]
+    },
+    {
+        "id":  "text-redactor",
+        "name":  "Text Redactor",
+        "category":  "Security",
+        "template":  "T",
+        "description":  "Mask emails, phones and numbers.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "text",
+                         "redactor",
+                         "security"
+                     ]
+    },
+    {
+        "id":  "checksum-compare",
+        "name":  "Checksum Compare",
+        "category":  "Security",
+        "template":  "T",
+        "description":  "Compare two hashes safely.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "checksum",
+                         "compare",
+                         "security"
+                     ]
+    },
+    {
+        "id":  "meta-tag-generator",
+        "name":  "Meta Tag Generator",
+        "category":  "Web \u0026 SEO",
+        "template":  "G",
+        "description":  "Title, description and viewport tags.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "meta",
+                         "tag",
+                         "generator",
+                         "web",
+                         "seo"
+                     ]
+    },
+    {
+        "id":  "open-graph-preview",
+        "name":  "Open Graph Preview",
+        "category":  "Web \u0026 SEO",
+        "template":  "G",
+        "description":  "Preview how a link looks when shared.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "open",
+                         "graph",
+                         "preview",
+                         "web",
+                         "seo"
+                     ]
+    },
+    {
+        "id":  "robots-txt-generator",
+        "name":  "Robots.txt Generator",
+        "category":  "Web \u0026 SEO",
+        "template":  "G",
+        "description":  "Build a robots.txt file.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "robots",
+                         "txt",
+                         "generator",
+                         "web",
+                         "seo"
+                     ]
+    },
+    {
+        "id":  "sitemap-generator",
+        "name":  "Sitemap Generator",
+        "category":  "Web \u0026 SEO",
+        "template":  "G",
+        "description":  "Create sitemap.xml from a list of URLs.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "sitemap",
+                         "generator",
+                         "web",
+                         "seo"
+                     ]
+    },
+    {
+        "id":  "utm-link-builder",
+        "name":  "UTM Link Builder",
+        "category":  "Web \u0026 SEO",
+        "template":  "C",
+        "description":  "Add campaign parameters to a URL.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "utm",
+                         "link",
+                         "builder",
+                         "web",
+                         "seo"
+                     ]
+    },
+    {
+        "id":  "url-parser",
+        "name":  "URL Parser",
+        "category":  "Web \u0026 SEO",
+        "template":  "T",
+        "description":  "Split a URL into parts.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "url",
+                         "parser",
+                         "web",
+                         "seo"
+                     ]
+    },
+    {
+        "id":  "redirect-rule-generator",
+        "name":  "Redirect Rule Generator",
+        "category":  "Web \u0026 SEO",
+        "template":  "G",
+        "description":  "Create .htaccess and nginx redirects.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "redirect",
+                         "rule",
+                         "generator",
+                         "web",
+                         "seo"
+                     ]
+    },
+    {
+        "id":  "json-ld-schema-generator",
+        "name":  "JSON-LD Schema Generator",
+        "category":  "Web \u0026 SEO",
+        "template":  "G",
+        "description":  "Structured data for articles, products and more.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "json",
+                         "ld",
+                         "schema",
+                         "generator",
+                         "web",
+                         "seo"
+                     ]
+    },
+    {
+        "id":  "whatsapp-link-generator",
+        "name":  "WhatsApp Link Generator",
+        "category":  "Web \u0026 SEO",
+        "template":  "G",
+        "description":  "Create wa.me links with a message.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "whatsapp",
+                         "link",
+                         "generator",
+                         "web",
+                         "seo"
+                     ]
+    },
+    {
+        "id":  "mailto-link-generator",
+        "name":  "Mailto Link Generator",
+        "category":  "Web \u0026 SEO",
+        "template":  "G",
+        "description":  "Build mailto links with subject and body.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "mailto",
+                         "link",
+                         "generator",
+                         "web",
+                         "seo"
+                     ]
+    },
+    {
+        "id":  "screen-resolution-info",
+        "name":  "Screen Resolution Info",
+        "category":  "Web \u0026 SEO",
+        "template":  "R",
+        "description":  "Your viewport, screen and pixel ratio.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "screen",
+                         "resolution",
+                         "info",
+                         "web",
+                         "seo"
+                     ]
+    },
+    {
+        "id":  "browser-info",
+        "name":  "Browser Info",
+        "category":  "Web \u0026 SEO",
+        "template":  "R",
+        "description":  "Your browser, languages and features.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "browser",
+                         "info",
+                         "web",
+                         "seo"
+                     ]
+    },
+    {
+        "id":  "keyboard-key-code-viewer",
+        "name":  "Keyboard Key Code Viewer",
+        "category":  "Web \u0026 SEO",
+        "template":  "R",
+        "description":  "See key, code and keyCode.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "keyboard",
+                         "key",
+                         "code",
+                         "viewer",
+                         "web",
+                         "seo"
+                     ]
+    },
+    {
+        "id":  "wi-fi-qr-code-generator",
+        "name":  "Wi-Fi QR Code Generator",
+        "category":  "Web \u0026 SEO",
+        "template":  "G",
+        "description":  "QR code to join a network.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "wi",
+                         "fi",
+                         "qr",
+                         "code",
+                         "generator",
+                         "web",
+                         "seo"
+                     ]
+    },
+    {
+        "id":  "vcard-qr-code-generator",
+        "name":  "vCard QR Code Generator",
+        "category":  "Web \u0026 SEO",
+        "template":  "G",
+        "description":  "Contact QR code.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "vcard",
+                         "qr",
+                         "code",
+                         "generator",
+                         "web",
+                         "seo"
+                     ]
+    },
+    {
+        "id":  "serp-snippet-preview",
+        "name":  "SERP Snippet Preview",
+        "category":  "Web \u0026 SEO",
+        "template":  "G",
+        "description":  "Preview a search result.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "serp",
+                         "snippet",
+                         "preview",
+                         "web",
+                         "seo"
+                     ]
+    },
+    {
+        "id":  "title-and-description-length-checker",
+        "name":  "Title and Description Length Checker",
+        "category":  "Web \u0026 SEO",
+        "template":  "T",
+        "description":  "Check SEO text lengths.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "title",
+                         "and",
+                         "description",
+                         "length",
+                         "checker",
+                         "web",
+                         "seo"
+                     ]
+    },
+    {
+        "id":  "hreflang-generator",
+        "name":  "Hreflang Generator",
+        "category":  "Web \u0026 SEO",
+        "template":  "G",
+        "description":  "Alternate language tags.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "hreflang",
+                         "generator",
+                         "web",
+                         "seo"
+                     ]
+    },
+    {
+        "id":  "ph-mobile-number-formatter",
+        "name":  "PH Mobile Number Formatter",
+        "category":  "Web \u0026 SEO",
+        "template":  "T",
+        "description":  "Format and validate Philippine mobile numbers.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  1,
+        "status":  "planned",
+        "keywords":  [
+                         "ph",
+                         "mobile",
+                         "number",
+                         "formatter",
+                         "web",
+                         "seo"
+                     ]
+    },
+    {
+        "id":  "link-in-bio-page-generator",
+        "name":  "Link in Bio Page Generator",
+        "category":  "Web \u0026 SEO",
+        "template":  "G",
+        "description":  "Create a simple links page as HTML.",
+        "runsLocally":  true,
+        "library":  null,
+        "batch":  2,
+        "status":  "planned",
+        "keywords":  [
+                         "link",
+                         "in",
+                         "bio",
+                         "page",
+                         "generator",
+                         "web",
+                         "seo"
+                     ]
+    },
+    {
+        "id":  "currency-converter",
+        "name":  "Currency Converter",
+        "category":  "Network Lookups",
+        "template":  "C",
+        "description":  "Live exchange rates.",
+        "runsLocally":  false,
+        "library":  null,
+        "batch":  5,
+        "status":  "planned",
+        "keywords":  [
+                         "currency",
+                         "converter",
+                         "network",
+                         "lookups"
+                     ]
+    },
+    {
+        "id":  "ip-address-lookup",
+        "name":  "IP Address Lookup",
+        "category":  "Network Lookups",
+        "template":  "C",
+        "description":  "Your public IP and rough location.",
+        "runsLocally":  false,
+        "library":  null,
+        "batch":  5,
+        "status":  "planned",
+        "keywords":  [
+                         "ip",
+                         "address",
+                         "lookup",
+                         "network",
+                         "lookups"
+                     ]
+    },
+    {
+        "id":  "dns-lookup",
+        "name":  "DNS Lookup",
+        "category":  "Network Lookups",
+        "template":  "C",
+        "description":  "DNS records over HTTPS.",
+        "runsLocally":  false,
+        "library":  null,
+        "batch":  5,
+        "status":  "planned",
+        "keywords":  [
+                         "dns",
+                         "lookup",
+                         "network",
+                         "lookups"
+                     ]
+    },
+    {
+        "id":  "public-holidays-lookup",
+        "name":  "Public Holidays Lookup",
+        "category":  "Network Lookups",
+        "template":  "C",
+        "description":  "Holidays by country and year.",
+        "runsLocally":  false,
+        "library":  null,
+        "batch":  5,
+        "status":  "planned",
+        "keywords":  [
+                         "public",
+                         "holidays",
+                         "lookup",
+                         "network",
+                         "lookups"
+                     ]
+    },
+    {
+        "id":  "country-info-lookup",
+        "name":  "Country Info Lookup",
+        "category":  "Network Lookups",
+        "template":  "C",
+        "description":  "Capitals, currencies and languages.",
+        "runsLocally":  false,
+        "library":  null,
+        "batch":  5,
+        "status":  "planned",
+        "keywords":  [
+                         "country",
+                         "info",
+                         "lookup",
+                         "network",
+                         "lookups"
+                     ]
+    }
+]

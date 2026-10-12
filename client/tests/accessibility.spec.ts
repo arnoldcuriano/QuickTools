@@ -4,7 +4,7 @@ import { expect, test } from '@playwright/test';
 const routes = [
   '/',
   '/docs',
-  '/tools/base64',
+  '/tools/base64-encoder-decoder',
   '/tools/text-formatter',
   '/tools/webp-converter',
   '/tools/json-converter',

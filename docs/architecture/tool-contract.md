@@ -1,6 +1,6 @@
 # Tool Contract
 
-Last reviewed: 2026-07-06
+Last reviewed: 2026-10-12
 
 This document defines the required behavior for every QuickTools browser utility.
 
@@ -29,6 +29,11 @@ Every tool page should provide:
 
 ## Implementation Rules
 
+- Every published tool has `client/src/tools/<id>/index.ts` exporting `meta`, `run`, `examples`, `config`, and `Page`.
+- Metadata comes from the generated registry; tool modules must not duplicate names, descriptions, categories, paths, or status.
+- Use one of the six shared templates: T text, D data, F file, C calculator, G generator, or R reference.
+- Keep `run(input, options)` pure when the operation does not require browser files, canvas, or a third-party request.
+- Examples are both documentation samples and executable unit-test fixtures.
 - Keep page workflow state explicit: input, output, error, processing, copied, and selected mode.
 - Move reusable transformation logic into `client/src/utils`.
 - Move shared types into `client/src/types` when used across components.
@@ -51,3 +56,4 @@ Prefer focused tests for:
 - Empty input.
 - Copy/download behavior when practical.
 - Route rendering for implemented pages.
+- Every exported tool example through the registry-wide example suite.

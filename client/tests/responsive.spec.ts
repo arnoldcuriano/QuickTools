@@ -26,13 +26,13 @@ for (const viewport of viewports) {
   }
 }
 
-test('command shortcut opens and focuses catalog search', async ({ page }) => {
-  await page.goto('/tools/base64');
+test('command shortcut opens and focuses the tool palette', async ({ page }) => {
+  await page.goto('/tools/base64-encoder-decoder');
   await expect(page.getByRole('link', { name: 'QuickTools home' })).toBeVisible();
   await page.locator('body').press('Control+K');
 
-  await expect(page).toHaveURL(/\?focus=search#catalog$/);
-  await expect(page.getByRole('searchbox', { name: 'Search tools' })).toBeFocused();
+  await expect(page.getByRole('dialog', { name: 'Find a tool' })).toBeVisible();
+  await expect(page.getByRole('searchbox', { name: 'Find a tool' })).toBeFocused();
 });
 
 const canvasSignature = async (page: import('@playwright/test').Page) =>

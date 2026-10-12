@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 const tools = [
-  ['/tools/base64', 'Base64 Encoder/Decoder'],
+  ['/tools/base64-encoder-decoder', 'Base64 Encoder/Decoder'],
   ['/tools/text-formatter', 'Text Formatter'],
   ['/tools/webp-converter', 'WebP Converter'],
   ['/tools/json-converter', 'JSON Converter'],
@@ -42,7 +42,7 @@ for (const width of [360, 768, 1280]) {
 }
 
 test('tool page is keyboard navigable', async ({ page }) => {
-  await page.goto('/tools/base64');
+  await page.goto('/tools/base64-encoder-decoder');
   await expect(page.getByRole('heading', { level: 1, name: 'Base64 Encoder/Decoder' })).toBeVisible();
   await page.keyboard.press('Tab');
   await expect(page.getByRole('link', { name: 'QuickTools home' })).toBeFocused();
