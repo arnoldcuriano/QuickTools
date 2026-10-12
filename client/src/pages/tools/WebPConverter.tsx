@@ -4,7 +4,7 @@ import { formatFileSize } from '../../utils/formatFileSize';
 import type { ImageData } from '../../types/imageTools';
 import { convertToWebP, createSourceFileFromImage, createWebPZip, getImageSavingsSummary, getSupportedImageFiles, MAX_WEBP_FILES } from '../../utils/webpConverter';
 import { getTool } from '../../data/toolCatalog';
-import { Button, Dropzone, Field, FileList, FileTool, SettingsPanel } from '../../components/ui/ToolPage';
+import { Button, Dropzone, Field, FileList, FileTool, SettingsPanel, Slider } from '../../components/ui/ToolPage';
 
 const tool = getTool('webp-converter');
 
@@ -45,7 +45,7 @@ const WebPConverter = () => {
   const savings = getImageSavingsSummary(images);
 
   return <FileTool tool={tool} settings={<SettingsPanel>
-    <Field label={`Quality ${quality}%`} hint="80% is a good balance of size and sharpness for most photos."><input type="range" min="10" max="100" value={quality} onChange={(event) => setQuality(Number(event.target.value))} /></Field>
+    <Field label="Quality" value={`${quality}%`} hint="80% is a good balance of size and sharpness for most photos."><Slider min={10} max={100} value={quality} onChange={(event) => setQuality(Number(event.target.value))} /></Field>
     <Button variant="primary" onClick={reconvert} disabled={!images.length || isProcessing}>Convert images</Button>
     <Button variant="secondary" onClick={async () => saveAs(await createWebPZip(images), 'webp-images.zip')} disabled={!images.some((image) => image.webpUrl)}>Download all as ZIP</Button>
     <Button variant="ghost" onClick={clearAll} disabled={!images.length && !error}>Clear all</Button>

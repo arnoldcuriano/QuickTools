@@ -8,7 +8,7 @@ const hardcodedDesignRule = {
   create(context) {
     return {
       Literal(node) {
-        if (typeof node.value === 'string' && /(?:#[0-9a-f]{3,8}\b|\brgba?\(|\bhsla?\()/i.test(node.value)) context.report({ node, messageId: 'color' });
+        if (typeof node.value === 'string' && /(?:#[0-9a-f]{3,8}\b|\brgba?\(|\bhsla?\(|\bblue\b)/i.test(node.value)) context.report({ node, messageId: 'color' });
       },
       Property(node) {
         const name = node.key.type === 'Identifier' ? node.key.name : node.key.value;
@@ -22,6 +22,10 @@ export default tseslint.config(
   { ignores: ['build/**', 'coverage/**', 'public/dot-globe.js'] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
+  {
+    files: ['scripts/**/*.mjs'],
+    languageOptions: { globals: globals.node },
+  },
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {

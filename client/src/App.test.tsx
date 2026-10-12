@@ -17,7 +17,9 @@ test('renders QuickTools app and the GitHub repository link', () => {
 
   expect(screen.getByRole('link', { name: /github.*opens in a new tab/i })).toBeInTheDocument();
   expect(screen.getByRole('link', { name: 'Catalog' })).toHaveAttribute('aria-current', 'page');
+  expect(screen.getByRole('link', { name: 'Docs' })).toHaveAttribute('href', '/docs');
   expect(screen.getByRole('button', { name: /switch to light theme/i })).toHaveTextContent(/Light.*Dark/);
+  expect(screen.getByRole('button', { name: /sound off/i })).toHaveAttribute('aria-pressed', 'false');
 });
 
 test('formats GitHub star counts for compact display', () => {

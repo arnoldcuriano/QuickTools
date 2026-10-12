@@ -1,14 +1,15 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import GitHubRepoStar from './GitHubRepoStar';
+import SoundToggle from './SoundToggle';
 import ThemeToggle from './ThemeToggle';
 
 const AppHeader = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
-  const catalogActive = location.pathname === '/' && location.hash !== '#principles';
-  const principlesActive = location.pathname === '/' && location.hash === '#principles';
+  const catalogActive = location.pathname === '/';
+  const docsActive = location.pathname === '/docs';
 
   const openCatalogSearch = useCallback(() => {
     navigate('/?focus=search#catalog');
@@ -37,20 +38,22 @@ const AppHeader = () => {
           <Link to="/#catalog" className="brand-nav-link" aria-current={catalogActive ? 'page' : undefined}>
             Catalog
           </Link>
-          <Link to="/#principles" className="brand-nav-link" aria-current={principlesActive ? 'page' : undefined}>
-            Principles
+          <Link to="/docs" className="brand-nav-link" aria-current={docsActive ? 'page' : undefined}>
+            Docs
           </Link>
           <GitHubRepoStar />
           <ThemeToggle />
+          <SoundToggle />
         </nav>
-        <button className="menu-btn" type="button" aria-expanded={menuOpen} aria-controls="mobile-menu" onClick={() => setMenuOpen((open) => !open)}>Menu</button>
+        <button className="menu-btn" type="button" aria-expanded={menuOpen} aria-controls="mobile-menu" data-sound={menuOpen ? 'menu-close' : 'menu-open'} onClick={() => setMenuOpen((open) => !open)}>Menu</button>
       </div>
       <div className="menu" id="mobile-menu" hidden={!menuOpen}>
         <div className="brand-shell menu-inner">
           <Link to="/#catalog" aria-current={catalogActive ? 'page' : undefined} onClick={() => setMenuOpen(false)}>Catalog</Link>
-          <Link to="/#principles" aria-current={principlesActive ? 'page' : undefined} onClick={() => setMenuOpen(false)}>Principles</Link>
+          <Link to="/docs" aria-current={docsActive ? 'page' : undefined} onClick={() => setMenuOpen(false)}>Docs</Link>
           <GitHubRepoStar mobile />
           <ThemeToggle />
+          <SoundToggle mobile />
         </div>
       </div>
     </header>

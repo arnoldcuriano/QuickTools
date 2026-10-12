@@ -3,6 +3,7 @@ import { expect, test } from '@playwright/test';
 
 const routes = [
   '/',
+  '/docs',
   '/tools/base64',
   '/tools/text-formatter',
   '/tools/webp-converter',
@@ -11,6 +12,7 @@ const routes = [
   '/tools/json-compare',
   '/tools/csv-tsv-converter',
   '/tools/regex-tester',
+  '/tools/free-api-explorer',
   '/kitchen-sink',
 ];
 

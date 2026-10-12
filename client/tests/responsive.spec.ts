@@ -131,6 +131,103 @@ test('mobile menu renders GitHub as a plain row', async ({ page }) => {
   await expect(github).toBeFocused();
 });
 
+test('desktop header matches the compact production dimensions', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.route('https://api.github.com/repos/arnoldcuriano/QuickTools', (route) => route.fulfill({ json: { stargazers_count: 128 } }));
+  await page.goto('/');
+
+  await expect(page.locator('.desktop-nav .brand-nav-link').first()).toHaveCSS('height', '32px');
+  await expect(page.locator('.desktop-nav .gh')).toHaveCSS('height', '28px');
+  await expect(page.locator('.desktop-nav .gh-label svg')).toHaveCSS('width', '14px');
+  await expect(page.locator('.desktop-nav .icon-btn svg')).toHaveCSS('width', '14px');
+  await expect(page.locator('.desktop-nav .gh')).toHaveCSS('font-size', '12px');
+});
+
+for (const viewport of viewports) {
+  for (const theme of ['light', 'dark'] as const) {
+    test(`docs remain usable at ${viewport.name} width in ${theme}`, async ({ page }) => {
+      await page.setViewportSize({ width: viewport.width, height: viewport.height });
+      await page.addInitScript((selectedTheme) => localStorage.setItem('quicktools.theme', selectedTheme), theme);
+      await page.goto('/docs');
+
+      await expect(page.getByRole('heading', { name: 'Docs and free APIs', level: 1 })).toBeVisible();
+      await expect(page.getByRole('heading', { name: 'Developer APIs' })).toBeVisible();
+      await expect(page.getByRole('link', { name: /JSONPlaceholder.*opens in a new tab/i })).toBeVisible();
+
+      if (viewport.width < 900) {
+        const toggle = page.getByRole('button', { name: 'Docs menu' });
+        await expect(toggle).toBeVisible();
+        await toggle.click();
+        await expect(page.locator('#sidebar')).toBeVisible();
+        await page.keyboard.press('Escape');
+        await expect(page.locator('#sidebar')).toBeHidden();
+        await toggle.click();
+        await page.getByRole('link', { name: 'Overview' }).click();
+        await expect(page.locator('#sidebar')).toBeHidden();
+      } else {
+        await expect(page.locator('#sidebar')).toBeVisible();
+        await expect(page.locator('.sidebar')).toHaveCSS('position', 'sticky');
+        await expect(page.locator('.sidebar')).toHaveCSS('width', '240px');
+      }
+
+      expect(await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)).toBe(false);
+    });
+  }
+}
+
+test('docs API search filters rows and category counts', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto('/docs');
+  await page.getByRole('searchbox', { name: 'Search APIs' }).fill('Iconify');
+
+  await expect(page.getByRole('link', { name: /Iconify.*opens in a new tab/i })).toBeVisible();
+  await expect(page.getByRole('link', { name: /JSONPlaceholder.*opens in a new tab/i })).toHaveCount(0);
+  await expect(page.locator('.side-group').filter({ hasText: 'Free APIs' }).getByRole('link', { name: 'Media 1' })).toBeVisible();
+});
+
+test('docs sidebar remains fixed in view while content scrolls', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto('/docs');
+  await page.evaluate(() => window.scrollTo(0, 900));
+  const stickyTop = await page.locator('.sidebar').evaluate((element) => element.getBoundingClientRect().top);
+  await page.evaluate(() => window.scrollTo(0, 1400));
+  await expect.poll(() => page.locator('.sidebar').evaluate((element) => element.getBoundingClientRect().top)).toBe(stickyTop);
+});
+
+test('sound is opt-in, persists, and is disabled for reduced motion', async ({ browser }) => {
+  const normalContext = await browser.newContext();
+  const normalPage = await normalContext.newPage();
+  await normalPage.goto('/');
+  const soundToggle = normalPage.getByRole('button', { name: 'Sound off' });
+  await expect(soundToggle).toHaveAttribute('aria-pressed', 'false');
+  await soundToggle.click();
+  await expect(normalPage.getByRole('button', { name: 'Sound on' })).toHaveAttribute('aria-pressed', 'true');
+  await expect.poll(() => normalPage.evaluate(() => localStorage.getItem('qt-sound'))).toBe('on');
+  await normalContext.close();
+
+  const reducedContext = await browser.newContext({ reducedMotion: 'reduce' });
+  const reducedPage = await reducedContext.newPage();
+  await reducedPage.goto('/');
+  await expect(reducedPage.getByRole('button', { name: 'Sound off' })).toBeDisabled();
+  await reducedContext.close();
+});
+
+test('docs header and navigation are keyboard accessible', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto('/docs');
+
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('link', { name: 'QuickTools home' })).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('link', { name: 'Catalog' })).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('link', { name: 'Docs' })).toBeFocused();
+
+  await page.getByRole('link', { name: 'Using the APIs' }).focus();
+  await page.keyboard.press('Enter');
+  await expect(page).toHaveURL(/#using$/);
+});
+
 test('GitHub stars fall back to cache and hide without one', async ({ page }) => {
   await page.route('https://api.github.com/repos/arnoldcuriano/QuickTools', (route) => route.fulfill({ status: 429, body: '' }));
   await page.goto('/');

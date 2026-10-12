@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { getTool } from '../../data/toolCatalog';
 import { BLACK, WHITE } from '../../data/designTokens';
 import { generatePremiumQrCodeDataUrl, type QrErrorCorrectionLevel } from '../../utils/qrCode';
-import { Button, DataTool, Field, OutputBlock, SettingsPanel, TextInput } from '../../components/ui/ToolPage';
+import { Button, DataTool, Field, OutputBlock, SettingsPanel, Slider, TextInput } from '../../components/ui/ToolPage';
 
 const tool = getTool('qr-code-generator');
 const QRCodeGenerator = () => {
@@ -34,13 +34,13 @@ const QRCodeGenerator = () => {
   const download = () => { if (!preview) return; const link = document.createElement('a'); link.href = preview; link.download = 'quicktools-qr.png'; link.click(); };
 
   return <DataTool tool={tool} settings={<SettingsPanel>
-    <Field label={`Size ${size}px`}><input type="range" min="160" max="640" step="40" value={size} onChange={(event) => setSize(Number(event.target.value))} /></Field>
-    <Field label={`Margin ${margin}`}><input type="range" min="0" max="8" value={margin} onChange={(event) => setMargin(Number(event.target.value))} /></Field>
+    <Field label="Size" value={`${size}px`}><Slider min={160} max={640} step={40} value={size} onChange={(event) => setSize(Number(event.target.value))} /></Field>
+    <Field label="Margin" value={margin}><Slider min={0} max={8} value={margin} onChange={(event) => setMargin(Number(event.target.value))} /></Field>
     <Field label="Error correction"><select value={level} onChange={(event) => setLevel(event.target.value as QrErrorCorrectionLevel)}>{['L', 'M', 'Q', 'H'].map((value) => <option key={value}>{value}</option>)}</select></Field>
     <Field label="Foreground"><input className="ui-input" type="color" value={foreground} onChange={(event) => setForeground(event.target.value)} /></Field>
     <Field label="Background"><input className="ui-input" type="color" value={background} onChange={(event) => setBackground(event.target.value)} /></Field>
     <Field label="Frame text"><input className="ui-input" value={frameText} onChange={(event) => setFrameText(event.target.value)} /></Field>
-    <Field label={`Logo scale ${logoScale}%`}><input type="range" min="10" max="35" value={logoScale} onChange={(event) => setLogoScale(Number(event.target.value))} /></Field>
+    <Field label="Logo scale" value={`${logoScale}%`}><Slider min={10} max={35} value={logoScale} onChange={(event) => setLogoScale(Number(event.target.value))} /></Field>
     <input ref={fileRef} type="file" accept="image/*" hidden onChange={(event) => handleLogo(event.target.files?.[0])} /><Button variant="secondary" onClick={() => fileRef.current?.click()}>Choose logo</Button>
     <Button variant="primary" onClick={download} disabled={!preview}>Download PNG</Button><Button variant="ghost" onClick={reset}>Reset</Button>
   </SettingsPanel>}>

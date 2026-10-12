@@ -9,6 +9,7 @@ const tools = [
   ['/tools/json-compare', 'JSON Compare'],
   ['/tools/csv-tsv-converter', 'CSV / TSV Converter'],
   ['/tools/regex-tester', 'Regex Tester'],
+  ['/tools/free-api-explorer', 'Free API Explorer'],
 ] as const;
 
 for (const [route, title] of tools) {
@@ -16,7 +17,8 @@ for (const [route, title] of tools) {
     await page.goto(route);
     await expect(page.getByRole('heading', { level: 1, name: title })).toHaveCount(1);
     await expect(page.getByRole('link', { name: 'Back to tools' })).toHaveCount(1);
-    await expect(page.getByText('Runs locally in your browser', { exact: true })).toHaveCount(1);
+    const activity = route === '/tools/free-api-explorer' ? 'Sends requests to JSONPlaceholder' : 'Runs locally in your browser';
+    await expect(page.getByText(activity, { exact: true })).toHaveCount(1);
     await expect(page.locator('.tool-layout')).toHaveCount(1);
     await expect(page.getByRole('complementary', { name: 'Settings' })).toHaveCount(1);
   });
@@ -24,14 +26,17 @@ for (const [route, title] of tools) {
 
 for (const width of [360, 768, 1280]) {
   for (const theme of ['light', 'dark']) {
-    test(`shared layout fits ${width}px in ${theme}`, async ({ page }) => {
+    test(`every shared layout fits ${width}px in ${theme}`, async ({ page }) => {
       await page.setViewportSize({ width, height: 900 });
       await page.addInitScript((value) => localStorage.setItem('quicktools.theme', value), theme);
-      await page.goto('/tools/webp-converter');
-      expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(1);
-      const [settingsBox, mainBox] = await Promise.all([page.getByRole('complementary', { name: 'Settings' }).boundingBox(), page.locator('.tool-main').boundingBox()]);
-      if (width < 900) expect(settingsBox!.y).toBeGreaterThan(mainBox!.y);
-      else expect(settingsBox!.x).toBeGreaterThan(mainBox!.x);
+      for (const [route, title] of tools) {
+        await page.goto(route);
+        await expect(page.getByRole('heading', { level: 1, name: title })).toBeVisible();
+        expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth), route).toBeLessThanOrEqual(1);
+        const [settingsBox, mainBox] = await Promise.all([page.getByRole('complementary', { name: 'Settings' }).boundingBox(), page.locator('.tool-main').boundingBox()]);
+        if (width < 900) expect(settingsBox!.y, route).toBeGreaterThan(mainBox!.y);
+        else expect(settingsBox!.x, route).toBeGreaterThan(mainBox!.x);
+      }
     });
   }
 }

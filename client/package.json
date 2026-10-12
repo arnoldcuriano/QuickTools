@@ -13,7 +13,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "lint": "eslint .",
+    "lint": "eslint . && node scripts/check-design-tokens.mjs",
     "test:a11y": "playwright test tests/accessibility.spec.ts",
     "test:browser": "playwright test"
   },

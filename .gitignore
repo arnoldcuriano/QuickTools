@@ -139,4 +139,8 @@ dist
 client/node_modules/
 server/node_modules/
 
+# Playwright local output
+client/test-results/
+client/playwright-report/
+
 .vercel/

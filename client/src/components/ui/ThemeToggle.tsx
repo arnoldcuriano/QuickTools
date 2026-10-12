@@ -27,7 +27,7 @@ const ThemeToggle = () => {
   }, [theme]);
 
   return (
-    <Button type="button" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="theme" aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}>
+    <Button type="button" data-sound={theme === 'dark' ? 'theme-light' : 'theme-dark'} onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="theme" aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}>
       <span data-t="light" data-active={theme === 'light'}>Light</span>
       <span aria-hidden="true">/</span>
       <span data-t="dark" data-active={theme === 'dark'}>Dark</span>

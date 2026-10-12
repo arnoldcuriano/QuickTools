@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes, ReactNode, TextareaHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes, CSSProperties, InputHTMLAttributes, ReactNode, TextareaHTMLAttributes } from 'react';
 import { ClipboardDocumentIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
 import type { ToolCatalogItem } from '../../data/toolCatalog';
@@ -10,13 +10,21 @@ export const Button = ({ variant = 'secondary', className = '', ...props }: Butt
   <button className={`ui-button ui-button-${variant} ${className}`} {...props} />
 );
 
-export const Field = ({ label, hint, children }: { label: string; hint?: ReactNode; children: ReactNode }) => (
+export const Field = ({ label, value, hint, children }: { label: string; value?: ReactNode; hint?: ReactNode; children: ReactNode }) => (
   <label className="ui-field">
-    <span className="ui-field-label">{label}</span>
+    <span className="ui-field-header"><span className="ui-field-label">{label}</span>{value !== undefined && <span className="ui-field-value">{value}</span>}</span>
     {children}
     {hint && <span className="ui-field-hint">{hint}</span>}
   </label>
 );
+
+export const Slider = ({ value, min = 0, max = 100, ...props }: Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & { value: number; min?: number; max?: number }) => {
+  const percentage = ((value - Number(min)) / (Number(max) - Number(min))) * 100;
+  return <span className="slider-control" style={{ '--slider-value': `${percentage}%` } as CSSProperties}>
+    <span className="slider-track" aria-hidden="true"><span className="slider-fill" /></span>
+    <input {...props} type="range" min={min} max={max} value={value} />
+  </span>;
+};
 
 export const SettingsPanel = ({ title = 'Settings', children }: { title?: string; children: ReactNode }) => (
   <aside className="settings-panel" aria-label={title}>
@@ -33,7 +41,7 @@ export const OutputBlock = ({ value, label = 'Output', onCopy, children }: { val
   <section className="output-block">
     <div className="output-block-header">
       <h2>{label}</h2>
-      {onCopy && <Button variant="ghost" onClick={onCopy} disabled={!value}><ClipboardDocumentIcon aria-hidden="true" />Copy</Button>}
+      {onCopy && <Button variant="ghost" data-sound="copied" onClick={onCopy} disabled={!value}><ClipboardDocumentIcon aria-hidden="true" />Copy</Button>}
     </div>
     {children ?? <pre tabIndex={0}>{value || 'Output appears here.'}</pre>}
   </section>
@@ -47,11 +55,11 @@ export const FileList = ({ children, empty = 'No files selected.' }: { children?
   <div className="file-list">{children || <p>{empty}</p>}</div>
 );
 
-export const ToolPage = ({ tool, settings, children }: { tool: ToolCatalogItem; settings?: ReactNode; children: ReactNode }) => (
+export const ToolPage = ({ tool, settings, activityLabel = 'Runs locally in your browser', children }: { tool: ToolCatalogItem; settings?: ReactNode; activityLabel?: ReactNode; children: ReactNode }) => (
   <div className="tool-page">
     <AppHeader />
     <main className="tool-shell">
-      <div className="tool-kicker"><Link to="/">Back to tools</Link><span>Runs locally in your browser</span></div>
+      <div className="tool-kicker"><Link to="/">Back to tools</Link><span>{activityLabel}</span></div>
       <h1>{tool.name}</h1>
       <p className="tool-description">{tool.description}</p>
       <div className="tool-divider" />
@@ -64,7 +72,7 @@ export const ToolPage = ({ tool, settings, children }: { tool: ToolCatalogItem; 
   </div>
 );
 
-type TemplateProps = { tool: ToolCatalogItem; settings?: ReactNode; children: ReactNode };
+type TemplateProps = { tool: ToolCatalogItem; settings?: ReactNode; activityLabel?: ReactNode; children: ReactNode };
 export const FileTool = (props: TemplateProps) => <ToolPage {...props} />;
 export const TextTool = (props: TemplateProps) => <ToolPage {...props} />;
 export const DataTool = (props: TemplateProps) => <ToolPage {...props} />;

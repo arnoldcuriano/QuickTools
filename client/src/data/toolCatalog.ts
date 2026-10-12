@@ -86,6 +86,15 @@ export const toolCatalog: ToolCatalogItem[] = [
     template: 'text',
     tags: ['regex', 'pattern', 'match'],
   },
+  {
+    id: 'free-api-explorer',
+    name: 'Free API Explorer',
+    path: '/tools/free-api-explorer',
+    description: 'Build and send no-key requests to curated third-party APIs with honest CORS and rate-limit guidance.',
+    category: 'Developer',
+    template: 'data',
+    tags: ['api', 'http', 'json', 'fetch', 'curl', 'image'],
+  },
 ];
 
 export const getTool = (id: ToolCatalogItem['id']) => {

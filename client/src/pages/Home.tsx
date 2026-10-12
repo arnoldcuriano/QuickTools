@@ -6,12 +6,6 @@ import { toolCatalog, toolCategories } from '../data/toolCatalog';
 
 type CategoryFilter = (typeof toolCategories)[number];
 
-const principles = [
-  ['Private by default', 'Current tools process input in your browser without an account or backend upload.'],
-  ['Open and inspectable', 'MIT-licensed source, documented behavior, and explicit validation boundaries.'],
-  ['Built for real work', 'Focused workflows, predictable results, and direct copy or download actions.'],
-];
-
 const QuickToolsLanding = () => {
   const location = useLocation();
   const catalogRef = useRef<HTMLElement>(null);
@@ -151,16 +145,6 @@ const QuickToolsLanding = () => {
           )}
         </section>
 
-        <section id="principles" className="principles-section">
-          <div className="brand-shell principles-grid">
-            {principles.map(([title, description]) => (
-              <div key={title}>
-                <h2>{title}</h2>
-                <p>{description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
       </main>
 
       <footer className="site-footer">
