@@ -1,3 +1,0 @@
-import{f as e,l as t,n}from"./index-D-3n1aZ4.js";import{S as r,d as i}from"./pilotLogic-CsAvthL-.js";var a=e(t(),1),o=n(`word-counter`),s=i,c=[{name:`Count a sentence`,input:`QuickTools works well.`,expected:{words:3,characters:22,sentences:1,paragraphs:1}},{name:`Count paragraphs`,input:`First paragraph.
-
-Second paragraph!`,expected:{words:4,characters:35,sentences:2,paragraphs:2}},{name:`Reject empty text`,input:``,expected:`Error: Enter text to count.`}],l={template:`T`,inputLabel:`Text`,outputLabel:`Counts`,live:!0},u=()=>(0,a.createElement)(r,{run:s}),d={meta:o,run:s,examples:c,config:l,Page:u};export{u as Page,l as config,d as default,c as examples,o as meta,s as run};

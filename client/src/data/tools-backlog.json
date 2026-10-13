@@ -175,7 +175,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "html",
                          "entity",
@@ -193,7 +193,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "jwt",
                          "decoder",
@@ -242,7 +242,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "hmac",
                          "generator",
@@ -415,7 +415,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "css",
                          "formatter",
@@ -536,7 +536,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "mime",
                          "types",
@@ -553,7 +553,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "chmod",
                          "calculator",
@@ -585,7 +585,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "curl",
                          "to",
@@ -620,7 +620,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "cookie",
                          "parser",
@@ -636,7 +636,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "number",
                          "base",
@@ -653,7 +653,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "ascii",
                          "table",
@@ -669,7 +669,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "unicode",
                          "character",
@@ -686,7 +686,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "string",
                          "escape",
@@ -703,7 +703,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "slug",
                          "generator",
@@ -737,7 +737,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "git",
                          "command",
@@ -755,7 +755,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "http",
                          "headers",
@@ -772,7 +772,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "base32",
                          "encoder",
@@ -789,7 +789,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "hex",
                          "encoder",
@@ -806,7 +806,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "regex",
                          "cheat",
@@ -823,7 +823,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "iso",
                          "8601",

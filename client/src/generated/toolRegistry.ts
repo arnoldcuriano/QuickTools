@@ -199,6 +199,40 @@ export const toolRegistry = [
     "path": "/tools/url-encoder-decoder"
   },
   {
+    "id": "html-entity-encoder-decoder",
+    "name": "HTML Entity Encoder/Decoder",
+    "category": "Developer",
+    "template": "T",
+    "description": "Escape or unescape HTML entities.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "html",
+      "entity",
+      "encoder",
+      "decoder",
+      "developer"
+    ],
+    "path": "/tools/html-entity-encoder-decoder"
+  },
+  {
+    "id": "jwt-decoder",
+    "name": "JWT Decoder",
+    "category": "Developer",
+    "template": "T",
+    "description": "Read the header and payload of a JSON Web Token.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "jwt",
+      "decoder",
+      "developer"
+    ],
+    "path": "/tools/jwt-decoder"
+  },
+  {
     "id": "uuid-generator",
     "name": "UUID Generator",
     "category": "Developer",
@@ -213,6 +247,22 @@ export const toolRegistry = [
       "developer"
     ],
     "path": "/tools/uuid-generator"
+  },
+  {
+    "id": "hmac-generator",
+    "name": "HMAC Generator",
+    "category": "Developer",
+    "template": "T",
+    "description": "Sign text with a secret key using SHA-256 or SHA-512.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "hmac",
+      "generator",
+      "developer"
+    ],
+    "path": "/tools/hmac-generator"
   },
   {
     "id": "unix-timestamp-converter",
@@ -232,6 +282,24 @@ export const toolRegistry = [
     "path": "/tools/unix-timestamp-converter"
   },
   {
+    "id": "css-formatter-and-minifier",
+    "name": "CSS Formatter and Minifier",
+    "category": "Developer",
+    "template": "T",
+    "description": "Beautify or minify CSS.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "css",
+      "formatter",
+      "and",
+      "minifier",
+      "developer"
+    ],
+    "path": "/tools/css-formatter-and-minifier"
+  },
+  {
     "id": "http-status-codes",
     "name": "HTTP Status Codes",
     "category": "Developer",
@@ -249,6 +317,57 @@ export const toolRegistry = [
     "path": "/tools/http-status-codes"
   },
   {
+    "id": "mime-types-lookup",
+    "name": "MIME Types Lookup",
+    "category": "Developer",
+    "template": "R",
+    "description": "Find the MIME type for a file extension.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "mime",
+      "types",
+      "lookup",
+      "developer"
+    ],
+    "path": "/tools/mime-types-lookup"
+  },
+  {
+    "id": "chmod-calculator",
+    "name": "Chmod Calculator",
+    "category": "Developer",
+    "template": "C",
+    "description": "Convert between permission checkboxes and octal.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "chmod",
+      "calculator",
+      "developer"
+    ],
+    "path": "/tools/chmod-calculator"
+  },
+  {
+    "id": "curl-to-fetch-converter",
+    "name": "cURL to Fetch Converter",
+    "category": "Developer",
+    "template": "T",
+    "description": "Turn a cURL command into fetch code.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "curl",
+      "to",
+      "fetch",
+      "converter",
+      "developer"
+    ],
+    "path": "/tools/curl-to-fetch-converter"
+  },
+  {
     "id": "query-string-parser",
     "name": "Query String Parser",
     "category": "Developer",
@@ -264,6 +383,209 @@ export const toolRegistry = [
       "developer"
     ],
     "path": "/tools/query-string-parser"
+  },
+  {
+    "id": "cookie-parser",
+    "name": "Cookie Parser",
+    "category": "Developer",
+    "template": "T",
+    "description": "Break a cookie header into its parts.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "cookie",
+      "parser",
+      "developer"
+    ],
+    "path": "/tools/cookie-parser"
+  },
+  {
+    "id": "number-base-converter",
+    "name": "Number Base Converter",
+    "category": "Developer",
+    "template": "C",
+    "description": "Convert between binary, octal, decimal and hex.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "number",
+      "base",
+      "converter",
+      "developer"
+    ],
+    "path": "/tools/number-base-converter"
+  },
+  {
+    "id": "ascii-table",
+    "name": "ASCII Table",
+    "category": "Developer",
+    "template": "R",
+    "description": "Searchable ASCII and extended character table.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "ascii",
+      "table",
+      "developer"
+    ],
+    "path": "/tools/ascii-table"
+  },
+  {
+    "id": "unicode-character-lookup",
+    "name": "Unicode Character Lookup",
+    "category": "Developer",
+    "template": "R",
+    "description": "Find characters by name or code point.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "unicode",
+      "character",
+      "lookup",
+      "developer"
+    ],
+    "path": "/tools/unicode-character-lookup"
+  },
+  {
+    "id": "string-escape-unescape",
+    "name": "String Escape/Unescape",
+    "category": "Developer",
+    "template": "T",
+    "description": "Escape or unescape strings for JSON, JS and more.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "string",
+      "escape",
+      "unescape",
+      "developer"
+    ],
+    "path": "/tools/string-escape-unescape"
+  },
+  {
+    "id": "slug-generator",
+    "name": "Slug Generator",
+    "category": "Developer",
+    "template": "T",
+    "description": "Turn titles into URL-friendly slugs.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "slug",
+      "generator",
+      "developer"
+    ],
+    "path": "/tools/slug-generator"
+  },
+  {
+    "id": "git-command-cheat-sheet",
+    "name": "Git Command Cheat Sheet",
+    "category": "Developer",
+    "template": "R",
+    "description": "Searchable list of common Git commands.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "git",
+      "command",
+      "cheat",
+      "sheet",
+      "developer"
+    ],
+    "path": "/tools/git-command-cheat-sheet"
+  },
+  {
+    "id": "http-headers-reference",
+    "name": "HTTP Headers Reference",
+    "category": "Developer",
+    "template": "R",
+    "description": "Searchable reference of HTTP headers.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "http",
+      "headers",
+      "reference",
+      "developer"
+    ],
+    "path": "/tools/http-headers-reference"
+  },
+  {
+    "id": "base32-encoder-decoder",
+    "name": "Base32 Encoder/Decoder",
+    "category": "Developer",
+    "template": "T",
+    "description": "Encode or decode Base32 text.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "base32",
+      "encoder",
+      "decoder",
+      "developer"
+    ],
+    "path": "/tools/base32-encoder-decoder"
+  },
+  {
+    "id": "hex-encoder-decoder",
+    "name": "Hex Encoder/Decoder",
+    "category": "Developer",
+    "template": "T",
+    "description": "Convert text to hex and back.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "hex",
+      "encoder",
+      "decoder",
+      "developer"
+    ],
+    "path": "/tools/hex-encoder-decoder"
+  },
+  {
+    "id": "regex-cheat-sheet",
+    "name": "Regex Cheat Sheet",
+    "category": "Developer",
+    "template": "R",
+    "description": "Searchable regex syntax reference.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "regex",
+      "cheat",
+      "sheet",
+      "developer"
+    ],
+    "path": "/tools/regex-cheat-sheet"
+  },
+  {
+    "id": "iso-8601-duration-parser",
+    "name": "ISO 8601 Duration Parser",
+    "category": "Developer",
+    "template": "C",
+    "description": "Parse and build ISO 8601 durations and dates.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "iso",
+      "8601",
+      "duration",
+      "parser",
+      "developer"
+    ],
+    "path": "/tools/iso-8601-duration-parser"
   },
   {
     "id": "word-counter",
