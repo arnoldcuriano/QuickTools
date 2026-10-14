@@ -1,5 +1,0 @@
-import{f as e,l as t,n}from"./index-BIR41YoT.js";import{D as r,u as i}from"./developerBatchOne-CqR4wgeK.js";var a=e(t(),1),o=n(`iso-8601-duration-parser`),s=i,c=[{name:`Parse a duration`,input:`P1DT2H30M`,options:{mode:`parse`},expected:`{
-  "days": 1,
-  "hours": 2,
-  "minutes": 30
-}`},{name:`Build a duration`,input:`{"days":2,"seconds":5}`,options:{mode:`build`},expected:`P2DT5S`},{name:`Normalize a date`,input:`2026-01-01T08:00:00+08:00`,options:{mode:`date`},expected:`2026-01-01T00:00:00.000Z`},{name:`Reject invalid duration`,input:`tomorrow`,options:{mode:`parse`},expected:`Error: Enter a valid ISO 8601 duration.`}],l={template:`C`,live:!1},u=()=>(0,a.createElement)(r,{run:s}),d={meta:o,run:s,examples:c,config:l,Page:u};export{u as Page,l as config,d as default,c as examples,o as meta,s as run};

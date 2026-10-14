@@ -143,4 +143,8 @@ server/node_modules/
 client/test-results/
 client/playwright-report/
 
+# Generated release artifacts
+client/build/
+graphify-out/
+
 .vercel/

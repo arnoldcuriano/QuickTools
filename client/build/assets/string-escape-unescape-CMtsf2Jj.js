@@ -1,3 +1,0 @@
-import{f as e,l as t,n}from"./index-BIR41YoT.js";import{N as r,m as i}from"./developerBatchOne-CqR4wgeK.js";var a=e(t(),1),o=n(`string-escape-unescape`),s=i,c=[{name:`Escape a line break`,input:`line
-break`,options:{mode:`encode`},expected:`line\\nbreak`},{name:`Unescape a line break`,input:`line\\nbreak`,options:{mode:`decode`},expected:`line
-break`},{name:`Reject empty input`,input:``,options:{mode:`encode`},expected:`Error: Enter a string to transform.`}],l={template:`T`,live:!1},u=()=>(0,a.createElement)(r,{run:s}),d={meta:o,run:s,examples:c,config:l,Page:u};export{u as Page,l as config,d as default,c as examples,o as meta,s as run};

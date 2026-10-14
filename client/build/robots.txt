@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://quick-tools-mu-sable.vercel.app/sitemap.xml
