@@ -10,7 +10,7 @@ export const toolCategories = [
   "Security"
 ] as const;
 export const toolTemplates = ['T', 'D', 'F', 'C', 'G', 'R'] as const;
-export const toolStatuses = ['existing', 'planned', 'live'] as const;
+export const toolStatuses = ['existing', 'planned', 'live', 'merged'] as const;
 
 export type ToolCategory = (typeof toolCategories)[number];
 export type ToolTemplate = (typeof toolTemplates)[number];
@@ -298,6 +298,22 @@ export const toolRegistry = [
       "developer"
     ],
     "path": "/tools/css-formatter-and-minifier"
+  },
+  {
+    "id": "xml-formatter",
+    "name": "XML Formatter",
+    "category": "Developer",
+    "template": "T",
+    "description": "Format and validate XML.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "xml",
+      "formatter",
+      "developer"
+    ],
+    "path": "/tools/xml-formatter"
   },
   {
     "id": "http-status-codes",
@@ -604,6 +620,22 @@ export const toolRegistry = [
     "path": "/tools/word-counter"
   },
   {
+    "id": "character-counter",
+    "name": "Character Counter",
+    "category": "Text",
+    "template": "T",
+    "description": "Count characters with and without spaces.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "character",
+      "counter",
+      "text"
+    ],
+    "path": "/tools/character-counter"
+  },
+  {
     "id": "case-converter",
     "name": "Case Converter",
     "category": "Text",
@@ -618,6 +650,419 @@ export const toolRegistry = [
       "text"
     ],
     "path": "/tools/case-converter"
+  },
+  {
+    "id": "remove-extra-spaces",
+    "name": "Remove Extra Spaces",
+    "category": "Text",
+    "template": "T",
+    "description": "Collapse repeated spaces and trim lines.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "remove",
+      "extra",
+      "spaces",
+      "text"
+    ],
+    "path": "/tools/remove-extra-spaces"
+  },
+  {
+    "id": "remove-line-breaks",
+    "name": "Remove Line Breaks",
+    "category": "Text",
+    "template": "T",
+    "description": "Join lines into a single paragraph.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "remove",
+      "line",
+      "breaks",
+      "text"
+    ],
+    "path": "/tools/remove-line-breaks"
+  },
+  {
+    "id": "add-line-numbers",
+    "name": "Add Line Numbers",
+    "category": "Text",
+    "template": "T",
+    "description": "Prefix each line with a number.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "add",
+      "line",
+      "numbers",
+      "text"
+    ],
+    "path": "/tools/add-line-numbers"
+  },
+  {
+    "id": "reverse-text",
+    "name": "Reverse Text",
+    "category": "Text",
+    "template": "T",
+    "description": "Reverse characters, words or lines.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "reverse",
+      "text"
+    ],
+    "path": "/tools/reverse-text"
+  },
+  {
+    "id": "text-repeater",
+    "name": "Text Repeater",
+    "category": "Text",
+    "template": "T",
+    "description": "Repeat text with a separator.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "text",
+      "repeater"
+    ],
+    "path": "/tools/text-repeater"
+  },
+  {
+    "id": "readability-score",
+    "name": "Readability Score",
+    "category": "Text",
+    "template": "T",
+    "description": "Flesch reading ease and grade level.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "readability",
+      "score",
+      "text"
+    ],
+    "path": "/tools/readability-score"
+  },
+  {
+    "id": "reading-time-estimator",
+    "name": "Reading Time Estimator",
+    "category": "Text",
+    "template": "T",
+    "description": "Estimate reading and speaking time.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "reading",
+      "time",
+      "estimator",
+      "text"
+    ],
+    "path": "/tools/reading-time-estimator"
+  },
+  {
+    "id": "keyword-density",
+    "name": "Keyword Density",
+    "category": "Text",
+    "template": "T",
+    "description": "Count how often each word appears.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "keyword",
+      "density",
+      "text"
+    ],
+    "path": "/tools/keyword-density"
+  },
+  {
+    "id": "word-frequency-counter",
+    "name": "Word Frequency Counter",
+    "category": "Text",
+    "template": "T",
+    "description": "Rank the most used words in a text.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "word",
+      "frequency",
+      "counter",
+      "text"
+    ],
+    "path": "/tools/word-frequency-counter"
+  },
+  {
+    "id": "fancy-text-generator",
+    "name": "Fancy Text Generator",
+    "category": "Text",
+    "template": "T",
+    "description": "Convert text into Unicode styles.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "fancy",
+      "text",
+      "generator"
+    ],
+    "path": "/tools/fancy-text-generator"
+  },
+  {
+    "id": "morse-code-translator",
+    "name": "Morse Code Translator",
+    "category": "Text",
+    "template": "T",
+    "description": "Translate text to Morse code and back.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "morse",
+      "code",
+      "translator",
+      "text"
+    ],
+    "path": "/tools/morse-code-translator"
+  },
+  {
+    "id": "binary-text-converter",
+    "name": "Binary Text Converter",
+    "category": "Text",
+    "template": "T",
+    "description": "Convert text to binary and back.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "binary",
+      "text",
+      "converter"
+    ],
+    "path": "/tools/binary-text-converter"
+  },
+  {
+    "id": "rot13-and-caesar-cipher",
+    "name": "ROT13 and Caesar Cipher",
+    "category": "Text",
+    "template": "T",
+    "description": "Shift letters by any amount.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "rot13",
+      "and",
+      "caesar",
+      "cipher",
+      "text"
+    ],
+    "path": "/tools/rot13-and-caesar-cipher"
+  },
+  {
+    "id": "vigenere-cipher",
+    "name": "Vigenere Cipher",
+    "category": "Text",
+    "template": "T",
+    "description": "Encrypt or decrypt with a keyword.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "vigenere",
+      "cipher",
+      "text"
+    ],
+    "path": "/tools/vigenere-cipher"
+  },
+  {
+    "id": "number-to-words",
+    "name": "Number to Words",
+    "category": "Text",
+    "template": "C",
+    "description": "Write numbers out as words.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "number",
+      "to",
+      "words",
+      "text"
+    ],
+    "path": "/tools/number-to-words"
+  },
+  {
+    "id": "roman-numeral-converter",
+    "name": "Roman Numeral Converter",
+    "category": "Text",
+    "template": "C",
+    "description": "Convert between numbers and Roman numerals.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "roman",
+      "numeral",
+      "converter",
+      "text"
+    ],
+    "path": "/tools/roman-numeral-converter"
+  },
+  {
+    "id": "nato-phonetic-alphabet",
+    "name": "NATO Phonetic Alphabet",
+    "category": "Text",
+    "template": "T",
+    "description": "Spell text using the NATO alphabet.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "nato",
+      "phonetic",
+      "alphabet",
+      "text"
+    ],
+    "path": "/tools/nato-phonetic-alphabet"
+  },
+  {
+    "id": "html-to-text",
+    "name": "HTML to Text",
+    "category": "Text",
+    "template": "T",
+    "description": "Strip tags and keep the readable text.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "html",
+      "to",
+      "text"
+    ],
+    "path": "/tools/html-to-text"
+  },
+  {
+    "id": "palindrome-checker",
+    "name": "Palindrome Checker",
+    "category": "Text",
+    "template": "T",
+    "description": "Check if text reads the same backwards.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "palindrome",
+      "checker",
+      "text"
+    ],
+    "path": "/tools/palindrome-checker"
+  },
+  {
+    "id": "anagram-checker",
+    "name": "Anagram Checker",
+    "category": "Text",
+    "template": "T",
+    "description": "Check if two words are anagrams.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "anagram",
+      "checker",
+      "text"
+    ],
+    "path": "/tools/anagram-checker"
+  },
+  {
+    "id": "special-characters",
+    "name": "Special Characters",
+    "category": "Text",
+    "template": "R",
+    "description": "Click to copy symbols and punctuation.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "special",
+      "characters",
+      "text"
+    ],
+    "path": "/tools/special-characters"
+  },
+  {
+    "id": "emoji-picker",
+    "name": "Emoji Picker",
+    "category": "Text",
+    "template": "R",
+    "description": "Search and copy emoji.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "emoji",
+      "picker",
+      "text"
+    ],
+    "path": "/tools/emoji-picker"
+  },
+  {
+    "id": "social-character-limits",
+    "name": "Social Character Limits",
+    "category": "Text",
+    "template": "C",
+    "description": "Check text against platform character limits.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "social",
+      "character",
+      "limits",
+      "text"
+    ],
+    "path": "/tools/social-character-limits"
+  },
+  {
+    "id": "bionic-reading-converter",
+    "name": "Bionic Reading Converter",
+    "category": "Text",
+    "template": "T",
+    "description": "Bold the first letters of words for faster reading.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "bionic",
+      "reading",
+      "converter",
+      "text"
+    ],
+    "path": "/tools/bionic-reading-converter"
+  },
+  {
+    "id": "peso-amount-in-words",
+    "name": "Peso Amount in Words",
+    "category": "Text",
+    "template": "C",
+    "description": "Write a peso amount in words for checks and invoices.",
+    "runsLocally": true,
+    "library": null,
+    "status": "live",
+    "keywords": [
+      "peso",
+      "amount",
+      "in",
+      "words",
+      "text"
+    ],
+    "path": "/tools/peso-amount-in-words"
   },
   {
     "id": "jpg-to-png",

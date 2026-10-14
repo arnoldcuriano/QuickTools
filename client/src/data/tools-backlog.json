@@ -450,7 +450,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "xml",
                          "formatter",
@@ -1348,7 +1348,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "character",
                          "counter",
@@ -1380,7 +1380,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "remove",
                          "extra",
@@ -1397,7 +1397,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "remove",
                          "line",
@@ -1414,7 +1414,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "add",
                          "line",
@@ -1431,7 +1431,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "reverse",
                          "text"
@@ -1446,7 +1446,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "text",
                          "repeater"
@@ -1461,7 +1461,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "readability",
                          "score",
@@ -1477,7 +1477,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "reading",
                          "time",
@@ -1494,7 +1494,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "keyword",
                          "density",
@@ -1510,7 +1510,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "word",
                          "frequency",
@@ -1544,7 +1544,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "fancy",
                          "text",
@@ -1556,11 +1556,11 @@
         "name":  "Morse Code Translator",
         "category":  "Text",
         "template":  "T",
-        "description":  "Translate text to Morse and back, with audio.",
+        "description":  "Translate text to Morse code and back.",
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "morse",
                          "code",
@@ -1577,7 +1577,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "binary",
                          "text",
@@ -1593,7 +1593,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "rot13",
                          "and",
@@ -1611,7 +1611,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "vigenere",
                          "cipher",
@@ -1627,7 +1627,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "number",
                          "to",
@@ -1644,7 +1644,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "roman",
                          "numeral",
@@ -1661,7 +1661,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "nato",
                          "phonetic",
@@ -1714,7 +1714,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "html",
                          "to",
@@ -1746,7 +1746,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "palindrome",
                          "checker",
@@ -1762,7 +1762,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "anagram",
                          "checker",
@@ -1778,7 +1778,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "special",
                          "characters",
@@ -1794,7 +1794,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "emoji",
                          "picker",
@@ -1828,7 +1828,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "social",
                          "character",
@@ -1845,7 +1845,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "bionic",
                          "reading",
@@ -1862,7 +1862,7 @@
         "runsLocally":  true,
         "library":  null,
         "batch":  1,
-        "status":  "planned",
+        "status":  "live",
         "keywords":  [
                          "peso",
                          "amount",

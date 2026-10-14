@@ -6,8 +6,8 @@ const modules = import.meta.glob<{ default: ToolModule }>('./*/index.ts', { eage
 const byId = new Map(Object.values(modules).map((module) => [module.default.meta.id, module.default]));
 
 describe('published tool examples', () => {
-  test('planned tools are excluded from the runtime registry', () => {
-    expect(publishedTools.every((tool) => String(tool.status) !== 'planned')).toBe(true);
+  test('only existing and live tools are included in the runtime registry', () => {
+    expect(publishedTools.every((tool) => ['existing', 'live'].includes(String(tool.status)))).toBe(true);
   });
 
   for (const tool of publishedTools) {

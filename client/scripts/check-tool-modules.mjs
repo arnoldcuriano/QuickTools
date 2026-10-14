@@ -10,7 +10,7 @@ const failures = [];
 for (const tool of tools) {
   if (seen.has(tool.id)) failures.push(`duplicate id: ${tool.id}`);
   seen.add(tool.id);
-  if (tool.status !== 'planned' && !existsSync(resolve(root, `src/tools/${tool.id}/index.ts`))) {
+  if ((tool.status === 'existing' || tool.status === 'live') && !existsSync(resolve(root, `src/tools/${tool.id}/index.ts`))) {
     failures.push(`published tool has no module: ${tool.id}`);
   }
 }
@@ -20,4 +20,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Validated ${tools.length} registry entries and ${tools.filter((tool) => tool.status !== 'planned').length} published modules.`);
+console.log(`Validated ${tools.length} registry entries and ${tools.filter((tool) => tool.status === 'existing' || tool.status === 'live').length} published modules.`);

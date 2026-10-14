@@ -5,7 +5,7 @@ import type { ToolModule } from '../types';
 
 export interface Options { format: 'json' | 'xml' | 'html' | 'text' }
 export const meta = getTool('text-formatter');
-const formatXml = (input: string) => {
+export const formatXml = (input: string) => {
   try {
     const document = new DOMParser({ onError: (level, message) => { if (level !== 'warning') throw new Error(message); } }).parseFromString(input, 'text/xml');
     const serialized = new XMLSerializer().serializeToString(document).replace(/(>)(<)(\/?)/gu, '$1\n$2$3');
