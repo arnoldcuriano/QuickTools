@@ -43,9 +43,6 @@ const QuickToolsLanding = () => {
               <Button onClick={scrollToCatalog} className="brand-button px-4 py-2.5">
                 Browse tools
               </Button>
-              <Link to="/tools/json-converter" className="brand-button-secondary px-4 py-2.5">
-                Open JSON converter
-              </Link>
             </div>
             <dl className="hero-meta">
               <div>
@@ -54,7 +51,7 @@ const QuickToolsLanding = () => {
               </div>
               <div>
                 <dt className="sr-only">Processing model</dt>
-                <dd>Browser-local processing</dd>
+                <dd>Most tools run locally</dd>
               </div>
               <div>
                 <dt className="sr-only">License</dt>

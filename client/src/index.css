@@ -512,7 +512,6 @@
   }
 
   .brand-button,
-  .brand-button-secondary,
   .brand-filter-button {
     display: inline-flex;
     align-items: center;
@@ -538,13 +537,11 @@
     opacity: 0.78;
   }
 
-  .brand-button-secondary,
   .brand-filter-button {
     background: var(--bg);
     color: var(--text);
   }
 
-  .brand-button-secondary:hover,
   .brand-filter-button:hover {
     background: var(--surface);
   }
