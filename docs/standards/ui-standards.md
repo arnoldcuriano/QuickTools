@@ -6,7 +6,7 @@ The canonical identity, visual direction, information architecture, and tool-pag
 
 QuickTools currently supports light and dark themes using neutral surfaces, an amber accent, Heroicons, Headless UI primitives, and restrained Framer Motion interaction states. Legacy tool pages are being aligned incrementally through compatibility styles.
 
-The home page is an application discovery surface, not a marketing landing page. It exposes the implemented tools through a searchable, category-filtered catalog backed by `client/src/data/toolCatalog.ts`.
+The home page is an application discovery surface, not a marketing landing page. It exposes published tools through searchable category sections generated from `client/src/data/tools-backlog.json`.
 
 ## Page Structure
 

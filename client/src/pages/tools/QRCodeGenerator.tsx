@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { getTool } from '../../data/toolCatalog';
 import { BLACK, WHITE } from '../../data/designTokens';
 import { generatePremiumQrCodeDataUrl, type QrErrorCorrectionLevel } from '../../utils/qrCode';
-import { Button, DataTool, Field, OutputBlock, SettingsPanel, Slider, TextInput } from '../../components/ui/ToolPage';
+import { Button, GeneratorTool, Field, OutputBlock, SettingsPanel, Slider, TextInput } from '../../components/ui/ToolPage';
 
 const tool = getTool('qr-code-generator');
 const QRCodeGenerator = () => {
@@ -33,7 +33,7 @@ const QRCodeGenerator = () => {
   const handleLogo = (file?: File) => { if (!file) return; if (!file.type.startsWith('image/')) return setError('Logo uploads must be image files.'); const reader = new FileReader(); reader.onload = () => setLogo(String(reader.result ?? '')); reader.onerror = () => setError('Failed to read logo image.'); reader.readAsDataURL(file); };
   const download = () => { if (!preview) return; const link = document.createElement('a'); link.href = preview; link.download = 'quicktools-qr.png'; link.click(); };
 
-  return <DataTool tool={tool} settings={<SettingsPanel>
+  return <GeneratorTool tool={tool} settings={<SettingsPanel>
     <Field label="Size" value={`${size}px`}><Slider min={160} max={640} step={40} value={size} onChange={(event) => setSize(Number(event.target.value))} /></Field>
     <Field label="Margin" value={margin}><Slider min={0} max={8} value={margin} onChange={(event) => setMargin(Number(event.target.value))} /></Field>
     <Field label="Error correction"><select value={level} onChange={(event) => setLevel(event.target.value as QrErrorCorrectionLevel)}>{['L', 'M', 'Q', 'H'].map((value) => <option key={value}>{value}</option>)}</select></Field>
@@ -47,7 +47,7 @@ const QRCodeGenerator = () => {
     <Field label="QR content" hint={`${content.length} characters`}><TextInput value={content} onChange={(event) => { setContent(event.target.value); if (!event.target.value.trim()) { setPreview(''); setError(''); } }} /></Field>
     <OutputBlock label="Preview" value={preview}>{preview ? <img src={preview} alt="Generated QR code preview" /> : <p className="tool-notice">Enter content to generate a QR code.</p>}</OutputBlock>
     {error && <p className="tool-notice" role="alert">{error}</p>}
-  </DataTool>;
+  </GeneratorTool>;
 };
 
 export default QRCodeGenerator;

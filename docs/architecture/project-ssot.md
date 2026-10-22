@@ -1,6 +1,6 @@
 # QuickTools Project SSOT
 
-Last reviewed: 2026-10-06
+Last reviewed: 2026-10-12
 
 This document is the canonical source of truth for QuickTools. It describes the repository as it exists today and separates current behavior from future plans.
 
@@ -139,12 +139,12 @@ Current state: `server/app.js` is empty. No server runtime behavior exists.
 
 ## Application Routes
 
-Routes are defined in `client/src/App.tsx`.
+Published tool routes are generated from `client/src/data/tools-backlog.json` and resolved through the lazy `/tools/:toolId` route in `client/src/App.tsx`.
 
 Implemented routes:
 
 - `/`: landing page.
-- `/tools/base64`: Base64 encoder/decoder.
+- `/tools/base64-encoder-decoder`: Base64 encoder/decoder. `/tools/base64` remains a compatibility redirect.
 - `/tools/text-formatter`: JSON, XML, HTML, and plain text formatter.
 - `/tools/webp-converter`: JPG/PNG to WebP converter.
 - `/tools/json-converter`: JSON beautifier/minifier.
@@ -152,6 +152,7 @@ Implemented routes:
 - `/tools/json-compare`: nested JSON compare and diff view.
 - `/tools/csv-tsv-converter`: CSV and TSV converter with quoted-field handling.
 - `/tools/regex-tester`: regex tester and match highlighter.
+- `/tools/free-api-explorer`: curated third-party API request explorer.
 - `/kitchen-sink`: shared component examples in light and dark themes.
 
 Do not document landing-page-listed tools as implemented unless they have a route and page implementation.
@@ -164,12 +165,16 @@ Current component boundaries:
 
 - `client/src/App.tsx`: routing.
 - `client/src/pages/Home.tsx`: landing page, tool discovery, and homepage-only dotted globe lifecycle.
-- `client/src/data/toolCatalog.ts`: canonical implemented-tool metadata used by catalog discovery.
+- `client/src/data/tools-backlog.json`: canonical metadata for existing, live, and planned tools.
+- `client/src/generated/toolRegistry.ts`: generated typed registry containing published tools only.
+- `client/src/tools/<id>/index.ts`: lazy tool module contract containing metadata, runner, examples, template config, and page export.
+- `client/src/components/ToolRoute.tsx`: registry-driven lazy route resolver.
+- `client/src/components/CatalogBrowser.tsx`: catalog search, categories, favorites, and recent tools.
 - `client/src/pages/tools/*.tsx`: individual tool screens and workflow state.
 - `client/src/components/ui/AppHeader.tsx`: shared responsive header shell.
 - `client/src/components/ui/ThemeToggle.tsx`: persistent light/dark theme control.
 - `client/src/components/ui/GitHubRepoStar.tsx`: GitHub repository link and cached star count.
-- `client/src/components/ui/ToolPage.tsx`: shared tool layout and form, output, file, and action components.
+- `client/src/components/ui/ToolPage.tsx`: shared tool layout, six template wrappers, and form, output, file, and action components.
 - `client/src/pages/KitchenSink.tsx`: shared component examples.
 - `client/src/utils/jsonConverter.ts`: JSON conversion utility.
 - `client/src/utils/formatFileSize.ts`: file-size display utility.
@@ -181,7 +186,10 @@ Current component boundaries:
 Current pattern:
 
 - Tool pages own `input`, `output`, `error`, and interaction state.
-- Tool routes are lazy-loaded so specialized dependencies do not inflate the initial home-page bundle.
+- Published tools use T, D, F, C, G, or R templates built on `ToolPage`.
+- Tool routes and specialized libraries are lazy-loaded so tool implementations do not enter the home-page bundle.
+- Planned registry entries are validated at build time but are omitted from the runtime registry, catalog, docs, search, routes, and sitemap.
+- Tool examples are executable unit-test fixtures and are available to tool documentation on demand.
 - Tool pages use shared native controls and Heroicons; the theme control uses Headless UI buttons.
 - Reusable pure logic belongs in `client/src/utils`.
 - Reusable visual pieces belong in `client/src/components`.
@@ -308,7 +316,7 @@ Current state:
 - The client can be built with `npm run build` from `client`.
 - `client/build` exists in the repository.
 - GitHub Actions workflows exist for lint, type check, build, unit tests, Playwright smoke checks, Lighthouse, dependency audit, security scanning, and preview build artifacts.
-- Vercel is the documented client deployment target through the root `vercel.json` build and SPA rewrite config.
+- Vercel is the documented client deployment target through the root `vercel.json` build and clean-URL static output.
 - The server package has no runnable application entrypoint.
 - `docs/architecture/deployment-ssot.md` is the deployment source of truth.
 
@@ -318,7 +326,7 @@ Rules:
 - Treat `client/build` as generated output.
 - Run `npm run build` before production client release work.
 - Do not deploy automatically to production from CI.
-- Keep the client as a browser SPA and preserve route refresh behavior through Vercel rewrites.
+- Preserve direct-route refresh behavior through generated route HTML and Vercel clean URLs.
 
 Future plan:
 
@@ -338,6 +346,7 @@ Current implemented product:
 - JSON compare.
 - CSV / TSV converter.
 - Regex tester.
+- Free API explorer.
 
 Near-term future plans:
 
@@ -428,20 +437,21 @@ Current automation:
 
 Current state:
 
-- Vite builds a single-page application from `client/index.html`.
-- No route-specific metadata system is implemented.
-- Public assets include manifest, favicon, icons, and robots file.
-- The landing page communicates the product name and tagline.
+- Vite builds the React application from `client/index.html`.
+- The post-build prerender step emits static HTML for every published tool route and `/docs`.
+- Every published tool HTML file includes its title, meta description, canonical URL, heading, and description before JavaScript runs.
+- `sitemap.xml` and `robots.txt` are generated from the same backlog source.
+- Public assets include manifest, favicon, and icons.
 
 Rules:
 
-- Do not claim route-level SEO behavior exists.
+- Keep published route metadata generated from the tool registry.
 - Keep product copy accurate to implemented tools.
 - Keep static metadata aligned with the current product name and description.
 
 Future plan:
 
-- If SEO becomes a priority, define metadata strategy for SPA routes or evaluate server-side rendering/static generation separately.
+- Add richer static tool content only when search or no-JavaScript usage data justifies it.
 
 ## Canonical References
 
@@ -475,6 +485,6 @@ This document has been reviewed for consistency against the current repository s
 
 - The implemented application is client-first.
 - The server is scaffolded but not implemented.
-- Only routes present in `client/src/App.tsx` are treated as implemented.
+- Only non-planned entries generated from `client/src/data/tools-backlog.json` with a matching tool module are treated as implemented.
 - Future plans are labeled as future plans.
 - No authentication, database, deployment platform, or backend API is claimed.

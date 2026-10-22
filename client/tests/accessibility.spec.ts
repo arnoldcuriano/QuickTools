@@ -1,18 +1,11 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
+import { publishedTools } from '../src/generated/toolRegistry';
 
 const routes = [
   '/',
   '/docs',
-  '/tools/base64',
-  '/tools/text-formatter',
-  '/tools/webp-converter',
-  '/tools/json-converter',
-  '/tools/qr-code-generator',
-  '/tools/json-compare',
-  '/tools/csv-tsv-converter',
-  '/tools/regex-tester',
-  '/tools/free-api-explorer',
+  ...publishedTools.map((tool) => tool.path),
   '/kitchen-sink',
 ];
 

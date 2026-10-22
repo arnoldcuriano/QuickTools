@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { getTool, toolCategories, type ToolCategory } from '../../data/toolCatalog';
-import { freeApiPresets, getFreeApiPreset } from '../../data/freeApis';
+import { getTool } from '../../data/toolCatalog';
+import { freeApiCategories, freeApiPresets, getFreeApiPreset, type FreeApiCategory } from '../../data/freeApis';
 import { ApiExplorerError, buildRequestSnippet, createParameterValues, sendApiRequest, type ApiExplorerResult } from '../../utils/apiExplorer';
 import { formatFileSize } from '../../utils/formatFileSize';
-import { Button, DataTool, Field, OutputBlock, SettingsPanel } from '../../components/ui/ToolPage';
+import { Button, CalculatorTool, Field, OutputBlock, SettingsPanel } from '../../components/ui/ToolPage';
 
 const tool = getTool('free-api-explorer');
-type CategoryFilter = 'All' | ToolCategory;
+type CategoryFilter = 'All' | FreeApiCategory;
 const errorLabels = {
   cors: 'CORS blocked', network: 'Network error', 'rate-limit': 'Rate limited', timeout: 'Request timeout', 'invalid-json': 'Invalid JSON', request: 'Request failed',
 };
@@ -30,8 +30,7 @@ const FreeApiExplorer = () => {
     return matchesCategory && searchText.includes(query.trim().toLowerCase());
   }), [category, query]);
 
-  const groupedPresets = useMemo(() => toolCategories
-    .filter((item): item is ToolCategory => item !== 'All')
+  const groupedPresets = useMemo(() => freeApiCategories
     .map((item) => ({ category: item, presets: filteredPresets.filter((presetItem) => presetItem.category === item) }))
     .filter((group) => group.presets.length), [filteredPresets]);
 
@@ -82,7 +81,7 @@ const FreeApiExplorer = () => {
     link.click();
   };
 
-  return <DataTool
+  return <CalculatorTool
     tool={tool}
     activityLabel={`Sends requests to ${preset.name}`}
     settings={<SettingsPanel>
@@ -103,7 +102,7 @@ const FreeApiExplorer = () => {
       <div className="request-builder-content">
         <div className="preset-filters">
           <Field label="Search presets"><input className="ui-input" type="search" value={query} onChange={(event) => setQuery(event.target.value)} /></Field>
-          <Field label="Category"><select value={category} onChange={(event) => setCategory(event.target.value as CategoryFilter)}>{toolCategories.map((item) => <option key={item}>{item}</option>)}</select></Field>
+          <Field label="Category"><select value={category} onChange={(event) => setCategory(event.target.value as CategoryFilter)}><option>All</option>{freeApiCategories.map((item) => <option key={item}>{item}</option>)}</select></Field>
         </div>
         <div className="preset-picker" role="group" aria-label="API presets">
           {groupedPresets.map((group) => <div className="preset-group" key={group.category}>
@@ -129,7 +128,7 @@ const FreeApiExplorer = () => {
         {response.responseType === 'image' && imageUrl ? <div className="api-image-preview"><img src={imageUrl} alt={`${preset.name} response`} /><Button variant="secondary" onClick={downloadImage}>Download image</Button></div> : <pre tabIndex={0}>{response.text}</pre>}
       </> : <p className="output-empty">Send a request to inspect the response.</p>}
     </OutputBlock>
-  </DataTool>;
+  </CalculatorTool>;
 };
 
 export default FreeApiExplorer;

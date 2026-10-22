@@ -1,28 +1,15 @@
 import { Button } from '@headlessui/react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import AppHeader from '../components/ui/AppHeader';
-import { toolCatalog, toolCategories } from '../data/toolCatalog';
-
-type CategoryFilter = (typeof toolCategories)[number];
+import CatalogBrowser from '../components/CatalogBrowser';
+import { toolCatalog } from '../data/toolCatalog';
 
 const QuickToolsLanding = () => {
   const location = useLocation();
   const catalogRef = useRef<HTMLElement>(null);
   const globeRef = useRef<HTMLCanvasElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const [query, setQuery] = useState('');
-  const [category, setCategory] = useState<CategoryFilter>('All');
-
-  const filteredTools = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase();
-
-    return toolCatalog.filter((tool) => {
-      const matchesCategory = category === 'All' || tool.category === category;
-      const searchableText = [tool.name, tool.description, tool.category, ...tool.tags].join(' ').toLowerCase();
-      return matchesCategory && (!normalizedQuery || searchableText.includes(normalizedQuery));
-    });
-  }, [category, query]);
 
   const scrollToCatalog = () => catalogRef.current?.scrollIntoView({ behavior: 'smooth' });
 
@@ -56,9 +43,6 @@ const QuickToolsLanding = () => {
               <Button onClick={scrollToCatalog} className="brand-button px-4 py-2.5">
                 Browse tools
               </Button>
-              <Link to="/tools/json-converter" className="brand-button-secondary px-4 py-2.5">
-                Open JSON converter
-              </Link>
             </div>
             <dl className="hero-meta">
               <div>
@@ -67,7 +51,7 @@ const QuickToolsLanding = () => {
               </div>
               <div>
                 <dt className="sr-only">Processing model</dt>
-                <dd>Browser-local processing</dd>
+                <dd>Most tools run locally</dd>
               </div>
               <div>
                 <dt className="sr-only">License</dt>
@@ -86,63 +70,9 @@ const QuickToolsLanding = () => {
               <h2>Tool catalog</h2>
               <p>Search by task or narrow the catalog by category. Every result opens a dedicated, bookmarkable tool.</p>
             </div>
-            <p className="catalog-count" aria-live="polite">
-              Showing {filteredTools.length} of {toolCatalog.length}
-            </p>
+            <p className="catalog-count">{toolCatalog.length} available</p>
           </div>
-
-          <div className="catalog-controls">
-            <label className="catalog-search">
-              <span className="sr-only">Search tools</span>
-              <input
-                ref={searchInputRef}
-                type="search"
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search tools, formats, or tasks"
-              />
-            </label>
-            <div className="catalog-filters" role="group" aria-label="Filter tools by category">
-              {toolCategories.map((item) => (
-                <Button
-                  key={item}
-                  type="button"
-                  onClick={() => setCategory(item)}
-                  aria-pressed={category === item}
-                  className="brand-filter-button"
-                >
-                  {item}
-                </Button>
-              ))}
-            </div>
-          </div>
-
-          {filteredTools.length > 0 ? (
-            <div id="tool-results" className="tool-list">
-              {filteredTools.map((tool) => (
-                <Link key={tool.path} to={tool.path} className="tool-row">
-                  <h3>{tool.name}</h3>
-                  <p>{tool.description}</p>
-                  <span>{tool.category}</span>
-                </Link>
-              ))}
-            </div>
-          ) : (
-            <div className="brand-empty-state">
-              <h3>No matching tools</h3>
-              <p>Try a broader term or clear the selected category.</p>
-              <Button
-                type="button"
-                onClick={() => {
-                  setQuery('');
-                  setCategory('All');
-                }}
-                className="brand-button-secondary mt-5 px-4 py-2"
-              >
-                Clear filters
-              </Button>
-            </div>
-          )}
+          <CatalogBrowser searchRef={searchInputRef} />
         </section>
 
       </main>
