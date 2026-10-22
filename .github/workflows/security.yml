@@ -46,8 +46,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Check for dependency lockfile changes
+        id: dependency-lockfiles
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          if git diff --quiet "$BASE_SHA" "$HEAD_SHA" -- \
+            ':(glob)**/package-lock.json' ':(glob)**/npm-shrinkwrap.json' \
+            ':(glob)**/pnpm-lock.yaml' ':(glob)**/yarn.lock'; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Review dependency changes
+        if: steps.dependency-lockfiles.outputs.changed == 'true'
         uses: actions/dependency-review-action@v4
         with:
           fail-on-severity: high
