@@ -1,7 +1,14 @@
 import { expect, test } from '@playwright/test';
 import { publishedTools } from '../src/generated/toolRegistry';
 
-const tools = publishedTools.map((tool) => [tool.path, tool.name, tool.runsLocally ? 'Runs locally in your browser' : 'Sends requests to', tool.template] as const);
+const tools = publishedTools.map((tool) => [
+  tool.path,
+  tool.name,
+  tool.id === 'youtube-thumbnail-downloader'
+    ? "Loads images from YouTube's servers"
+    : tool.runsLocally ? 'Runs locally in your browser' : 'Sends requests to',
+  tool.template,
+] as const);
 
 for (const [route, title, activity, template] of tools) {
   test(`${title} uses the shared tool layout`, async ({ page }) => {

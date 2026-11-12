@@ -1130,6 +1130,26 @@ export const toolRegistry = [
       "security"
     ],
     "path": "/tools/password-generator"
+  },
+  {
+    "id": "youtube-thumbnail-downloader",
+    "name": "YouTube Thumbnail Downloader",
+    "category": "Image & Media",
+    "template": "G",
+    "description": "Preview and download the available thumbnail sizes for a YouTube video.",
+    "runsLocally": false,
+    "library": null,
+    "provider": "YouTube",
+    "status": "live",
+    "keywords": [
+      "youtube",
+      "thumbnail",
+      "downloader",
+      "video",
+      "image",
+      "media"
+    ],
+    "path": "/tools/youtube-thumbnail-downloader"
   }
 ] as const satisfies readonly ToolMeta[];
 

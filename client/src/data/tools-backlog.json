@@ -4592,5 +4592,61 @@
                          "network",
                          "lookups"
                      ]
+    },
+    {
+        "id":  "background-remover",
+        "name":  "Background Remover",
+        "category":  "Image & Media",
+        "template":  "F",
+        "description":  "Remove the background from an image.",
+        "runsLocally":  true,
+        "library":  "TBD",
+        "batch":  4,
+        "status":  "planned",
+        "keywords":  [
+                         "background",
+                         "remover",
+                         "image",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "tiktok-thumbnail-downloader",
+        "name":  "TikTok Thumbnail Downloader",
+        "category":  "Image & Media",
+        "template":  "G",
+        "description":  "Find and download an available TikTok video thumbnail.",
+        "runsLocally":  false,
+        "library":  null,
+        "batch":  5,
+        "status":  "planned",
+        "note":  "needs live verification of oEmbed fields",
+        "keywords":  [
+                         "tiktok",
+                         "thumbnail",
+                         "downloader",
+                         "image",
+                         "media"
+                     ]
+    },
+    {
+        "id":  "youtube-thumbnail-downloader",
+        "name":  "YouTube Thumbnail Downloader",
+        "category":  "Image & Media",
+        "template":  "G",
+        "description":  "Preview and download the available thumbnail sizes for a YouTube video.",
+        "runsLocally":  false,
+        "library":  null,
+        "provider":  "YouTube",
+        "batch":  1,
+        "status":  "live",
+        "keywords":  [
+                         "youtube",
+                         "thumbnail",
+                         "downloader",
+                         "video",
+                         "image",
+                         "media"
+                     ]
     }
 ]
