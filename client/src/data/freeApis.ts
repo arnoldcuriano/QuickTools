@@ -1,4 +1,5 @@
-import type { ToolCategory } from './toolCatalog';
+export const freeApiCategories = ['Developer', 'Data', 'Content', 'Media'] as const;
+export type FreeApiCategory = (typeof freeApiCategories)[number];
 
 export type ApiParameterType = 'text' | 'number';
 export type ApiResponseType = 'json' | 'image';
@@ -16,7 +17,7 @@ interface FreeApiBase {
   id: string;
   name: string;
   description: string;
-  category: ToolCategory;
+  category: FreeApiCategory;
   docsUrl: string;
   cors: CorsSupport;
   rateLimitNote: string;

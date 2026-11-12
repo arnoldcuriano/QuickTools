@@ -7,13 +7,15 @@
     "node": ">=24.15.0"
   },
   "scripts": {
+    "tools:generate": "node scripts/generate-tools.mjs",
+    "tools:check": "node scripts/check-tool-modules.mjs",
     "start": "vite",
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "npm run tools:generate && npm run tools:check && tsc --noEmit && vite build && node scripts/prerender.mjs",
     "preview": "vite preview",
-    "test": "vitest run",
+    "test": "npm run tools:generate && npm run tools:check && vitest run",
     "test:watch": "vitest",
-    "lint": "eslint . && node scripts/check-design-tokens.mjs",
+    "lint": "npm run tools:generate && npm run tools:check && eslint . && node scripts/check-design-tokens.mjs",
     "test:a11y": "playwright test tests/accessibility.spec.ts",
     "test:browser": "playwright test"
   },

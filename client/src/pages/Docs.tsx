@@ -1,11 +1,12 @@
 import { useMemo, useState } from 'react';
 import AppHeader from '../components/ui/AppHeader';
 import DocsLayout, { type DocsNavGroup } from '../components/docs/DocsLayout';
-import { freeApiDirectory } from '../data/freeApis';
-import { toolCatalog, type ToolCategory } from '../data/toolCatalog';
+import { freeApiDirectory, type FreeApiCategory } from '../data/freeApis';
+import { toolCatalog, toolCategories } from '../data/toolCatalog';
+import ToolDocsExample from '../components/docs/ToolDocsExample';
 
-const categories: ToolCategory[] = ['Developer', 'Data', 'Content', 'Media'];
-const categoryDescriptions: Record<ToolCategory, string> = {
+const categories: FreeApiCategory[] = ['Developer', 'Data', 'Content', 'Media'];
+const categoryDescriptions: Record<FreeApiCategory, string> = {
   Developer: 'Testing, package registries, CDNs, diagrams, and network utilities for building and debugging apps.',
   Data: 'Sample data, currency, weather, and open research data. Good inputs for the JSON Converter.',
   Content: 'Dictionaries, translation, placeholder text, and public-domain writing. Pairs with the Text Formatter.',
@@ -59,7 +60,7 @@ const Docs = () => {
             <h2>Overview</h2>
             <p>QuickTools runs its current utilities in your browser. Tool inputs are processed locally, without an account or QuickTools backend upload.</p>
             <ul className="plain">
-              <li>Tools are grouped into Developer, Data, Content, and Media categories.</li>
+              <li>Current tools are grouped into {toolCategories.join(', ')} categories.</li>
               <li>Each tool has a dedicated route and documentation entry generated from the tool registry.</li>
               <li>External API terms, limits, and availability remain controlled by their providers.</li>
             </ul>
@@ -104,6 +105,7 @@ const Docs = () => {
             <section id={`tool-${tool.id}`} key={tool.id}>
               <h2>{tool.name}</h2>
               <p>{tool.description}</p>
+              <ToolDocsExample toolId={tool.id} />
             </section>
           ))}
         </DocsLayout>

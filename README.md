@@ -34,7 +34,7 @@ The accessibility suite uses installed Chrome locally. GitHub Actions installs a
 
 ## Deployment
 
-Vercel deploys `main` automatically through the connected Git repository. The root `vercel.json` installs and builds the client, publishes `client/build`, and rewrites direct SPA routes to `index.html`.
+Vercel deploys `main` automatically through the connected Git repository. The build generates static HTML and metadata for each published tool, then Vercel serves those files with clean extensionless URLs.
 
 ## Open Source
 

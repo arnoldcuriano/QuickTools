@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { getTool } from '../../data/toolCatalog';
 import { Button, Field, OutputBlock, SettingsPanel, TextInput, TextTool } from '../../components/ui/ToolPage';
 
-const tool = getTool('base64');
+const tool = getTool('base64-encoder-decoder');
 const samples = {
   encode: ['Hello, World!', 'QuickTools is awesome!', 'https://example.com/api/data'],
   decode: ['SGVsbG8sIFdvcmxkIQ==', 'UXVpY2tUb29scyBpcyBhd2Vzb21lIQ=='],

@@ -1,8 +1,10 @@
-import type { ButtonHTMLAttributes, CSSProperties, InputHTMLAttributes, ReactNode, TextareaHTMLAttributes } from 'react';
+import { useEffect, type ButtonHTMLAttributes, type CSSProperties, type InputHTMLAttributes, type ReactNode, type TextareaHTMLAttributes } from 'react';
 import { ClipboardDocumentIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
 import type { ToolCatalogItem } from '../../data/toolCatalog';
 import AppHeader from './AppHeader';
+import type { ToolTemplateConfig } from '../../tools/types';
+import { recordRecentTool } from '../../utils/toolPreferences';
 
 type ButtonVariant = 'primary' | 'secondary' | 'ghost';
 
@@ -55,11 +57,25 @@ export const FileList = ({ children, empty = 'No files selected.' }: { children?
   <div className="file-list">{children || <p>{empty}</p>}</div>
 );
 
-export const ToolPage = ({ tool, settings, activityLabel = 'Runs locally in your browser', children }: { tool: ToolCatalogItem; settings?: ReactNode; activityLabel?: ReactNode; children: ReactNode }) => (
-  <div className="tool-page">
+export const ToolPage = ({ tool, settings, activityLabel, config, children }: { tool: ToolCatalogItem; settings?: ReactNode; activityLabel?: ReactNode; config?: ToolTemplateConfig; children: ReactNode }) => {
+  useEffect(() => {
+    recordRecentTool(tool.id);
+    document.title = `${tool.name} | QuickTools`;
+    document.querySelector('meta[name="description"]')?.setAttribute('content', tool.description);
+    let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.append(canonical);
+    }
+    canonical.href = `${window.location.origin}${tool.path}`;
+  }, [tool]);
+
+  const activity = activityLabel ?? (tool.runsLocally ? 'Runs locally in your browser' : `Sends requests to ${tool.provider}`);
+  return <div className="tool-page" data-template={config?.template ?? tool.template}>
     <AppHeader />
     <main className="tool-shell">
-      <div className="tool-kicker"><Link to="/">Back to tools</Link><span>{activityLabel}</span></div>
+      <div className="tool-kicker"><Link to="/">Back to tools</Link><span>{activity}</span></div>
       <h1>{tool.name}</h1>
       <p className="tool-description">{tool.description}</p>
       <div className="tool-divider" />
@@ -68,11 +84,15 @@ export const ToolPage = ({ tool, settings, activityLabel = 'Runs locally in your
         {settings}
       </div>
     </main>
-    <footer className="tool-footer"><div className="tool-shell">QuickTools runs in your browser. Your files stay on your device.</div></footer>
+    <footer className="tool-footer"><div className="tool-shell">QuickTools is an open-source technical workbench.</div></footer>
   </div>
-);
+};
 
-type TemplateProps = { tool: ToolCatalogItem; settings?: ReactNode; activityLabel?: ReactNode; children: ReactNode };
-export const FileTool = (props: TemplateProps) => <ToolPage {...props} />;
-export const TextTool = (props: TemplateProps) => <ToolPage {...props} />;
-export const DataTool = (props: TemplateProps) => <ToolPage {...props} />;
+type TemplateProps = { tool: ToolCatalogItem; settings?: ReactNode; activityLabel?: ReactNode; config?: Omit<ToolTemplateConfig, 'template'>; children: ReactNode };
+const template = (code: ToolTemplateConfig['template']) => ({ config, ...props }: TemplateProps) => <ToolPage {...props} config={{ ...config, template: code }} />;
+export const TextTool = template('T');
+export const DataTool = template('D');
+export const FileTool = template('F');
+export const CalculatorTool = template('C');
+export const GeneratorTool = template('G');
+export const ReferenceTool = template('R');

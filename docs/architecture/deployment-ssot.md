@@ -1,6 +1,6 @@
 # Deployment SSOT
 
-Last reviewed: 2026-09-09
+Last reviewed: 2026-10-12
 
 This document is the deployment source of truth for QuickTools.
 
@@ -18,7 +18,7 @@ Current deployment model:
 - Source repository: `arnoldcuriano/QuickTools`
 - Build target: `client`
 - Output directory: `client/build`
-- Runtime type: static React single-page application
+- Runtime type: static React application with generated route HTML
 
 ## Vercel Configuration
 
@@ -27,9 +27,9 @@ The root `vercel.json` defines:
 - `installCommand`: `cd client && npm ci`
 - `buildCommand`: `cd client && npm run build`
 - `outputDirectory`: `client/build`
-- SPA rewrite: `/(.*)` to `/index.html`
+- Clean URLs enabled with trailing slashes disabled
 
-The SPA rewrite is required so direct visits to `/tools/*` routes return the React app instead of Vercel `404: NOT_FOUND`.
+The client build generates an HTML file for every published tool route, `/docs`, `/kitchen-sink`, and the legacy `/tools/base64` path. Vercel clean URLs map those files to extensionless routes without a catch-all SPA rewrite.
 
 ## Deployment Requirements
 
@@ -52,7 +52,8 @@ Before claiming deployment success, verify:
 2. Vercel deployment status is `success` for the expected commit SHA.
 3. Production root returns HTTP 200.
 4. At least one direct tool route returns HTTP 200, for example `/tools/json-converter`.
-5. The returned HTML includes the React root and static JS bundle references.
+5. The returned HTML includes route-specific title, description, canonical, static heading content, and React bundle references.
+6. `/sitemap.xml` and `/robots.txt` return generated registry-driven content.
 
 ## Known Risks
 

@@ -1,1 +1,0 @@
-var e=e=>e<1024?`${e} B`:e<1048576?`${(e/1024).toFixed(2)} KB`:`${(e/1048576).toFixed(2)} MB`;export{e as t};

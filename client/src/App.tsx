@@ -2,18 +2,11 @@ import React, { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import { installSoundDelegation } from './utils/sound';
+import ToolRoute from './components/ToolRoute';
+import CommandPalette from './components/CommandPalette';
 
-const Base64Tool = lazy(() => import('./pages/tools/Base64Tool'));
-const TextFormatter = lazy(() => import('./pages/tools/TextFormatter'));
-const WebPConverter = lazy(() => import('./pages/tools/WebPConverter'));
-const JSONConverter = lazy(() => import('./pages/tools/JSONConverter'));
-const QRCodeGenerator = lazy(() => import('./pages/tools/QRCodeGenerator'));
-const JSONCompare = lazy(() => import('./pages/tools/JSONCompare'));
-const CSVTSVConverter = lazy(() => import('./pages/tools/CSVTSVConverter'));
-const RegexTester = lazy(() => import('./pages/tools/RegexTester'));
 const KitchenSink = lazy(() => import('./pages/KitchenSink'));
 const Docs = lazy(() => import('./pages/Docs'));
-const FreeApiExplorer = lazy(() => import('./pages/tools/FreeApiExplorer'));
 
 function App() {
   useEffect(() => installSoundDelegation(), []);
@@ -21,6 +14,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <CommandPalette />
         <Suspense
           fallback={
             <main className="brand-page flex min-h-screen items-center justify-center">
@@ -33,15 +27,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/docs" element={<Docs />} />
-            <Route path="/tools/base64" element={<Base64Tool />} />
-            <Route path="/tools/text-formatter" element={<TextFormatter />} />
-            <Route path="/tools/webp-converter" element={<WebPConverter />} />
-            <Route path="/tools/json-converter" element={<JSONConverter />} />
-            <Route path="/tools/qr-code-generator" element={<QRCodeGenerator />} />
-            <Route path="/tools/json-compare" element={<JSONCompare />} />
-            <Route path="/tools/csv-tsv-converter" element={<CSVTSVConverter />} />
-            <Route path="/tools/regex-tester" element={<RegexTester />} />
-            <Route path="/tools/free-api-explorer" element={<FreeApiExplorer />} />
+            <Route path="/tools/:toolId" element={<ToolRoute />} />
             <Route path="/kitchen-sink" element={<KitchenSink />} />
           </Routes>
         </Suspense>
